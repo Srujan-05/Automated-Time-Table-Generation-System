@@ -10,8 +10,114 @@ class GASearch:
         self.mutation_rate = mutation_rate
 
     def create_population(self):
-        # Create an initial random population
-        pass
+        # Create an initial random population of valid timetables
+        population = []
+        
+        while len(population) < self.population_size:
+            time_table = self._generate_random_timetable()
+            
+            # Only add if it satisfies all constraints
+            if time_table and self.check_constraints(time_table):
+                population.append(time_table)
+        
+        return population
+    
+    def _generate_random_timetable(self):
+        # Generate a random timetable structure
+        import random
+        
+        # Initialize timetable: {day: {slot: [courses]}}
+        time_table = {}
+        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        
+        for day in days:
+            time_table[day] = {}
+            for slot in range(1, self.time_slots + 1):
+                time_table[day][slot] = []
+        
+        # Create a list of all courses to schedule
+        courses_to_schedule = list(self.courses)
+        random.shuffle(courses_to_schedule)
+        
+        # Try to assign each course to a valid slot
+        for course in courses_to_schedule:
+            assigned = False
+            attempts = 0
+            max_attempts = 50
+            
+            while not assigned and attempts < max_attempts:
+                attempts += 1
+                
+                # Pick random day and starting slot
+                day = random.choice(days)
+                start_slot = random.randint(1, self.time_slots)
+                
+                # Check if we have enough consecutive slots for continuous requirement
+                if course.slots_continuous:
+                    # Need consecutive slots
+                    if start_slot + course.slots_req - 1 <= self.time_slots:
+                        slots_to_use = list(range(start_slot, start_slot + course.slots_req))
+                    else:
+                        continue  # Not enough consecutive slots from this start
+                else:
+                    # Can use non-consecutive slots
+                    slots_to_use = [start_slot]
+                
+                # Check if all slots are available (no conflicts)
+                slots_available = True
+                for slot in slots_to_use:
+                    if len(time_table[day][slot]) > 0:
+                        # Check for conflicts at this slot
+                        for existing_course in time_table[day][slot]:
+                            # Would this create a conflict?
+                            if not self._can_add_course(course, existing_course):
+                                slots_available = False
+                                break
+                    if not slots_available:
+                        break
+                
+                if slots_available:
+                    # Assign course to all required slots
+                    for slot in slots_to_use:
+                        time_table[day][slot].append(course)
+                    assigned = True
+            
+            if not assigned:
+                # Failed to assign course, return None to indicate invalid timetable
+                return None
+        
+        return time_table
+    
+    def _can_add_course(self, new_course, existing_course):
+        # Check if new_course can be added to a slot with existing_course
+        # Return False if they conflict
+        
+        # Professor conflict
+        if new_course.instructor.id == existing_course.instructor.id:
+            return False
+        
+        # Room conflict
+        if new_course.room.id == existing_course.room.id:
+            return False
+        
+        # Student group conflict (direct)
+        if new_course.student_grp == existing_course.student_grp:
+            return False
+        
+        # Student group conflict (super groups)
+        if hasattr(new_course.student_grp, 'super_groups') and hasattr(existing_course.student_grp, 'super_groups'):
+            if existing_course.student_grp in new_course.student_grp.super_groups:
+                return False
+            if new_course.student_grp in existing_course.student_grp.super_groups:
+                return False
+        elif hasattr(new_course.student_grp, 'super_groups'):
+            if existing_course.student_grp in new_course.student_grp.super_groups:
+                return False
+        elif hasattr(existing_course.student_grp, 'super_groups'):
+            if new_course.student_grp in existing_course.student_grp.super_groups:
+                return False
+        
+        return True
 
     def fitness(self, time_table):
         # Evaluate the fitness of an individual using weighted sum of objective functions
@@ -79,6 +185,18 @@ class GASearch:
                     if course.room.id in room_ids:
                         return False  # Room conflict
                     room_ids.append(course.room.id)
+                
+                # Check room type constraint (lab courses must be in lab rooms)
+                for course in courses:
+                    if course.session_type == 'lab':
+                        if not hasattr(course.room, 'is_lab') or not course.room.is_lab:
+                            return False  # Lab course not in lab room
+                
+                # Check room capacity constraint
+                for course in courses:
+                    if hasattr(course.student_grp, 'size') and hasattr(course.room, 'capacity'):
+                        if course.room.capacity < course.student_grp.size:
+                            return False  # Room too small for student group
             
             # Check constraint: only one lecture per day per course-student group combination
             lectures_per_day = {}
@@ -92,6 +210,42 @@ class GASearch:
                         
                         if lectures_per_day[course_key] > 1:
                             return False  # More than one lecture per day for this course-group
+            
+            # Check continuous slots constraint for courses that require it
+            for time_slot in sorted(time_table[day].keys()):
+                for course in time_table[day][time_slot]:
+                    if course.slots_continuous:
+                        # Find all occurrences of this course in the day
+                        course_slots = []
+                        for slot in time_table[day]:
+                            if course in time_table[day][slot]:
+                                course_slots.append(slot)
+                        
+                        course_slots.sort()
+                        
+                        # Check if slots are consecutive
+                        if len(course_slots) > 1:
+                            for i in range(len(course_slots) - 1):
+                                if course_slots[i + 1] != course_slots[i] + 1:
+                                    return False  # Non-consecutive slots for continuous course
+        
+        # Check that each course is scheduled for exactly slots_req times
+        course_slot_count = {}
+        for day in time_table:
+            for time_slot in time_table[day]:
+                for course in time_table[day][time_slot]:
+                    course_id = course.id if hasattr(course, 'id') else id(course)
+                    if course_id not in course_slot_count:
+                        course_slot_count[course_id] = 0
+                    course_slot_count[course_id] += 1
+        
+        for course in self.courses:
+            course_id = course.id if hasattr(course, 'id') else id(course)
+            if course_id in course_slot_count:
+                if course_slot_count[course_id] != course.slots_req:
+                    return False  # Course not scheduled for the required number of slots
+            else:
+                return False  # Course not scheduled at all
         
         return True  # All constraints satisfied
 
