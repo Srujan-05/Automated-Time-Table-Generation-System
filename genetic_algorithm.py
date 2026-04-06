@@ -40,7 +40,60 @@ class GASearch:
 
     def check_constraints(self, time_table):
         # Check if the time table satisfies all constraints
-        pass
+        
+        for day in time_table:
+            for time_slot in time_table[day]:
+                courses = time_table[day][time_slot]
+                
+                # Check for professor collisions
+                professor_ids = []
+                for course in courses:
+                    if course.instructor.id in professor_ids:
+                        return False  # Professor conflict
+                    professor_ids.append(course.instructor.id)
+                
+                # Check for student group collisions (direct groups)
+                student_grps = []
+                for course in courses:
+                    if course.student_grp in student_grps:
+                        return False  # Student group conflict
+                    student_grps.append(course.student_grp)
+                
+                # Check for super group collisions
+                for course in courses:
+                    if hasattr(course.student_grp, 'super_groups'):
+                        for super_grp in course.student_grp.super_groups:
+                            # Check if this super group is in any other course's student group in this slot
+                            for other_course in courses:
+                                if other_course != course:
+                                    # Check if super_grp is the student_grp of other_course
+                                    if other_course.student_grp == super_grp:
+                                        return False  # Super group conflict
+                                    # Check if super_grp is in other_course's super groups
+                                    if hasattr(other_course.student_grp, 'super_groups') and super_grp in other_course.student_grp.super_groups:
+                                        return False  # Super group conflict
+                
+                # Check for room collisions
+                room_ids = []
+                for course in courses:
+                    if course.room.id in room_ids:
+                        return False  # Room conflict
+                    room_ids.append(course.room.id)
+            
+            # Check constraint: only one lecture per day per course-student group combination
+            lectures_per_day = {}
+            for time_slot in time_table[day]:
+                for course in time_table[day][time_slot]:
+                    if course.session_type == 'lecture':
+                        course_key = (course.course_id, course.student_grp)
+                        if course_key not in lectures_per_day:
+                            lectures_per_day[course_key] = 0
+                        lectures_per_day[course_key] += 1
+                        
+                        if lectures_per_day[course_key] > 1:
+                            return False  # More than one lecture per day for this course-group
+        
+        return True  # All constraints satisfied
 
     def run(self):
         # Main loop to run the genetic algorithm
