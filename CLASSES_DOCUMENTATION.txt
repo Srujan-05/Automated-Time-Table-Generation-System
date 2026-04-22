@@ -1,0 +1,326 @@
+================================================================================
+                    TIMETABLE GENERATION SYSTEM - CLASS DOCUMENTATION
+================================================================================
+
+This document describes all classes and data structures used in the Automated 
+Time Table Generator system. The system uses a Genetic Algorithm to optimize 
+university course scheduling across multiple constraints and objectives.
+
+================================================================================
+                              MAIN CLASSES
+================================================================================
+
+1. GASearch (Genetic Algorithm Search)
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Main genetic algorithm engine for timetable generation
+   
+   Attributes:
+   - time_slots (int): Number of time slots per day
+   - courses (list): List of all course instances to schedule
+   - preference_bins (dict): Maps time slots to preference bins
+   - objective_function_weights (list): Weights for three penalty terms [w1, w2, w3]
+   - rooms (list): List of available rooms
+   - population_size (int): Size of GA population (default: 20)
+   - generations (int): Number of generations to run (default: 100)
+   - mutation_rate (float): Probability of mutation (default: 0.1)
+   
+   Methods:
+   - create_population(): Generates initial valid population of timetables
+   - fitness(time_table): Evaluates fitness using weighted objective functions
+   - select_parents(): Selects parents for crossover based on fitness
+   - crossover(time_table1, time_table2): Creates offspring from two parents
+   - mutate(time_table): Applies random mutations to a timetable
+   - check_constraints(time_table): Validates all hard constraints
+   - run(): Main GA loop to evolve solutions
+   
+   Private Methods:
+   - _ptp_objective_function(): Professor time preference penalty calculation
+   - _rtr_objective_function(): Room-to-room distance penalty calculation
+   - _course_stability_objective_function(): Course session consistency penalty
+   - _generate_random_timetable(): Creates random initial timetable
+   - _can_add_course(): Checks if two courses can be in same slot
+
+================================================================================
+
+2. Course (Course Instance)
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Represents a single course instance (course taught by instructor to group)
+   
+   Attributes:
+   - course_id (str): Unique identifier for the course (e.g., "MA101")
+   - course_credits (int): Number of credits for the course
+   - instructor (Instructor): The professor teaching this course instance
+   - room (Room): The room assigned for this course
+   - student_grp (StudentGroup): The student group attending this course
+   - slots_req (int): Number of time slots required for this session
+   - slots_continuous (boolean): Whether slots must be consecutive
+   - session_type (str): Type of session - "lecture", "tutorial", or "lab"
+   - preference (int): Instructor's preferred time bin (1, 2, 3, etc.)
+   
+   Note: Each course instance is unique. If MA101 is taught by Prof A to CSE-2027
+         and Prof B to ME-2027, these are two separate course instances.
+
+================================================================================
+
+3. Instructor (Professor)
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Represents a professor/instructor
+   
+   Attributes:
+   - id (str/int): Unique identifier for the instructor
+   - name (str): Name of the instructor (optional)
+   - preference (int): Preferred time bin (1=morning, 2=noon, 3=evening, etc.)
+   
+   Constraints:
+   - Cannot teach two different courses in the same time slot
+   - Available at all times (no blocked slots)
+
+================================================================================
+
+4. Room
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Represents a physical classroom/lab space
+   
+   Attributes:
+   - id (str/int): Unique identifier for the room
+   - x (float): X coordinate for room location (for distance calculation)
+   - y (float): Y coordinate for room location (for distance calculation)
+   - z (float): Z coordinate for room location (for distance calculation)
+   - capacity (int): Maximum number of students the room can accommodate
+   - is_lab (boolean): True if room is a lab room, False for regular classrooms
+   
+   Constraints:
+   - Cannot be used for two different courses in the same time slot
+   - Lab courses must be scheduled in rooms with is_lab=True
+   - Room capacity must be >= student group size
+   
+   Usage: Manhattan distance = |x1-x2| + |y1-y2| + |z1-z2|
+
+================================================================================
+
+5. StudentGroup
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Represents a group of students
+   
+   Attributes:
+   - name (str): Name/code of the student group (e.g., "CSE-2027")
+   - size (int): Number of students in the group
+   - super_groups (list): List of parent/super groups this group belongs to
+                         (e.g., CSE-2027 belongs to "Class of 2027")
+   
+   Hierarchy Example:
+   - Class of 2027 (super group)
+     ├── CSE-2027 (student group)
+     ├── ME-2027 (student group)
+     └── NT-2027 (student group)
+   
+   Constraints:
+   - A student group cannot attend two courses in the same time slot
+   - A super group cannot have both parent and child groups in same time slot
+   - Only one lecture per day for each (course, student_group) pair
+
+================================================================================
+
+6. PreferenceBins (Data Structure)
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Maps time slots to preference bins
+   
+   Structure: Dictionary {slot_number: bin_id}
+   
+   Example:
+   {
+       1: 1, 2: 1, 3: 1,        # Slots 1-3 are in bin 1 (morning)
+       4: 2, 5: 2, 6: 2,        # Slots 4-6 are in bin 2 (noon)
+       7: 3, 8: 3, 9: 3         # Slots 7-9 are in bin 3 (evening)
+   }
+   
+   Usage: Professors specify preferred bin, penalties applied for mismatches
+
+================================================================================
+
+7. ObjectiveFunctionWeights (Data Structure)
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Weights for the three penalty terms in fitness function
+   
+   Structure: List [w1, w2, w3]
+   
+   Components:
+   - w1: Weight for Professor Time Preference (PTP) penalty
+   - w2: Weight for Room-to-Room Distance (RTR) penalty
+   - w3: Weight for Course Stability penalty
+   
+   Usage: fitness = w1*ptp_penalty + w2*rtr_penalty + w3*stability_penalty
+
+================================================================================
+
+8. TimeTable (Data Structure)
+   ────────────────────────────────────────────────────────────────────────────
+   Purpose: Represents a complete weekly schedule (one chromosome in GA)
+   
+   Structure:
+   {
+       "Monday": {
+           1: [course1, course2],      # Slot 1 has two courses
+           2: [course3],               # Slot 2 has one course
+           3: []                       # Slot 3 is empty
+       },
+       "Tuesday": { ... },
+       ...
+       "Sunday": { ... }
+   }
+   
+   Components:
+   - Key (string): Day of week
+   - Value (dict): Maps slot_number (int) to list of courses
+   
+   Note: Multiple courses can be in the same slot if constraints allow
+         (different instructors, rooms, student groups)
+
+================================================================================
+                           OBJECTIVE FUNCTIONS
+================================================================================
+
+1. Professor Time Preference (PTP) Penalty
+   ────────────────────────────────────────────────────────────────────────────
+   Goal: Minimize deviation from professors' preferred time bins
+   
+   Calculation:
+   For each course in the timetable:
+       penalty += |bin_of_assigned_slot - instructor_preferred_bin|
+   
+   Objective: Professors prefer their designated time bin (morning/noon/evening)
+
+================================================================================
+
+2. Room-to-Room Distance (RTR) Penalty
+   ────────────────────────────────────────────────────────────────────────────
+   Goal: Minimize travel distance for students between consecutive classes
+   
+   Calculation:
+   For each day, for each pair of consecutive time slots:
+       For each student group appearing in both slots:
+           distance = |x1-x2| + |y1-y2| + |z1-z2| (Manhattan distance)
+           penalty += distance
+   
+   Also considers super groups:
+   If student group X is in slot 1 and super group Y is in slot 2,
+   the distance is calculated between their rooms.
+   
+   Objective: Reduce student travel time between back-to-back classes
+
+================================================================================
+
+3. Course Stability Penalty
+   ────────────────────────────────────────────────────────────────────────────
+   Goal: Keep same session type of a course in same slot and room throughout week
+   
+   Calculation:
+   For each course and session type pair:
+       If course appears multiple times across the week:
+           For each occurrence after the first:
+               if slot != first_slot: penalty += 1
+               if room != first_room: penalty += 1
+   
+   Objective: All MA101 lectures should be at the same time and room every day
+
+================================================================================
+                              CONSTRAINTS
+================================================================================
+
+HARD CONSTRAINTS (Must be satisfied - violations rejected):
+
+1. No Professor Conflict
+   - Same instructor cannot teach two courses in same time slot
+
+2. No Student Group Conflict
+   - A student group cannot attend two courses in same slot
+   - A super group cannot have both child and parent groups in same slot
+
+3. No Room Conflict
+   - A room cannot host two courses in same time slot
+
+4. Lab Room Constraint
+   - Lab sessions must be scheduled in rooms with is_lab=True
+
+5. Room Capacity Constraint
+   - Room capacity must be >= student group size
+
+6. Slots Requirement Constraint
+   - Each course must be scheduled for exactly slots_req number of times
+
+7. Continuous Slots Constraint
+   - If slots_continuous=True, all slots for a course on same day must be consecutive
+
+8. Lecture Per Day Constraint
+   - Each (course_id, student_group) can have at most one lecture per day
+
+================================================================================
+                           SOFT CONSTRAINTS
+================================================================================
+
+These are incorporated into the objective function and weighted:
+
+1. Professor Time Preference
+   - Prefer assigned slot bin matches instructor preference
+
+2. Room-to-Room Travel
+   - Minimize student travel distance between consecutive classes
+
+3. Course Session Consistency
+   - Keep same course sessions in consistent slot and room
+
+================================================================================
+                            DATA FLOW SUMMARY
+================================================================================
+
+Input:
+├─ List of Courses (with instructor, room, student group, requirements)
+├─ List of Rooms (with location, capacity, type)
+├─ List of Student Groups (with hierarchy)
+├─ Time Slots (number per day)
+├─ Preference Bins (slot to bin mapping)
+└─ Objective Function Weights
+
+Process:
+├─ GASearch.create_population()
+│  └─ Generate random valid timetables
+├─ GASearch.fitness()
+│  ├─ _ptp_objective_function()
+│  ├─ _rtr_objective_function()
+│  └─ _course_stability_objective_function()
+├─ GASearch.select_parents()
+├─ GASearch.crossover() / GASearch.mutate()
+└─ Repeat for N generations
+
+Output:
+└─ Optimized TimeTable (Dictionary structure as described above)
+
+================================================================================
+                            EXAMPLE USAGE
+================================================================================
+
+# Initialize GA Search
+ga = GASearch(
+    time_slots=9,
+    courses=[course1, course2, course3, ...],
+    preference_bins={1:1, 2:1, 3:1, 4:2, 5:2, 6:2, 7:3, 8:3, 9:3},
+    objective_function_weights=[1.0, 0.5, 0.8],
+    rooms=[room1, room2, room3, ...],
+    population_size=20,
+    generations=100,
+    mutation_rate=0.1
+)
+
+# Run genetic algorithm
+population = ga.create_population()
+# ... GA iterations ...
+best_timetable = ga.run()
+
+# best_timetable is a dictionary:
+# {
+#     "Monday": {1: [courses...], 2: [courses...], ...},
+#     "Tuesday": {...},
+#     ...
+# }
+
+================================================================================
