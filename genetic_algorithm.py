@@ -11,7 +11,19 @@ class GASearch:
             handler.setFormatter(formatter)
             self.logger.addHandler(handler)
         
+        # time_slots can be either an integer (legacy, all days same) or a dict (day-specific)
         self.time_slots = time_slots
+        if isinstance(time_slots, int):
+            # Convert single integer to dict with same slots for all days
+            self.time_slots = {
+                'Monday': time_slots,
+                'Tuesday': time_slots,
+                'Wednesday': time_slots,
+                'Thursday': time_slots,
+                'Friday': time_slots
+            }
+        # else: time_slots is already a dict with day-specific counts
+        
         self.courses = courses
         self.preference_bins = preference_bins
         self.objective_function_weights = objective_function_weights
@@ -65,16 +77,24 @@ class GASearch:
         
         for day in days:
             time_table[day] = {}
-            for slot in range(1, self.time_slots + 1):
+            # Use day-specific time slot count
+            day_slots = self.time_slots.get(day, 9)  # Default to 9 if not specified
+            for slot in range(1, day_slots + 1):
                 time_table[day][slot] = []
         
         # Sort courses by difficulty (harder courses first) + add small randomness for variation
-        # Priority: labs > lectures > tutorials
-        # Secondary: constrained student groups (smaller groups = harder to fit)
+        # Randomize session type priorities for diversity: some candidates prioritize labs first,
+        # others prioritize lectures or tutorials first
+        session_type_priority = {
+            'lab': random.randint(0, 2),
+            'lecture': random.randint(0, 2),
+            'tutorial': random.randint(0, 2)
+        }
+        
         courses_to_schedule = sorted(
             self.courses,
             key=lambda c: (
-                0 if c.session_type == 'lab' else (1 if c.session_type == 'lecture' else 2),  # Session type priority
+                session_type_priority.get(c.session_type, 3),  # Randomized session type priority
                 -c.slots_req,  # More slots needed = schedule first
                 -(c.student_grp.size if hasattr(c.student_grp, 'size') else 0),  # Larger groups = schedule first
                 random.random()  # Add randomness for variation between candidates
@@ -82,7 +102,7 @@ class GASearch:
         )
         
         self.logger.info(f"    [INIT] Scheduling {len(courses_to_schedule)} courses in priority order")
-        self.logger.info(f"    [INIT] Priority: Labs > Lectures > Tutorials (by slots needed & group size)")
+        self.logger.info(f"    [INIT] Session type priorities (randomized): labs={session_type_priority['lab']}, lectures={session_type_priority['lecture']}, tutorials={session_type_priority['tutorial']}")
         
         # Track scheduling statistics
         scheduled = 0
@@ -169,7 +189,9 @@ class GASearch:
                 if course_already_on_day:
                     continue  # Skip this day for lecture
                 
-            for start_slot in range(1, self.time_slots - course.slots_req + 2):
+            # Get day-specific slot count for calculating valid start slots
+            day_slots = self.time_slots.get(day, 9)
+            for start_slot in range(1, day_slots - course.slots_req + 2):
                 if assigned_count >= course.slots_req:
                     break
                 
@@ -235,7 +257,9 @@ class GASearch:
                 if course_already_on_day:
                     continue  # Skip this day for lecture
                 
-            for slot in range(1, self.time_slots + 1):
+            # Get day-specific slot count for iterating through slots
+            day_slots = self.time_slots.get(day, 9)
+            for slot in range(1, day_slots + 1):
                 if assigned_count >= course.slots_req:
                     break
                 
@@ -336,7 +360,7 @@ class GASearch:
         # Evaluate the fitness of an individual using weighted sum of objective functions
         ptp_penalty = self._ptp_objective_function(time_table)
         rtr_penalty = self._rtr_objective_function(time_table)
-        stability_penalty = self._course_stability_objective_function(time_table)
+        stability_penalty = self._ctrr_objective_function(time_table)
         
         # Calculate weighted sum (lower is better)
         total_penalty = (self.objective_function_weights[0] * ptp_penalty +
@@ -433,21 +457,31 @@ class GASearch:
                                 self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Room too small - {course.course_id} in {course.room.name} (capacity {course.room.capacity}, need {course.student_grp.size})")
                             return False  # Room too small for student group
             
-            # Check constraint: only one lecture per day per course-student group combination
+            # Check constraint: lectures per day based on lecture_consecutive flag
+            # - If lecture_consecutive=False (default): max 1 lecture per day per course-student group
+            # - If lecture_consecutive=True: allow multiple lectures on same day
             lectures_per_day = {}
-            for time_slot in time_table[day]:
+            seen_courses = set()  # Track unique course instances by id
+            
+            for time_slot in sorted(time_table[day].keys()):
                 for course in time_table[day][time_slot]:
                     if course.session_type == 'lecture':
                         grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
-                        course_key = (course.course_id, grp_name)  # Use GROUP NAME, not object identity
-                        if course_key not in lectures_per_day:
-                            lectures_per_day[course_key] = 0
-                        lectures_per_day[course_key] += 1
+                        course_key = (course.course_id, grp_name, course.id)  # Use instance ID to track unique instances
                         
-                        if lectures_per_day[course_key] > 1:
-                            if verbose:
-                                self.logger.info(f"    [CONSTRAINT FAIL] {day}: Multiple lectures for {course.course_id} in {grp_name}")
-                            return False  # More than one lecture per day for this course-group
+                        if course_key not in seen_courses:
+                            seen_courses.add(course_key)
+                            course_key_simple = (course.course_id, grp_name)
+                            if course_key_simple not in lectures_per_day:
+                                lectures_per_day[course_key_simple] = {'count': 0, 'lecture_consecutive': getattr(course, 'lecture_consecutive', False)}
+                            lectures_per_day[course_key_simple]['count'] += 1
+                            
+                            # Only enforce max 1 lecture per day if lecture_consecutive=False
+                            if not lectures_per_day[course_key_simple]['lecture_consecutive']:
+                                if lectures_per_day[course_key_simple]['count'] > 1:
+                                    if verbose:
+                                        self.logger.info(f"    [CONSTRAINT FAIL] {day}: Multiple lectures for {course.course_id} in {grp_name} (lecture_consecutive=False)")
+                                    return False  # More than one lecture per day for this course-group
             
             # Check continuous slots constraint for courses that require it
             for time_slot in sorted(time_table[day].keys()):
@@ -500,13 +534,13 @@ class GASearch:
         pass
 
     def _ptp_objective_function(self, time_table):
-        # Calculate the professor time preference penalty value for a given time table
+        # Calculate the course time preference penalty value for a given time table
         
         penalty = 0
         for day in time_table:
             for time_slot in time_table[day]:
                 for course in time_table[day][time_slot]:
-                    penalty += abs(self.preference_bins[time_slot] - course.preference)
+                    penalty += abs(self.preference_bins[time_slot] - course.preference_bin)
         return penalty
     
     def _rtr_objective_function(self, time_table):
