@@ -1,5 +1,16 @@
+import logging
+
 class GASearch:
     def __init__(self, time_slots, courses, preference_bins, objective_function_weights, rooms, population_size=20, generations=100, mutation_rate=0.1):
+        # Setup logging
+        self.logger = logging.getLogger(__name__)
+        if not self.logger.handlers:
+            self.logger.setLevel(logging.INFO)
+            handler = logging.StreamHandler()
+            formatter = logging.Formatter('%(message)s')
+            handler.setFormatter(formatter)
+            self.logger.addHandler(handler)
+        
         self.time_slots = time_slots
         self.courses = courses
         self.preference_bins = preference_bins
@@ -10,85 +21,278 @@ class GASearch:
         self.mutation_rate = mutation_rate
 
     def create_population(self):
-        # Create an initial random population of valid timetables
+        # Create an initial population of valid timetables using smart initialization
+        self.logger.info(f"\n[POPULATION] Starting population creation (target size: {self.population_size})")
         population = []
+        failed_attempts = 0
+        max_failed_attempts = 5  # Stop after 5 consecutive failures
         
         while len(population) < self.population_size:
-            time_table = self._generate_random_timetable()
+            self.logger.info(f"\n[POPULATION] Attempt {len(population) + 1 + failed_attempts}/{self.population_size + failed_attempts}")
+            time_table = self._generate_smart_timetable()
+            
+            # Check constraints with verbose output
+            if time_table:
+                constraint_check = self.check_constraints(time_table, verbose=True)
+            else:
+                constraint_check = False
             
             # Only add if it satisfies all constraints
-            if time_table and self.check_constraints(time_table):
+            if constraint_check:
                 population.append(time_table)
+                failed_attempts = 0
+                self.logger.info(f"[POPULATION] ✓ Candidate {len(population)}/{self.population_size} created successfully")
+            else:
+                failed_attempts += 1
+                self.logger.info(f"[POPULATION] ✗ FAILED - Candidate violates constraints (attempt #{failed_attempts})")
+                if failed_attempts >= max_failed_attempts:
+                    self.logger.info(f"[POPULATION] ⚠ Reached max failed attempts ({max_failed_attempts}), stopping")
+                    break
         
+        self.logger.info(f"\n[POPULATION] Population creation complete: {len(population)} candidates")
         return population
     
-    def _generate_random_timetable(self):
-        # Generate a random timetable structure
+    def _generate_smart_timetable(self):
+        # Generate a timetable using greedy/smart initialization with logging
         import random
+        import copy
+        
+        self.logger.info("    [INIT] Initializing timetable structure...")
         
         # Initialize timetable: {day: {slot: [courses]}}
         time_table = {}
-        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']  # Weekdays only
         
         for day in days:
             time_table[day] = {}
             for slot in range(1, self.time_slots + 1):
                 time_table[day][slot] = []
         
-        # Create a list of all courses to schedule
-        courses_to_schedule = list(self.courses)
-        random.shuffle(courses_to_schedule)
+        # Sort courses by difficulty (harder courses first) + add small randomness for variation
+        # Priority: labs > lectures > tutorials
+        # Secondary: constrained student groups (smaller groups = harder to fit)
+        courses_to_schedule = sorted(
+            self.courses,
+            key=lambda c: (
+                0 if c.session_type == 'lab' else (1 if c.session_type == 'lecture' else 2),  # Session type priority
+                -c.slots_req,  # More slots needed = schedule first
+                -(c.student_grp.size if hasattr(c.student_grp, 'size') else 0),  # Larger groups = schedule first
+                random.random()  # Add randomness for variation between candidates
+            )
+        )
         
-        # Try to assign each course to a valid slot
-        for course in courses_to_schedule:
-            assigned = False
-            attempts = 0
-            max_attempts = 50
+        self.logger.info(f"    [INIT] Scheduling {len(courses_to_schedule)} courses in priority order")
+        self.logger.info(f"    [INIT] Priority: Labs > Lectures > Tutorials (by slots needed & group size)")
+        
+        # Track scheduling statistics
+        scheduled = 0
+        failed_courses = []
+        
+        # Try to assign each course
+        for course_idx, course in enumerate(courses_to_schedule):
+            self.logger.info(f"    [COURSE {course_idx + 1}/{len(courses_to_schedule)}] {course.course_id}-{course.session_type} "
+                  f"({course.student_grp.name if hasattr(course.student_grp, 'name') else 'Unknown'}) - "
+                  f"slots needed: {course.slots_req}")
             
-            while not assigned and attempts < max_attempts:
-                attempts += 1
-                
-                # Pick random day and starting slot
-                day = random.choice(days)
-                start_slot = random.randint(1, self.time_slots)
-                
-                # Check if we have enough consecutive slots for continuous requirement
-                if course.slots_continuous:
-                    # Need consecutive slots
-                    if start_slot + course.slots_req - 1 <= self.time_slots:
-                        slots_to_use = list(range(start_slot, start_slot + course.slots_req))
-                    else:
-                        continue  # Not enough consecutive slots from this start
+            assigned_count = 0
+            available_rooms = self._get_available_rooms(course)
+            
+            if not available_rooms:
+                # Debug: check why rooms failed
+                if course.session_type == 'lab':
+                    matching_labs = [r for r in self.rooms if hasattr(r, 'is_lab') and r.is_lab]
+                    self.logger.info(f"      [FAIL] No suitable lab rooms (type check: {len(matching_labs)} labs exist)")
+                    if hasattr(course.student_grp, 'size'):
+                        self.logger.info(f"             Student group size: {course.student_grp.size}, "
+                              f"room capacities: {[r.capacity for r in matching_labs if hasattr(r, 'capacity')]}")
                 else:
-                    # Can use non-consecutive slots
-                    slots_to_use = [start_slot]
+                    self.logger.info(f"      [FAIL] No suitable rooms available")
+                failed_courses.append(course)
+                continue
+            
+            self.logger.info(f"      [ROOMS] {len(available_rooms)} suitable room(s) available")
+            
+            # Randomize day order for variation
+            shuffled_days = list(days)
+            random.shuffle(shuffled_days)
+            
+            if course.slots_continuous:
+                # Need consecutive slots on the same day
+                assigned_count = self._assign_continuous_slots(course, time_table, shuffled_days, available_rooms)
+            else:
+                # Non-continuous: find individual slots across different days
+                assigned_count = self._assign_non_continuous_slots(course, time_table, shuffled_days, available_rooms)
+            
+            if assigned_count == course.slots_req:
+                scheduled += 1
+                self.logger.info(f"      [SUCCESS] Scheduled all {assigned_count}/{course.slots_req} slots")
+            else:
+                self.logger.info(f"      [PARTIAL] Only scheduled {assigned_count}/{course.slots_req} slots")
+                failed_courses.append(course)
+        
+        self.logger.info(f"    [INIT] Scheduling complete: {scheduled}/{len(courses_to_schedule)} courses fully scheduled")
+        
+        if failed_courses:
+            self.logger.info(f"    [INIT] ⚠ {len(failed_courses)} courses had scheduling issues")
+            return None  # Return None if couldn't schedule all courses
+        
+        return time_table
+    
+    def _assign_continuous_slots(self, course, time_table, days, available_rooms):
+        """Assign slots for continuous course (must be consecutive)"""
+        import random
+        import copy
+        
+        assigned_count = 0
+        
+        # Try different days and times systematically
+        for day in days:
+            if assigned_count >= course.slots_req:
+                break
+            
+            # Check if this is a lecture and already scheduled for this course-student group on this day
+            if course.session_type == 'lecture':
+                student_grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                course_already_on_day = False
+                for slot in time_table[day].keys():
+                    for existing_course in time_table[day][slot]:
+                        existing_grp_name = existing_course.student_grp.name if hasattr(existing_course.student_grp, 'name') else str(existing_course.student_grp)
+                        if (existing_course.course_id == course.course_id and 
+                            existing_course.session_type == 'lecture' and
+                            existing_grp_name == student_grp_name):
+                            course_already_on_day = True
+                            self.logger.info(f"        [SKIP] Day {day}: {course.course_id}-lecture for {student_grp_name} already scheduled")
+                            break
+                    if course_already_on_day:
+                        break
                 
-                # Check if all slots are available (no conflicts)
+                if course_already_on_day:
+                    continue  # Skip this day for lecture
+                
+            for start_slot in range(1, self.time_slots - course.slots_req + 2):
+                if assigned_count >= course.slots_req:
+                    break
+                
+                slots_to_use = list(range(start_slot, start_slot + course.slots_req))
+                
+                # Check if all slots are available
                 slots_available = True
                 for slot in slots_to_use:
                     if len(time_table[day][slot]) > 0:
-                        # Check for conflicts at this slot
+                        # Check for conflicts
                         for existing_course in time_table[day][slot]:
-                            # Would this create a conflict?
-                            if not self._can_add_course(course, existing_course):
-                                slots_available = False
+                            for room in available_rooms:
+                                if not self._can_add_course(course, room, existing_course):
+                                    slots_available = False
+                                    break
+                            if not slots_available:
                                 break
                     if not slots_available:
                         break
                 
                 if slots_available:
-                    # Assign course to all required slots
+                    # Assign to an available room
+                    assigned_room = random.choice(available_rooms)
+                    course_with_room = copy.copy(course)  # Shallow copy to preserve object references
+                    course_with_room.room = assigned_room
+                    
                     for slot in slots_to_use:
-                        time_table[day][slot].append(course)
-                    assigned = True
-            
-            if not assigned:
-                # Failed to assign course, return None to indicate invalid timetable
-                return None
+                        time_table[day][slot].append(course_with_room)
+                    assigned_count = course.slots_req
+                    self.logger.info(f"        [ASSIGN] Assigned {day} slots {start_slot}-{start_slot + course.slots_req - 1} (room: {assigned_room.name})")
+                    break
         
-        return time_table
+        return assigned_count
     
-    def _can_add_course(self, new_course, existing_course):
+    def _assign_non_continuous_slots(self, course, time_table, days, available_rooms):
+        """Assign slots for non-continuous course"""
+        import random
+        import copy
+        
+        assigned_count = 0
+        
+        # Try to find slots systematically across all days and slots
+        for day in days:
+            if assigned_count >= course.slots_req:
+                break
+            
+            # Check if this is a lecture and already scheduled for this course-student group on this day
+            if course.session_type == 'lecture':
+                student_grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                course_already_on_day = False
+                for slot in time_table[day].keys():
+                    for existing_course in time_table[day][slot]:
+                        existing_grp_name = existing_course.student_grp.name if hasattr(existing_course.student_grp, 'name') else str(existing_course.student_grp)
+                        if (existing_course.course_id == course.course_id and 
+                            existing_course.session_type == 'lecture' and
+                            existing_grp_name == student_grp_name):
+                            course_already_on_day = True
+                            self.logger.info(f"        [SKIP] Day {day}: {course.course_id}-lecture for {student_grp_name} already scheduled")
+                            break
+                    if course_already_on_day:
+                        break
+                
+                if course_already_on_day:
+                    continue  # Skip this day for lecture
+                
+            for slot in range(1, self.time_slots + 1):
+                if assigned_count >= course.slots_req:
+                    break
+                
+                # Check if slot is available
+                slot_available = False
+                assigned_room = None
+                
+                if len(time_table[day][slot]) == 0:
+                    slot_available = True
+                    assigned_room = random.choice(available_rooms)
+                else:
+                    # Check if we can add this course with existing courses
+                    for room in available_rooms:
+                        can_add = True
+                        for existing_course in time_table[day][slot]:
+                            if not self._can_add_course(course, room, existing_course):
+                                can_add = False
+                                break
+                        if can_add:
+                            slot_available = True
+                            assigned_room = room
+                            break
+                
+                if slot_available and assigned_room:
+                    course_with_room = copy.copy(course)  # Shallow copy to preserve object references
+                    course_with_room.room = assigned_room
+                    time_table[day][slot].append(course_with_room)
+                    assigned_count += 1
+                    self.logger.info(f"        [ASSIGN] Slot {assigned_count}/{course.slots_req}: {day} slot {slot} (room: {assigned_room.name})")
+        
+        return assigned_count
+    
+    def _generate_random_timetable(self):
+        # [DEPRECATED] Use _generate_smart_timetable instead
+        # Kept for backwards compatibility
+        return self._generate_smart_timetable()
+    
+    def _get_available_rooms(self, course):
+        # Get list of rooms suitable for the given course
+        available_rooms = []
+        
+        for room in self.rooms:
+            # Check room type constraint (lab courses need lab rooms)
+            if course.session_type == 'lab':
+                if not hasattr(room, 'is_lab') or not room.is_lab:
+                    continue  # Lab course needs lab room
+            
+            # Check room capacity constraint
+            if hasattr(course.student_grp, 'size') and hasattr(room, 'capacity'):
+                if room.capacity < course.student_grp.size:
+                    continue  # Room too small
+            
+            available_rooms.append(room)
+        
+        return available_rooms
+    
+    def _can_add_course(self, new_course, assigned_room, existing_course):
         # Check if new_course can be added to a slot with existing_course
         # Return False if they conflict
         
@@ -97,24 +301,33 @@ class GASearch:
             return False
         
         # Room conflict
-        if new_course.room.id == existing_course.room.id:
+        if assigned_room.id == existing_course.room.id:
             return False
         
-        # Student group conflict (direct)
-        if new_course.student_grp == existing_course.student_grp:
+        # Student group conflict (direct) - use NAME comparison, not object identity
+        new_grp_name = new_course.student_grp.name if hasattr(new_course.student_grp, 'name') else str(new_course.student_grp)
+        existing_grp_name = existing_course.student_grp.name if hasattr(existing_course.student_grp, 'name') else str(existing_course.student_grp)
+        if new_grp_name == existing_grp_name:
             return False
         
-        # Student group conflict (super groups)
+        # Student group conflict (super groups) - use NAME comparison
         if hasattr(new_course.student_grp, 'super_groups') and hasattr(existing_course.student_grp, 'super_groups'):
-            if existing_course.student_grp in new_course.student_grp.super_groups:
+            new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
+            existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
+            if existing_grp_name in new_super_names:
                 return False
-            if new_course.student_grp in existing_course.student_grp.super_groups:
+            if new_grp_name in existing_super_names:
+                return False
+            # Check for shared super groups
+            if set(new_super_names) & set(existing_super_names):
                 return False
         elif hasattr(new_course.student_grp, 'super_groups'):
-            if existing_course.student_grp in new_course.student_grp.super_groups:
+            new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
+            if existing_grp_name in new_super_names:
                 return False
         elif hasattr(existing_course.student_grp, 'super_groups'):
-            if new_course.student_grp in existing_course.student_grp.super_groups:
+            existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
+            if new_grp_name in existing_super_names:
                 return False
         
         return True
@@ -144,8 +357,9 @@ class GASearch:
         # Mutate an individual based on the mutation rate
         pass
 
-    def check_constraints(self, time_table):
+    def check_constraints(self, time_table, verbose=False):
         # Check if the time table satisfies all constraints
+        # verbose=True prints detailed error messages for debugging
         
         for day in time_table:
             for time_slot in time_table[day]:
@@ -155,34 +369,51 @@ class GASearch:
                 professor_ids = []
                 for course in courses:
                     if course.instructor.id in professor_ids:
+                        if verbose:
+                            self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Professor conflict (Prof {course.instructor.id})")
                         return False  # Professor conflict
                     professor_ids.append(course.instructor.id)
                 
-                # Check for student group collisions (direct groups)
-                student_grps = []
+                # Check for student group collisions (direct groups) - use NAME comparison, not object identity
+                student_grp_names = []
                 for course in courses:
-                    if course.student_grp in student_grps:
+                    grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                    if grp_name in student_grp_names:
+                        if verbose:
+                            self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Student group conflict ({grp_name})")
+                            self.logger.info(f"                      Courses in same slot: {[(c.course_id, c.session_type, c.student_grp.name) for c in courses]}")
                         return False  # Student group conflict
-                    student_grps.append(course.student_grp)
+                    student_grp_names.append(grp_name)
                 
-                # Check for super group collisions
+                # Check for super group collisions - use NAME comparison
                 for course in courses:
                     if hasattr(course.student_grp, 'super_groups'):
                         for super_grp in course.student_grp.super_groups:
+                            super_grp_name = super_grp.name if hasattr(super_grp, 'name') else str(super_grp)
                             # Check if this super group is in any other course's student group in this slot
                             for other_course in courses:
                                 if other_course != course:
-                                    # Check if super_grp is the student_grp of other_course
-                                    if other_course.student_grp == super_grp:
+                                    # Check if super_grp name matches other_course's student_grp name
+                                    other_grp_name = other_course.student_grp.name if hasattr(other_course.student_grp, 'name') else str(other_course.student_grp)
+                                    if super_grp_name == other_grp_name:
+                                        if verbose:
+                                            self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Super group conflict ({super_grp_name})")
                                         return False  # Super group conflict
                                     # Check if super_grp is in other_course's super groups
-                                    if hasattr(other_course.student_grp, 'super_groups') and super_grp in other_course.student_grp.super_groups:
-                                        return False  # Super group conflict
+                                    if hasattr(other_course.student_grp, 'super_groups'):
+                                        for other_super in other_course.student_grp.super_groups:
+                                            other_super_name = other_super.name if hasattr(other_super, 'name') else str(other_super)
+                                            if super_grp_name == other_super_name:
+                                                if verbose:
+                                                    self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Super group conflict ({super_grp_name})")
+                                                return False  # Super group conflict
                 
                 # Check for room collisions
                 room_ids = []
                 for course in courses:
                     if course.room.id in room_ids:
+                        if verbose:
+                            self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Room conflict (Room {course.room.id})")
                         return False  # Room conflict
                     room_ids.append(course.room.id)
                 
@@ -190,12 +421,16 @@ class GASearch:
                 for course in courses:
                     if course.session_type == 'lab':
                         if not hasattr(course.room, 'is_lab') or not course.room.is_lab:
+                            if verbose:
+                                self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: {course.course_id}-lab in non-lab room ({course.room.name})")
                             return False  # Lab course not in lab room
                 
                 # Check room capacity constraint
                 for course in courses:
                     if hasattr(course.student_grp, 'size') and hasattr(course.room, 'capacity'):
                         if course.room.capacity < course.student_grp.size:
+                            if verbose:
+                                self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Room too small - {course.course_id} in {course.room.name} (capacity {course.room.capacity}, need {course.student_grp.size})")
                             return False  # Room too small for student group
             
             # Check constraint: only one lecture per day per course-student group combination
@@ -203,12 +438,15 @@ class GASearch:
             for time_slot in time_table[day]:
                 for course in time_table[day][time_slot]:
                     if course.session_type == 'lecture':
-                        course_key = (course.course_id, course.student_grp)
+                        grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                        course_key = (course.course_id, grp_name)  # Use GROUP NAME, not object identity
                         if course_key not in lectures_per_day:
                             lectures_per_day[course_key] = 0
                         lectures_per_day[course_key] += 1
                         
                         if lectures_per_day[course_key] > 1:
+                            if verbose:
+                                self.logger.info(f"    [CONSTRAINT FAIL] {day}: Multiple lectures for {course.course_id} in {grp_name}")
                             return False  # More than one lecture per day for this course-group
             
             # Check continuous slots constraint for courses that require it
@@ -227,6 +465,8 @@ class GASearch:
                         if len(course_slots) > 1:
                             for i in range(len(course_slots) - 1):
                                 if course_slots[i + 1] != course_slots[i] + 1:
+                                    if verbose:
+                                        self.logger.info(f"    [CONSTRAINT FAIL] {day}: Non-consecutive slots for {course.course_id}-{course.session_type} (slots {course_slots})")
                                     return False  # Non-consecutive slots for continuous course
         
         # Check that each course is scheduled for exactly slots_req times
@@ -243,8 +483,14 @@ class GASearch:
             course_id = course.id if hasattr(course, 'id') else id(course)
             if course_id in course_slot_count:
                 if course_slot_count[course_id] != course.slots_req:
+                    if verbose:
+                        grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                        self.logger.info(f"    [CONSTRAINT FAIL] {course.course_id}-{course.session_type}({grp_name}): scheduled {course_slot_count[course_id]} slots, needs {course.slots_req}")
                     return False  # Course not scheduled for the required number of slots
             else:
+                if verbose:
+                    grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                    self.logger.info(f"    [CONSTRAINT FAIL] {course.course_id}-{course.session_type}({grp_name}): not scheduled at all")
                 return False  # Course not scheduled at all
         
         return True  # All constraints satisfied
@@ -343,3 +589,7 @@ class GASearch:
                         penalty += 1
         
         return penalty
+    
+    def _course_stability_objective_function(self, time_table):
+        # Alias for _ctrr_objective_function - ensures course session consistency
+        return self._ctrr_objective_function(time_table)
