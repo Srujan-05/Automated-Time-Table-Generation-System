@@ -15,50 +15,62 @@ university course scheduling across multiple constraints and objectives.
    Purpose: Main genetic algorithm engine for timetable generation
    
    Attributes:
-   - time_slots (int): Number of time slots per day
-   - courses (list): List of all course instances to schedule
-   - preference_bins (dict): Maps time slots to preference bins
+   - time_slots (dict or int): Time slots per day. Can be:
+                              * Integer: same slots for all days (auto-converts to dict)
+                              * Dict: day-specific slots {Monday: 9, Tuesday: 9, ..., Wednesday: 5}
+   - courses (list): List of all CourseInstance objects to schedule
+   - preference_bins (dict): Maps time slots to preference bins {slot: bin_id}
    - objective_function_weights (list): Weights for three penalty terms [w1, w2, w3]
-   - rooms (list): List of available rooms
+   - rooms (list): List of available Room objects
    - population_size (int): Size of GA population (default: 20)
    - generations (int): Number of generations to run (default: 100)
    - mutation_rate (float): Probability of mutation (default: 0.1)
    
    Methods:
-   - create_population(): Generates initial valid population of timetables
+   - create_population(): Generates initial valid population of timetables using smart initialization
    - fitness(time_table): Evaluates fitness using weighted objective functions
    - select_parents(): Selects parents for crossover based on fitness
    - crossover(time_table1, time_table2): Creates offspring from two parents
    - mutate(time_table): Applies random mutations to a timetable
-   - check_constraints(time_table): Validates all hard constraints
+   - check_constraints(time_table): Validates all 8 hard constraints
    - run(): Main GA loop to evolve solutions
    
    Private Methods:
-   - _ptp_objective_function(): Professor time preference penalty calculation
-   - _rtr_objective_function(): Room-to-room distance penalty calculation
+   - _ptp_objective_function(): Course Time Preference penalty using CourseInstance.preference_bin
+   - _rtr_objective_function(): Room-to-room travel distance penalty calculation
    - _course_stability_objective_function(): Course session consistency penalty
-   - _generate_random_timetable(): Creates random initial timetable
-   - _can_add_course(): Checks if two courses can be in same slot
+   - _generate_smart_timetable(): Creates initial timetable using smart greedy algorithm
+   - _can_add_course(): Checks if two courses can be scheduled in same time slot
 
 ================================================================================
 
-2. Course (Course Instance)
+2. CourseInstance (Course Instance)
    ────────────────────────────────────────────────────────────────────────────
-   Purpose: Represents a single course instance (course taught by instructor to group)
+   Purpose: Represents a single course instance (specific course session for specific student group)
    
    Attributes:
-   - course_id (str): Unique identifier for the course (e.g., "MA101")
-   - course_credits (int): Number of credits for the course
-   - instructor (Instructor): The professor teaching this course instance
-   - room (Room): The room assigned for this course
-   - student_grp (StudentGroup): The student group attending this course
-   - slots_req (int): Number of time slots required for this session
-   - slots_continuous (boolean): Whether slots must be consecutive
+   - id (int): Unique identifier for this course instance
+   - course_id (str): Unique identifier for the parent course (e.g., "MA101", "CS201")
    - session_type (str): Type of session - "lecture", "tutorial", or "lab"
-   - preference (int): Instructor's preferred time bin (1, 2, 3, etc.)
+   - instructor (Instructor): The professor teaching this course instance
+   - room (Room): The room assigned for this course (may be reassigned during scheduling)
+   - student_grp (StudentGroup): The student group attending this course instance
+   - slots_req (int): Number of time slots required for this session
+   - slots_continuous (boolean): Whether slots must be consecutive (e.g., True for 2-hour labs)
+   - preference_bin (int): THIS COURSE'S preferred time bin (1=morning, 2=noon, 3=evening)
+                          ⚠️  INDEPENDENT PER INSTANCE - NOT inherited from instructor!
+   - lecture_consecutive (boolean): If True, allows multiple lectures on same day; if False (default), max 1 lecture/day
+   - course_credits (float): Credit hours for this instance (auto-calculated)
+   
+   Key Design:
+   - Each course instance has its OWN preference_bin, independent of the instructor's preference
+   - Example: Prof Kumar teaches CS201-Lecture (preference_bin=1) and MA101-Tutorial (preference_bin=3)
+             These are two separate instances with different time preferences
+   - The instructor's personal preference is stored in the Instructor class separately
    
    Note: Each course instance is unique. If MA101 is taught by Prof A to CSE-2027
-         and Prof B to ME-2027, these are two separate course instances.
+         and Prof B to ME-2027, these are two separate instances with potentially
+         different preference_bins for each.
 
 ================================================================================
 
@@ -67,9 +79,15 @@ university course scheduling across multiple constraints and objectives.
    Purpose: Represents a professor/instructor
    
    Attributes:
-   - id (str/int): Unique identifier for the instructor
-   - name (str): Name of the instructor (optional)
-   - preference (int): Preferred time bin (1=morning, 2=noon, 3=evening, etc.)
+   - id (int): Unique identifier for the instructor
+   - name (str): Name of the instructor
+   
+   Important:
+   - Instructors are simple identifiers with no time preferences
+   - Each CourseInstance they teach has its OWN preference_bin
+   - Example: Prof Kumar teaches:
+             * CS201-Lecture instance with preference_bin=1 (morning)
+             * MA101-Tutorial instance with preference_bin=3 (evening)
    
    Constraints:
    - Cannot teach two different courses in the same time slot
@@ -134,7 +152,8 @@ university course scheduling across multiple constraints and objectives.
        7: 3, 8: 3, 9: 3         # Slots 7-9 are in bin 3 (evening)
    }
    
-   Usage: Professors specify preferred bin, penalties applied for mismatches
+   Usage: Each CourseInstance has a preference_bin (1, 2, or 3).
+          Penalties applied when actual_slot_bin differs from course_instance.preference_bin
 
 ================================================================================
 
@@ -145,11 +164,12 @@ university course scheduling across multiple constraints and objectives.
    Structure: List [w1, w2, w3]
    
    Components:
-   - w1: Weight for Professor Time Preference (PTP) penalty
+   - w1: Weight for Course Time Preference (CTP) penalty [formerly PTP]
+         (each CourseInstance's preference_bin, not instructor preference)
    - w2: Weight for Room-to-Room Distance (RTR) penalty
    - w3: Weight for Course Stability penalty
    
-   Usage: fitness = w1*ptp_penalty + w2*rtr_penalty + w3*stability_penalty
+   Usage: fitness = w1*ctp_penalty + w2*rtr_penalty + w3*stability_penalty
 
 ================================================================================
 
@@ -180,15 +200,22 @@ university course scheduling across multiple constraints and objectives.
                            OBJECTIVE FUNCTIONS
 ================================================================================
 
-1. Professor Time Preference (PTP) Penalty
+1. Course Time Preference (CTP) Penalty (formerly PTP)
    ────────────────────────────────────────────────────────────────────────────
-   Goal: Minimize deviation from professors' preferred time bins
+   Goal: Minimize deviation from each COURSE INSTANCE's preferred time bins
+   
+   Key Difference:
+   - EACH CourseInstance has its OWN preference_bin (1=morning, 2=noon, 3=evening)
+   - NOT inherited from the instructor's personal preference
+   - Example: Prof Kumar's personal preference=1, but CS201-Lecture instance 
+             they teach has preference_bin=3 (evening)
    
    Calculation:
-   For each course in the timetable:
-       penalty += |bin_of_assigned_slot - instructor_preferred_bin|
+   For each course instance in the timetable:
+       penalty += |bin_of_assigned_slot - course_instance.preference_bin|
    
-   Objective: Professors prefer their designated time bin (morning/noon/evening)
+   Objective: Each course instance is scheduled according to its own preferred time bin
+              (e.g., some lectures prefer morning, labs prefer afternoon, etc.)
 
 ================================================================================
 
@@ -253,6 +280,9 @@ HARD CONSTRAINTS (Must be satisfied - violations rejected):
 
 8. Lecture Per Day Constraint
    - Each (course_id, student_group) can have at most one lecture per day
+   - EXCEPTION: If lecture_consecutive=True, allow multiple lectures on same day
+   - Use lecture_consecutive=True for courses requiring consecutive lectures (e.g., seminars, intensive courses)
+   - Default is lecture_consecutive=False (max 1 lecture per day enforced)
 
 ================================================================================
                            SOFT CONSTRAINTS
@@ -260,13 +290,15 @@ HARD CONSTRAINTS (Must be satisfied - violations rejected):
 
 These are incorporated into the objective function and weighted:
 
-1. Professor Time Preference
-   - Prefer assigned slot bin matches instructor preference
+1. Course Time Preference (CTP)
+   - Each CourseInstance has its own preferred time bin (1=morning, 2=noon, 3=evening)
+   - Prefer assigned slot bin matches course instance's preference_bin
+   - NOT based on instructor preference, but independent per course instance
 
-2. Room-to-Room Travel
+2. Room-to-Room Travel (RTR)
    - Minimize student travel distance between consecutive classes
 
-3. Course Session Consistency
+3. Course Session Consistency (Stability)
    - Keep same course sessions in consistent slot and room
 
 ================================================================================
@@ -283,17 +315,44 @@ Input:
 
 Process:
 ├─ GASearch.create_population()
-│  └─ Generate random valid timetables
+│  └─ Generate valid timetables using smart greedy initialization
 ├─ GASearch.fitness()
-│  ├─ _ptp_objective_function()
-│  ├─ _rtr_objective_function()
-│  └─ _course_stability_objective_function()
+│  ├─ _ptp_objective_function() [actually CTP - Course Time Preference]
+│  ├─ _rtr_objective_function() [Room-to-Room Travel]
+│  └─ _course_stability_objective_function() [Stability/Consistency]
 ├─ GASearch.select_parents()
 ├─ GASearch.crossover() / GASearch.mutate()
 └─ Repeat for N generations
 
 Output:
 └─ Optimized TimeTable (Dictionary structure as described above)
+
+================================================================================
+                         RECENT SYSTEM UPDATES
+================================================================================
+
+As of April 2026, the system now supports:
+
+1. Lecture Consecutiveness Control
+   - lecture_consecutive parameter (boolean) on CourseInstance
+   - Default: False (enforces max 1 lecture per day)
+   - Set to True for intensive courses requiring multiple lectures in same day
+   - Example: Design Thinking (DT101) with lecture_consecutive=True can have
+             multiple lecture slots on same day
+
+2. Elective Courses with Mixed Student Groups
+   - Support for courses with student groups from multiple departments
+   - Example: RL201 (Reinforcement Learning) for 35 students from CSE-2025 and ECE-2025
+   - Elective groups can have multiple super_groups
+
+3. Batch Courses for Large Student Bodies
+   - Support for large auditorium-based courses
+   - Example: DT101 (Design Thinking) for entire Class of 2025 (200 students)
+
+4. Simplified Instructor Model
+   - Removed personal preference from Instructor class
+   - All time preferences now exclusively at CourseInstance level via preference_bin
+   - Cleaner separation of concerns: Instructors are identifiers, Courses have preferences
 
 ================================================================================
                             EXAMPLE USAGE

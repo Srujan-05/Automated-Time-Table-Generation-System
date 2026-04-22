@@ -8,10 +8,9 @@ Dummy data for testing the Genetic Algorithm Search (GASearch)
 
 class Instructor:
     """Represents a professor/instructor"""
-    def __init__(self, id, name, preference):
+    def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.preference = preference  # 1=morning, 2=noon, 3=evening
 
 
 class Room:
@@ -51,7 +50,7 @@ class Course:
 class CourseInstance:
     """Represents a single instance of a course session (lecture, tutorial, or lab)"""
     def __init__(self, id, course_id, session_type, instructor, room, student_grp, 
-                 slots_req, slots_continuous=False):
+                 slots_req, slots_continuous=False, preference_bin=1, lecture_consecutive=False):
         self.id = id
         self.course_id = course_id  # e.g., "CS201"
         self.session_type = session_type  # "lecture", "tutorial", or "lab"
@@ -60,7 +59,8 @@ class CourseInstance:
         self.student_grp = student_grp
         self.slots_req = slots_req
         self.slots_continuous = slots_continuous
-        self.preference = instructor.preference  # Inherit from instructor
+        self.preference_bin = preference_bin  # 1=morning, 2=noon, 3=evening (per instance)
+        self.lecture_consecutive = lecture_consecutive  # If True, allows multiple lectures on same day; if False, max 1 lecture/day
         self.course_credits = None  # Will be set during course generation
     
     def __repr__(self):
@@ -75,11 +75,11 @@ def create_test_data():
     """Create all dummy data for testing"""
     
     # ========== INSTRUCTORS ==========
-    prof_kumar = Instructor(id=1, name="Prof Kumar", preference=1)      # Prefers morning
-    prof_sharma = Instructor(id=2, name="Prof Sharma", preference=2)    # Prefers noon
-    prof_patel = Instructor(id=3, name="Prof Patel", preference=3)      # Prefers evening
-    prof_singh = Instructor(id=4, name="Prof Singh", preference=1)      # Prefers morning
-    prof_khan = Instructor(id=5, name="Prof Khan", preference=2)        # Prefers noon
+    prof_kumar = Instructor(id=1, name="Prof Kumar")
+    prof_sharma = Instructor(id=2, name="Prof Sharma")
+    prof_patel = Instructor(id=3, name="Prof Patel")
+    prof_singh = Instructor(id=4, name="Prof Singh")
+    prof_khan = Instructor(id=5, name="Prof Khan")
     
     instructors = [prof_kumar, prof_sharma, prof_patel, prof_singh, prof_khan]
     
@@ -95,7 +95,10 @@ def create_test_data():
     lab_202 = Room(id=6, name="Lab 202", x=6, y=0, z=0, capacity=60, is_lab=True)
     lab_203 = Room(id=7, name="Lab 203", x=7, y=0, z=0, capacity=60, is_lab=True)
     
-    rooms = [room_101, room_102, room_103, room_104, lab_201, lab_202, lab_203]
+    # Auditorium (for batch lectures)
+    auditorium = Room(id=8, name="Main Auditorium", x=3, y=3, z=0, capacity=250, is_lab=False)
+    
+    rooms = [room_101, room_102, room_103, room_104, lab_201, lab_202, lab_203, auditorium]
     
     # ========== STUDENT GROUPS (with hierarchy) ==========
     # Super groups (years)
@@ -116,11 +119,15 @@ def create_test_data():
     me_2027 = StudentGroup(name="ME-2027", size=47, super_groups=[class_2027])
     ece_2027 = StudentGroup(name="ECE-2027", size=48, super_groups=[class_2027])
     
+    # Elective groups
+    rl_elective_2025 = StudentGroup(name="RL-Elective-2025", size=35, super_groups=[cse_2025, ece_2025])
+    
     student_groups = [
         class_2025, class_2026, class_2027,
         cse_2025, me_2025, ece_2025,
         cse_2026, me_2026, ece_2026,
-        cse_2027, me_2027, ece_2027
+        cse_2027, me_2027, ece_2027,
+        rl_elective_2025
     ]
     
     # ========== COURSES ==========
@@ -171,6 +178,28 @@ def create_test_data():
     )
     base_courses.append(ec201)
     
+    # DT101 - Design Thinking: 1L (2 hours continuous), 0T, 0P (total 2 credits)
+    dt101 = Course(
+        course_id="DT101",
+        name="Design Thinking",
+        total_credits=2,
+        lectures=1,
+        tutorials=0,
+        practicals=0
+    )
+    base_courses.append(dt101)
+    
+    # RL201 - Reinforcement Learning (Elective): 3L, 0T, 0P (total 3 credits)
+    rl201 = Course(
+        course_id="RL201",
+        name="Reinforcement Learning",
+        total_credits=3,
+        lectures=3,
+        tutorials=0,
+        practicals=0
+    )
+    base_courses.append(rl201)
+    
     # Now create instances of these courses for different student groups
     courses = []
     instance_counter = 1
@@ -181,7 +210,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="CS201", session_type="lecture",
             instructor=prof_kumar, room=room_101, student_grp=cse_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=1
         ))
         instance_counter += 1
     
@@ -190,7 +219,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="CS201", session_type="tutorial",
             instructor=prof_singh, room=room_102, student_grp=cse_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=2
         ))
         instance_counter += 1
     
@@ -198,7 +227,7 @@ def create_test_data():
     courses.append(CourseInstance(
         id=instance_counter, course_id="CS201", session_type="lab",
         instructor=prof_sharma, room=lab_201, student_grp=cse_2025,
-        slots_req=cs201.practicals, slots_continuous=True
+        slots_req=cs201.practicals, slots_continuous=True, preference_bin=3
     ))
     instance_counter += 1
     
@@ -207,7 +236,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="CS201", session_type="lecture",
             instructor=prof_kumar, room=room_103, student_grp=cse_2026,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=2
         ))
         instance_counter += 1
     
@@ -215,7 +244,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="CS201", session_type="tutorial",
             instructor=prof_singh, room=room_104, student_grp=cse_2026,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=1
         ))
         instance_counter += 1
     
@@ -223,7 +252,7 @@ def create_test_data():
     courses.append(CourseInstance(
         id=instance_counter, course_id="CS201", session_type="lab",
         instructor=prof_patel, room=lab_202, student_grp=cse_2026,
-        slots_req=cs201.practicals, slots_continuous=True
+        slots_req=cs201.practicals, slots_continuous=True, preference_bin=2
     ))
     instance_counter += 1
     
@@ -232,7 +261,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="MA101", session_type="lecture",
             instructor=prof_patel, room=room_102, student_grp=cse_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=1
         ))
         instance_counter += 1
     
@@ -240,7 +269,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="MA101", session_type="tutorial",
             instructor=prof_singh, room=room_103, student_grp=cse_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=3
         ))
         instance_counter += 1
     
@@ -249,7 +278,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="MA101", session_type="lecture",
             instructor=prof_khan, room=room_101, student_grp=me_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=2
         ))
         instance_counter += 1
     
@@ -257,7 +286,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="MA101", session_type="tutorial",
             instructor=prof_singh, room=room_102, student_grp=me_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=2
         ))
         instance_counter += 1
     
@@ -266,7 +295,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="ME101", session_type="lecture",
             instructor=prof_patel, room=room_103, student_grp=me_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=1
         ))
         instance_counter += 1
     
@@ -274,7 +303,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="ME101", session_type="tutorial",
             instructor=prof_singh, room=room_104, student_grp=me_2025,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=3
         ))
         instance_counter += 1
     
@@ -282,7 +311,7 @@ def create_test_data():
     courses.append(CourseInstance(
         id=instance_counter, course_id="ME101", session_type="lab",
         instructor=prof_khan, room=lab_201, student_grp=me_2025,
-        slots_req=me101.practicals, slots_continuous=True
+        slots_req=me101.practicals, slots_continuous=True, preference_bin=1
     ))
     instance_counter += 1
     
@@ -291,7 +320,7 @@ def create_test_data():
         courses.append(CourseInstance(
             id=instance_counter, course_id="EC201", session_type="lecture",
             instructor=prof_patel, room=room_101, student_grp=ece_2026,
-            slots_req=1, slots_continuous=False
+            slots_req=1, slots_continuous=False, preference_bin=3
         ))
         instance_counter += 1
     
@@ -299,9 +328,27 @@ def create_test_data():
     courses.append(CourseInstance(
         id=instance_counter, course_id="EC201", session_type="lab",
         instructor=prof_khan, room=lab_203, student_grp=ece_2026,
-        slots_req=ec201.practicals, slots_continuous=True
+        slots_req=ec201.practicals, slots_continuous=True, preference_bin=2
     ))
     instance_counter += 1
+    
+    # DT101 - Design Thinking lecture for entire Class of 2025 (2 hours continuous)
+    courses.append(CourseInstance(
+        id=instance_counter, course_id="DT101", session_type="lecture",
+        instructor=prof_khan, room=auditorium, student_grp=class_2025,
+        slots_req=2, slots_continuous=True, preference_bin=2, lecture_consecutive=True
+    ))
+    instance_counter += 1
+    
+    # RL201 - Reinforcement Learning elective instances for 2025 batch (CSE + ECE students, 35 total)
+    # 3 lecture instances
+    for i in range(rl201.lectures):
+        courses.append(CourseInstance(
+            id=instance_counter, course_id="RL201", session_type="lecture",
+            instructor=prof_patel, room=room_101, student_grp=rl_elective_2025,
+            slots_req=1, slots_continuous=False, preference_bin=2
+        ))
+        instance_counter += 1
     
     # ========== PREFERENCE BINS ==========
     # 9 slots per day: 1-3 (morning), 4-6 (noon), 7-9 (evening)
@@ -316,7 +363,14 @@ def create_test_data():
     objective_function_weights = [1.0, 0.5, 0.8]
     
     # ========== TIME SLOTS ==========
-    time_slots = 9  # 9 slots per day
+    # Day-specific time slots (Wednesday has only 5 slots for 2 bins)
+    time_slots = {
+        'Monday': 9,      # All 3 bins (slots 1-3, 4-6, 7-9)
+        'Tuesday': 9,     # All 3 bins (slots 1-3, 4-6, 7-9)
+        'Wednesday': 5,   # Only bins 1-2 (slots 1-3: bin1, 4-5: bin2, no bin3)
+        'Thursday': 9,    # All 3 bins (slots 1-3, 4-6, 7-9)
+        'Friday': 9       # All 3 bins (slots 1-3, 4-6, 7-9)
+    }
     
     return {
         'instructors': instructors,
@@ -378,8 +432,15 @@ def test_ga_search():
     print(f"  - Student Groups: {len(data['student_groups'])}")
     print(f"  - Base Courses: {len(data['base_courses'])}")
     print(f"  - Course Instances: {len(data['courses'])}")
-    print(f"  - Time Slots per Day: {data['time_slots']}")
-    print(f"  - Total daily slots available: {data['time_slots'] * 7}")
+    # Display day-specific time slots
+    if isinstance(data['time_slots'], dict):
+        slots_str = ", ".join([f"{day}: {slots}" for day, slots in data['time_slots'].items()])
+        print(f"  - Time Slots per Day: {{{slots_str}}}")
+        total_daily = sum(data['time_slots'].values())
+    else:
+        print(f"  - Time Slots per Day: {data['time_slots']}")
+        total_daily = data['time_slots'] * 5  # 5 weekdays
+    print(f"  - Total daily slots available: {total_daily}")
     print(f"  - Objective Weights: {data['objective_function_weights']}")
     
     # Calculate total slots needed
