@@ -1,0 +1,29 @@
+
+Traceback (most recent call last):
+================================================================================
+TIMETABLE GENERATION - IMPROVED GENETIC ALGORITHM WORKFLOW
+================================================================================
+
+[STEP 1/4] Loading course requirements from PostgreSQL...
+[1/5] Fetching professors...
+  File "D:\algos\sem5\Automated-Time-Table-Generation-System\schema\test\run_ga_improved.py", line 35, in main
+    rooms, courses = get_ga_inputs()
+                     ^^^^^^^^^^^^^^^
+  File "D:\algos\sem5\Automated-Time-Table-Generation-System\schema\test\preprocessor.py", line 52, in get_ga_inputs
+    print(f"      \u2713 {len(professors)} professors loaded")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 6: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\algos\sem5\Automated-Time-Table-Generation-System\schema\test\run_ga_improved.py", line 138, in <module>
+    main()
+  File "D:\algos\sem5\Automated-Time-Table-Generation-System\schema\test\run_ga_improved.py", line 37, in main
+    print(f"\u274c Failed to load data: {e}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>
