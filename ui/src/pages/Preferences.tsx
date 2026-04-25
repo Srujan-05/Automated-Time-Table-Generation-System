@@ -1,78 +1,87 @@
-
-import React, { useState } from "react";
-import { CheckCircle } from "@phosphor-icons/react";
+import React from "react";
+import { CheckCircleIcon } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
-import type { TimeSlotProps } from "@/lib/types";
-
-const TimeSlot: React.FC<TimeSlotProps> = ({ time, selected, unavailable, onClick }) => (
-  <button
-    onClick={onClick}
-    disabled={unavailable}
-    className={`
-      px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200 w-full
-      ${unavailable 
-        ? "bg-zinc-900/50 border-zinc-800 text-zinc-600 cursor-not-allowed decoration-slice line-through" 
-        : selected 
-            ? "bg-red-500 text-white border-red-600 shadow-lg shadow-red-500/20" 
-            : "bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-red-500/50 hover:text-white"
-      }
-    `}
-  >
-    {time}
-  </button>
-);
+import { TimeSlot } from "@/components/preferences/TimeSlot";
+import { ConstraintSettings } from "@/components/preferences/ConstraintSettings";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { usePreferences } from "@/hooks/usePreferences";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/common/Spinner";
+import { useConstraints } from "@/hooks/useConstraints";
 
 const Preferences: React.FC = () => {
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-  const times = ["09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00"];
-  
-  const [preferences, setPreferences] = useState<Record<string, boolean>>({}); // { "Mon-09:00": true }
-  
-  const togglePreference = (day: string, time: string) => {
-    const key = `${day}-${time}`;
-    setPreferences(prev => ({
-        ...prev,
-        [key]: !prev[key]
-    }));
-  };
+  const { isLoading, isSubmitting, preferences, togglePreference, submitPreferences, days, times } = usePreferences();
+  const constraintProps = useConstraints();
+
+  if (isLoading) {
+    return (
+        <div className="space-y-8 max-w-5xl mx-auto pb-12">
+            <div className="flex justify-between items-center">
+                <Skeleton className="h-12 w-64" />
+                <Skeleton className="h-12 w-48" />
+            </div>
+            <Skeleton className="h-96 rounded-3xl" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Skeleton className="h-64 rounded-2xl" />
+                <Skeleton className="h-64 rounded-2xl" />
+            </div>
+        </div>
+    );
+  }
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto">
+    <div className="space-y-8 max-w-5xl mx-auto pb-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Faculty Preferences</h1>
-          <p className="text-zinc-400">Select your preferred teaching slots. We try to accommodate 80% of requests.</p>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight mb-2">Faculty Preferences</h1>
+          <p className="text-muted-foreground">Select your preferred teaching slots. We try to accommodate 80% of requests.</p>
         </div>
-        <button className="px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-colors shadow-lg shadow-white/5 flex items-center gap-2">
-            <CheckCircle weight="fill" className="text-green-600" />
-            Submit Preferences
-        </button>
+        <Button 
+          onClick={submitPreferences}
+          disabled={isSubmitting}
+          className="h-12 px-6 rounded-xl font-bold shadow-lg shadow-primary/20 flex items-center gap-2"
+        >
+          {isSubmitting ? <Spinner /> : <CheckCircleIcon weight="fill" size={20} />}
+          Submit Preferences
+        </Button>
       </div>
 
-      <div className="bg-[#0f0f0f] border border-zinc-800 rounded-3xl p-6 md:p-8 overflow-x-auto">
-        <div className="min-w-[600px]">
-            <div className="grid grid-cols-[100px_repeat(7,1fr)] gap-4 mb-4">
-                <div className="text-xs font-bold text-zinc-500 uppercase tracking-wider self-end pb-2">Day / Time</div>
+      <Card className="bg-sidebar/50 border-border rounded-3xl p-6 md:p-8 overflow-x-auto backdrop-blur-sm">
+        <div className="min-w-[800px]">
+            <div 
+              className="grid gap-4 mb-6" 
+              style={{ gridTemplateColumns: `100px repeat(${times.length}, 1fr)` }}
+            >
+                <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider flex items-end pb-1 px-2">
+                  Day / Time
+                </div>
                 {times.map(t => (
-                    <div key={t} className="text-center text-xs font-mono text-zinc-500 pb-2">{t}</div>
+                  <div key={t} className="text-center text-xs font-mono font-bold text-muted-foreground border-b border-border pb-2">
+                    {t}
+                  </div>
                 ))}
             </div>
 
             <div className="space-y-4">
-                {days.map(day => (
+                {days.map((day, idx) => (
                     <motion.div 
                         key={day} 
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="grid grid-cols-[100px_repeat(7,1fr)] gap-4 items-center"
+                        transition={{ delay: idx * 0.05 }}
+                        className="grid gap-4 items-center group"
+                        style={{ gridTemplateColumns: `100px repeat(${times.length}, 1fr)` }}
                     >
-                        <div className="font-bold text-zinc-300">{day}</div>
+                        <div className="font-bold text-muted-foreground group-hover:text-primary transition-colors px-2">
+                          {day}
+                        </div>
                         {times.map(time => (
                             <TimeSlot 
                                 key={`${day}-${time}`} 
                                 time={time} 
                                 selected={preferences[`${day}-${time}`]} 
-                                unavailable={day === "Wed" && time === "14:00"} // Mock unavailable
+                                unavailable={day === "Wednesday" && time === "14:00"}
                                 onClick={() => togglePreference(day, time)}
                             />
                         ))}
@@ -80,32 +89,14 @@ const Preferences: React.FC = () => {
                 ))}
             </div>
         </div>
-      </div>
+      </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         <div className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-2xl">
-            <h3 className="font-bold text-white mb-4">Constraint Settings</h3>
-            <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                    <span className="text-zinc-400 text-sm">Max consecutive hours</span>
-                    <select className="bg-zinc-950 border border-zinc-800 text-white rounded-lg px-3 py-1 text-sm focus:border-red-500 outline-none">
-                        <option>2 Hours</option>
-                        <option>3 Hours</option>
-                        <option>4 Hours</option>
-                    </select>
-                </div>
-                 <div className="flex items-center justify-between">
-                    <span className="text-zinc-400 text-sm">Preferred Room Type</span>
-                    <select className="bg-zinc-950 border border-zinc-800 text-white rounded-lg px-3 py-1 text-sm focus:border-red-500 outline-none">
-                        <option>Lecture Hall</option>
-                        <option>Smart Lab</option>
-                    </select>
-                </div>
-            </div>
-         </div>
+         <ConstraintSettings {...constraintProps} />
       </div>
     </div>
   );
 };
+
 
 export default Preferences;
