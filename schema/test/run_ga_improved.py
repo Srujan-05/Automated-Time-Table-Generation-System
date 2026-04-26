@@ -35,7 +35,7 @@ def main():
     # =========================================================================
     print("\n[STEP 1/4] Loading course requirements from PostgreSQL...")
     try:
-        rooms, courses = get_ga_inputs()
+        rooms, courses, student_groups = get_ga_inputs()
     except Exception as e:
         print(f"❌ Failed to load data: {e}")
         print("\n   Make sure you ran: python db_setup.py")
@@ -70,6 +70,7 @@ def main():
     
     print(f"   ✓ GA initialized")
     print(f"      - Courses to schedule: {len(courses)}")
+    print(f"      - Student groups loaded: {len(student_groups)}")
     print(f"      - Rooms available: {len(rooms)}")
     print(f"      - Total course-slots to fill: {sum([c.slots_req for c in courses])}")
     print(f"      - Time slots per day: 10")

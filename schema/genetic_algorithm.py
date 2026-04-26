@@ -237,6 +237,8 @@ class GASearch:
         for day in days:
             if assigned_count >= course.slots_req:
                 break
+
+            lecture_assigned_today = False
             
             # Check if this is a lecture and already scheduled for this course-student group on this day
             if course.session_type == 'lecture':
@@ -289,6 +291,13 @@ class GASearch:
                     time_table[day][slot].append(course_with_room)
                     assigned_count += 1
                     self.logger.info(f"        [ASSIGN] Slot {assigned_count}/{course.slots_req}: {day} slot {slot} (room: {assigned_room.name})")
+                    if course.session_type == 'lecture':
+                        # Keep lecture instances distributed: at most one slot/day for same course-group.
+                        lecture_assigned_today = True
+                        break
+
+            if lecture_assigned_today:
+                continue
         
         return assigned_count
     

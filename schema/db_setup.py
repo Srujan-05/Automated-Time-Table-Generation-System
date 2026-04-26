@@ -180,7 +180,10 @@ def seed_data(conn):
             "Dr. S Porika",
             "Dr. Raju",
             "Dr. Ankita",
-            "Dr. Santosh Thakur"
+            "Dr. Santosh Thakur",
+            "Dr. Palash",
+            "Dr. Prasad",
+            "Dr. nartakannai"
         ]
         
         for prof in professors_data:
@@ -367,6 +370,7 @@ def seed_data(conn):
             ("CS2104", "tutorial", "Dr. OmPrakash", "CB", 2, False, 2),
         ]
         
+        inserted_course_rows = 0
         for course_code, session_type, prof_name, group_name, slots, continuous, pref in course_reqs:
             cursor.execute("""
                 INSERT INTO course_requirements 
@@ -376,10 +380,13 @@ def seed_data(conn):
                 WHERE p.name = %s AND g.name = %s
                 ON CONFLICT DO NOTHING;
             """, (course_code, session_type, slots, continuous, pref, prof_name, group_name))
+            inserted_course_rows += cursor.rowcount
         
         cursor.execute("SELECT COUNT(*) FROM course_requirements;")
         course_count = cursor.fetchone()[0]
         print(f"   ✓ {course_count} course requirements inserted")
+        if inserted_course_rows < len(course_reqs):
+            print(f"   ⚠ {len(course_reqs) - inserted_course_rows} course rows were not inserted (missing professor/group mapping or duplicate conflict)")
         
         conn.commit()
         print("\n✅ Database setup complete!\n")

@@ -190,7 +190,7 @@ class GASearchImproved:
                     # Create a copy for this day to hold the room assignment
                     course_copy = copy.copy(course)
                     course_copy.room = assigned_room
-                    course_copy._orig_id = getattr(course, '_orig_id', id(course))
+                    course_copy._orig_id = getattr(course, '_orig_id', getattr(course, 'id', id(course)))
                     
                     for slot in slots_to_use:
                         time_table[day][slot].append(course_copy)
@@ -256,7 +256,7 @@ class GASearchImproved:
                     # Create a fresh copy for this slot
                     course_copy = copy.copy(course)
                     course_copy.room = assigned_room
-                    course_copy._orig_id = getattr(course, '_orig_id', id(course))
+                    course_copy._orig_id = getattr(course, '_orig_id', getattr(course, 'id', id(course)))
                     time_table[day][slot].append(course_copy)
                     assigned_count += 1
                     
