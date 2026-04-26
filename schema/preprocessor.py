@@ -38,7 +38,7 @@ def get_ga_inputs():
     Pull raw data from PostgreSQL and return GA-ready objects.
     
     Returns:
-        tuple: (rooms_list, courses_list)
+        tuple: (rooms_list, courses_list, student_groups_dict)
     """
     
     conn = get_db_connection()
@@ -76,16 +76,42 @@ def get_ga_inputs():
     
     courses = []
     for row in cursor.fetchall():
-        course = CourseInstance(
-            course_id=row[1],
-            session_type=row[2],
-            instructor=professors[row[3]],
-            student_grp=student_groups[row[4]],
-            slots_req=row[5],
-            slots_continuous=row[6],
-            preference_bin=row[7]
-        )
-        courses.append(course)
+        req_id = row[0]
+        course_code = row[1]
+        session_type = row[2]
+        instructor = professors[row[3]]
+        student_group = student_groups[row[4]]
+        slots_required = row[5]
+        slots_continuous = row[6]
+        preference_bin = row[7]
+
+        if slots_continuous:
+            # Continuous sessions (typically labs) are scheduled as one block.
+            course = CourseInstance(
+                course_id=course_code,
+                session_type=session_type,
+                instructor=instructor,
+                student_grp=student_group,
+                slots_req=slots_required,
+                slots_continuous=True,
+                preference_bin=preference_bin,
+                instance_id=f"{req_id}_0"
+            )
+            courses.append(course)
+        else:
+            # Non-continuous sessions are expanded into 1-slot instances.
+            for slot_idx in range(slots_required):
+                course = CourseInstance(
+                    course_id=course_code,
+                    session_type=session_type,
+                    instructor=instructor,
+                    student_grp=student_group,
+                    slots_req=1,
+                    slots_continuous=False,
+                    preference_bin=preference_bin,
+                    instance_id=f"{req_id}_{slot_idx}"
+                )
+                courses.append(course)
     print(f"      ✓ {len(courses)} course requirements loaded")
     
     conn.close()
@@ -102,7 +128,7 @@ def get_ga_inputs():
     
     print("      ✓ All data validated\n")
     
-    return rooms, courses
+    return rooms, courses, student_groups
 
 
 def print_ga_inputs_summary(rooms, courses):
@@ -111,7 +137,7 @@ def print_ga_inputs_summary(rooms, courses):
     print("GA INPUTS SUMMARY")
     print("="*60)
     
-    print(f"\n📚 COURSES TO SCHEDULE: {len(courses)}")
+    print(f"\n📚 COURSE INSTANCES TO SCHEDULE: {len(courses)}")
     for i, course in enumerate(courses[:5], 1):  # Show first 5
         print(f"   {i}. {course.course_id}-{course.session_type} for {course.student_grp.name}")
         print(f"      Prof: {course.instructor.name}, Slots: {course.slots_req}, Continuous: {course.slots_continuous}")
@@ -133,8 +159,10 @@ if __name__ == "__main__":
     print("PREPROCESSOR: Loading GA Inputs from PostgreSQL")
     print("="*60 + "\n")
     
-    rooms, courses = get_ga_inputs()
+    rooms, courses, student_groups = get_ga_inputs()
     print_ga_inputs_summary(rooms, courses)
+
+    print(f"👥 STUDENT GROUPS LOADED: {len(student_groups)}")
     
     print("✅ Preprocessor test successful!\n")
     print("Next step: python run_ga.py")

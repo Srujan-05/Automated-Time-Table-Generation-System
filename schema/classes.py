@@ -53,8 +53,9 @@ class CourseInstance:
     This is a requirement that the GA must satisfy.
     Example: "CS2101-Lecture for CS1 (Dr. Rakesh, 3 slots, preferably morning)"
     """
-    def __init__(self, course_id, session_type, instructor, student_grp, 
-                 slots_req=1, slots_continuous=False, preference_bin=1, lecture_consecutive=False):
+    def __init__(self, course_id, session_type, instructor, student_grp,
+                 slots_req=1, slots_continuous=False, preference_bin=1, lecture_consecutive=False,
+                 instance_id=None):
         self.course_id = course_id  # e.g., "MA2103", "CS/AI 2102"
         self.session_type = session_type  # 'lecture', 'tutorial', 'lab'
         self.instructor = instructor  # Instructor object
@@ -63,7 +64,7 @@ class CourseInstance:
         self.slots_continuous = slots_continuous  # Must slots be consecutive?
         self.preference_bin = preference_bin  # 1=morning, 2=noon, 3=evening
         self.lecture_consecutive = lecture_consecutive  # Allow multiple lectures same day?
-        self.id = id(self)  # Unique Python object identity
+        self.id = instance_id if instance_id is not None else id(self)
         self.room = None  # Will be assigned by GA during scheduling
     
     def __repr__(self):
