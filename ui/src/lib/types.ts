@@ -1,9 +1,16 @@
 import type React from "react";
 
-export type IconComponent = React.ComponentType<any>;
+export type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+export interface RecentChange {
+    id: number;
+    course: string;
+    faculty: string;
+    time: string;
+    status: string;
+}
 
 export interface User {
-    id: number;
     name: string;
     role: string;
     email: string;
@@ -24,13 +31,49 @@ export interface Room {
     type: string;
 }
 
+export interface AuthResponse {
+    access_token: string;
+    role: string;
+}
+
+export interface IngestionSeedResponse {
+    faculties: number;
+    rooms: number;
+    courses: number;
+}
+
+export interface BackendActivity {
+    id: number;
+    category: 'NOTIFICATION' | 'CHANGE';
+    title: string;
+    message: string;
+    time: string;
+}
+
+export interface DashboardStats {
+    active_schedule: boolean;
+    requirements: number;
+    professors: number;
+    rooms?: number;
+    activities?: BackendActivity[];
+    upcoming?: TimetableEntry[];
+    // Dynamic Role-based stats
+    primary?: { label: string, value: string | number };
+    secondary?: { label: string, value: string | number };
+    tertiary?: { label: string, value: string | number };
+    quaternary?: { label: string, value: string | number };
+}
+
 export interface TimetableEntry {
     id: number;
-    time: string; // e.g. "09:00 - 10:00"
     course: string;
     room: string;
-    faculty: string;
-    batch?: string;
+    professor: string;
+    type: string;
+    group: string;
+    day?: string;
+    slot?: number;
+    time?: string;
 }
 
 export interface NotificationItem {

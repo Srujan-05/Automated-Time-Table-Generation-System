@@ -1,40 +1,61 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { api } from "@/lib/api";
 
 export const useAuth = () => {
   const navigate = useNavigate();
-  const [role, setRole] = useState<string>("student");
   const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>(""); // Added for backend integration
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [step, setStep] = useState<number>(1);
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      if (isSignUp) {
+        await api.auth.signup({ email, password });
+        toast.success("Account created! Please sign in.");
+        setIsSignUp(false);
+      } else {
+        const data = await api.auth.signin({ email, password });
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("userRole", data.role.toLowerCase());
+        localStorage.setItem("userEmail", email);
+        toast.success(`Logged in as ${data.role}`);
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      const error = err as Error;
+      toast.error(error.message || "Authentication failed");
+    } finally {
       setIsLoading(false);
-      localStorage.setItem("userRole", role);
-      toast.success(`Logged in as ${role}`);
-      navigate("/dashboard");
-    }, 1500);
+    }
   };
 
   const logout = () => {
+    localStorage.removeItem("token");
     localStorage.removeItem("userRole");
+    localStorage.removeItem("userEmail");
     navigate("/");
     toast.info("Logged out");
   };
 
   return {
-    role,
-    setRole,
     email,
     setEmail,
+    password,
+    setPassword,
     isLoading,
+    isSignUp,
+    setIsSignUp,
     step,
     setStep,
     handleLogin,
-    logout
+    logout,
+    // Provide role from storage for UI parts that need it
+    role: localStorage.getItem("userRole") || "student"
   };
 };
