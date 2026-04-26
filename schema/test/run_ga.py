@@ -21,7 +21,7 @@ load_dotenv(dotenv_path=env_path)
 
 from preprocessor import get_ga_inputs
 from save_schedule import save_ga_output, print_timetable
-from genetic_algorithm import GASearch
+from ga.genetic_algorithm import GASearch
 
 
 def main():

@@ -390,7 +390,7 @@ def create_test_data():
 
 def test_ga_search():
     """Test the GASearch class with dummy data"""
-    from genetic_algorithm import GASearch
+    from ga.algorithm import GASearch
     import sys
     import time
     

@@ -7,7 +7,7 @@ print("Starting import test...")
 
 try:
     print("Attempting to import GASearch...")
-    from genetic_algorithm import GASearch
+    from ga.algorithm import GASearch
     print("✓ GASearch imported successfully")
     
     print("\nAttempting to create test data...")
