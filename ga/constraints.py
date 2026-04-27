@@ -171,11 +171,17 @@ class ConstraintsMixin:
             new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
             existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
             if existing_grp_name in new_super_names:
-                return False
+                # If both courses explicitly allow parallel scheduling, skip this check
+                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
+                    return False
             if new_grp_name in existing_super_names:
-                return False
+                # If both courses explicitly allow parallel scheduling, skip this check
+                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
+                    return False
             if set(new_super_names) & set(existing_super_names):
-                return False
+                # If both courses explicitly allow parallel scheduling, skip super-group conflict
+                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
+                    return False
         elif hasattr(new_course.student_grp, 'super_groups'):
             new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
             if existing_grp_name in new_super_names:
