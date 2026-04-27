@@ -50,7 +50,7 @@ class Course:
 class CourseInstance:
     """Represents a single instance of a course session (lecture, tutorial, or lab)"""
     def __init__(self, id, course_id, session_type, instructor, room, student_grp, 
-                 slots_req, slots_continuous=False, preference_bin=1, lecture_consecutive=False):
+                 slots_req, slots_continuous=False, preference_bin=1, lecture_consecutive=False, allow_parallel=False):
         self.id = id
         self.course_id = course_id  # e.g., "CS201"
         self.session_type = session_type  # "lecture", "tutorial", or "lab"
@@ -61,6 +61,7 @@ class CourseInstance:
         self.slots_continuous = slots_continuous
         self.preference_bin = preference_bin  # 1=morning, 2=noon, 3=evening (per instance)
         self.lecture_consecutive = lecture_consecutive  # If True, allows multiple lectures on same day; if False, max 1 lecture/day
+        self.allow_parallel = allow_parallel  # Can run in parallel with other allow_parallel courses?
         self.course_credits = None  # Will be set during course generation
     
     def __repr__(self):
@@ -80,8 +81,9 @@ def create_test_data():
     prof_patel = Instructor(id=3, name="Prof Patel")
     prof_singh = Instructor(id=4, name="Prof Singh")
     prof_khan = Instructor(id=5, name="Prof Khan")
+    prof_karan = Instructor(id=5, name="Prof Karan")
     
-    instructors = [prof_kumar, prof_sharma, prof_patel, prof_singh, prof_khan]
+    instructors = [prof_kumar, prof_sharma, prof_patel, prof_singh, prof_khan, prof_karan]
     
     # ========== ROOMS ==========
     # Regular classrooms
@@ -119,15 +121,28 @@ def create_test_data():
     me_2027 = StudentGroup(name="ME-2027", size=47, super_groups=[class_2027])
     ece_2027 = StudentGroup(name="ECE-2027", size=48, super_groups=[class_2027])
     
-    # Elective groups
-    rl_elective_2025 = StudentGroup(name="RL-Elective-2025", size=35, super_groups=[cse_2025, ece_2025])
+    # Elective track groups (intermediate groups for managing parallel/non-parallel constraints)
+    # CSE-RL-NLP track: includes students who take RL and/or NLP (can't run in parallel with each other)
+    cse_rl_nlp_track = StudentGroup(name="CSE-RL-NLP-Track", size=53, super_groups=[cse_2025])
+    ece_rl_nlp_track = StudentGroup(name="ECE-RL-NLP-Track", size=53, super_groups=[ece_2025])
     
+    # CSE-GenAI track: separate GenAI students (can run in parallel with RL/NLP)
+    cse_genai_track = StudentGroup(name="CSE-GenAI-Track", size=30, super_groups=[cse_2025])
+    ece_genai_track = StudentGroup(name="ECE-GenAI-Track", size=30, super_groups=[ece_2025])
+    
+    # Elective groups with track-based hierarchy
+    rl_elective_2025 = StudentGroup(name="RL-Elective-2025", size=35, super_groups=[cse_rl_nlp_track, ece_rl_nlp_track])
+    nl_elective_2025 = StudentGroup(name="NL-Elective-2025", size=35, super_groups=[cse_rl_nlp_track, ece_rl_nlp_track])
+    ga_elective_2025 = StudentGroup(name="GA-Elective-2025", size=30, super_groups=[cse_genai_track, ece_genai_track])
+
     student_groups = [
         class_2025, class_2026, class_2027,
         cse_2025, me_2025, ece_2025,
         cse_2026, me_2026, ece_2026,
         cse_2027, me_2027, ece_2027,
-        rl_elective_2025
+        cse_rl_nlp_track, ece_rl_nlp_track,
+        cse_genai_track, ece_genai_track,
+        rl_elective_2025, nl_elective_2025, ga_elective_2025
     ]
     
     # ========== COURSES ==========
@@ -199,6 +214,26 @@ def create_test_data():
         practicals=0
     )
     base_courses.append(rl201)
+    nl201 = Course(
+        course_id="NL201",
+        name="Natural Language Processing",
+        total_credits=3,
+        lectures=3,
+        tutorials=0,
+        practicals=0
+    )
+    base_courses.append(nl201)
+
+    # GA201 - Generative AI (Elective): 3L, 0T, 0P (total 3 credits)
+    ga201 = Course(
+        course_id="GA201",
+        name="Generative AI",
+        total_credits=3,
+        lectures=3,
+        tutorials=0,
+        practicals=0
+    )
+    base_courses.append(ga201)
     
     # Now create instances of these courses for different student groups
     courses = []
@@ -341,12 +376,32 @@ def create_test_data():
     instance_counter += 1
     
     # RL201 - Reinforcement Learning elective instances for 2025 batch (CSE + ECE students, 35 total)
-    # 3 lecture instances
+    # 3 lecture instances - marked as parallelizable with GA201
     for i in range(rl201.lectures):
         courses.append(CourseInstance(
             id=instance_counter, course_id="RL201", session_type="lecture",
             instructor=prof_patel, room=room_101, student_grp=rl_elective_2025,
-            slots_req=1, slots_continuous=False, preference_bin=2
+            slots_req=1, slots_continuous=False, preference_bin=2, allow_parallel=True
+        ))
+        instance_counter += 1
+
+    # NL201 - Natural Language Processing (NOT parallelizable with RL)
+    # 3 lecture instances
+    for i in range(nl201.lectures):
+        courses.append(CourseInstance(
+            id=instance_counter, course_id="NL201", session_type="lecture",
+            instructor=prof_karan, room=room_101, student_grp=nl_elective_2025,
+            slots_req=1, slots_continuous=False, preference_bin=2, allow_parallel=False
+        ))
+        instance_counter += 1
+    
+    # GA201 - Generative AI (parallelizable with RL, but not NLP due to track hierarchy)
+    # 3 lecture instances
+    for i in range(ga201.lectures):
+        courses.append(CourseInstance(
+            id=instance_counter, course_id="GA201", session_type="lecture",
+            instructor=prof_singh, room=room_102, student_grp=ga_elective_2025,
+            slots_req=1, slots_continuous=False, preference_bin=2, allow_parallel=True
         ))
         instance_counter += 1
     
@@ -390,7 +445,7 @@ def create_test_data():
 
 def test_ga_search():
     """Test the GASearch class with dummy data"""
-    from ga.algorithm import GASearch
+    from schema.genetic_algorithm import GASearch
     import sys
     import time
     
@@ -454,7 +509,7 @@ def test_ga_search():
         preference_bins=data['preference_bins'],
         objective_function_weights=data['objective_function_weights'],
         rooms=data['rooms'],
-        population_size=10,  # Generate 10 candidates
+        population_size=1,  # Generate 10 candidates
         generations=10,
         mutation_rate=0.1
     )

@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import type { FileUpload } from "@/lib/types";
-import { mockData } from "@/lib/mockData";
+import { api } from "@/lib/api";
 
 export const useIngestion = () => {
   const [dragActive, setDragActive] = useState<boolean>(false);
   const [files, setFiles] = useState<FileUpload[]>([]);
   const [isImporting, setIsImporting] = useState(false);
-  const { ingestionTypes } = mockData;
+  
+  const ingestionTypes = [
+    { type: "Courses", description: "Required fields: course_code, session_type, professor, student_group" },
+    { type: "Faculty", description: "Required fields: name, email (optional)" },
+    { type: "Rooms", description: "Required fields: name, is_lab, capacity" },
+  ];
 
   const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -19,44 +24,57 @@ export const useIngestion = () => {
     }
   };
 
-  const processFiles = (fileList: FileList | null) => {
+  const processFiles = async (fileList: FileList | null) => {
     if (!fileList) return;
     
-    Array.from(fileList).forEach(file => {
+    const fileArray = Array.from(fileList);
+    for (const file of fileArray) {
       const newFile: FileUpload = { name: file.name, status: "uploading" };
       setFiles(prev => [...prev, newFile]);
       
-      setTimeout(() => {
+      try {
+        // Simple heuristic to determine type from filename
+        let type = "courses";
+        if (file.name.toLowerCase().includes("faculty") || file.name.toLowerCase().includes("prof")) type = "faculties";
+        else if (file.name.toLowerCase().includes("room")) type = "rooms";
+        
+        await api.ingestion.upload(type, file);
+        
         setFiles(prev => prev.map(f => 
           f.name === file.name ? { ...f, status: "completed" } : f
         ));
-        toast.success(`${file.name} uploaded`);
-      }, 1500);
-    });
+        toast.success(`${file.name} processed as ${type}`);
+      } catch (err) {
+        console.error("Upload failed", err);
+        toast.error(`Failed to upload ${file.name}`);
+        setFiles(prev => prev.filter(f => f.name !== file.name));
+      }
+    }
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    processFiles(e.dataTransfer.files as any);
+    processFiles(e.dataTransfer.files);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    processFiles(e.target.files as any);
+    processFiles(e.target.files);
   };
 
-  const handleImport = () => {
-    if (files.length === 0) {
-        toast.error("Please upload files first");
-        return;
-    }
+  const handleSeed = async () => {
     setIsImporting(true);
-    setTimeout(() => {
-        setIsImporting(false);
-        toast.success("Data imported to database");
+    try {
+        const res = await api.ingestion.seed();
+        toast.success(`Database seeded: ${res.faculties} faculties, ${res.rooms} rooms, ${res.courses} courses`);
         setFiles([]);
-    }, 2000);
+    } catch (err) {
+        toast.error("Failed to seed database");
+        console.error(err);
+    } finally {
+        setIsImporting(false);
+    }
   };
 
   return {
@@ -65,7 +83,7 @@ export const useIngestion = () => {
     handleDrag,
     handleDrop,
     handleFileChange,
-    handleImport,
+    handleSeed,
     isImporting,
     ingestionTypes
   };

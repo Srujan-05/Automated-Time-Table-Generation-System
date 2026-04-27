@@ -197,14 +197,20 @@ class ConstraintsMixin:
             return False
 
         if hasattr(new_course.student_grp, 'super_groups') and hasattr(existing_course.student_grp, 'super_groups'):
-            new_supers = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
-            exist_supers = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
-            if existing_grp_name in new_supers:
-                return False
-            if new_grp_name in exist_supers:
-                return False
-            if set(new_supers) & set(exist_supers):
-                return False
+            new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
+            existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
+            if existing_grp_name in new_super_names:
+                # If both courses explicitly allow parallel scheduling, skip this check
+                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
+                    return False
+            if new_grp_name in existing_super_names:
+                # If both courses explicitly allow parallel scheduling, skip this check
+                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
+                    return False
+            if set(new_super_names) & set(existing_super_names):
+                # If both courses explicitly allow parallel scheduling, skip super-group conflict
+                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
+                    return False
         elif hasattr(new_course.student_grp, 'super_groups'):
             new_supers = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
             if existing_grp_name in new_supers:

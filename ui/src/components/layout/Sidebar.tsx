@@ -52,7 +52,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         
         <button 
           onClick={() => setCollapsed(!collapsed)}
-          className="cursor-pointer p-1.5 rounded-lg hover:bg-card text-muted-foreground hover:text-foreground transition-colors absolute -right-3 top-7 border border-border bg-sidebar shadow-xl"
+          className="cursor-pointer p-1.5 rounded-lg hover:bg-card text-muted-foreground hover:text-foreground transition-colors absolute -right-3 top-16 border border-border bg-sidebar shadow-xl"
         >
           {collapsed ? <CaretRightIcon size={14} /> : <CaretLeftIcon size={14} />}
         </button>

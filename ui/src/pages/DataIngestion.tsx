@@ -12,7 +12,7 @@ const DataIngestion = () => {
     handleDrag, 
     handleDrop, 
     handleFileChange, 
-    handleImport, 
+    handleSeed, 
     isImporting, 
     ingestionTypes 
    } = useIngestion();
@@ -25,14 +25,27 @@ const DataIngestion = () => {
           <p className="text-muted-foreground text-sm">Upload CSV templates to populate the system database.</p>
          </div>
          <div className="flex gap-2">
-            <Button variant="outline" className="h-12 px-6 rounded-xl font-medium">Download Template</Button>
             <Button 
-                onClick={handleImport} 
+                variant="outline" 
+                className="h-12 px-6 rounded-xl font-medium"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = `http://localhost:5000/api/ingestion/templates`;
+                  link.download = 'timetable_templates.zip';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+            >
+              Download Templates (.zip)
+            </Button>
+            <Button 
+                onClick={handleSeed} 
                 disabled={isImporting}
                 className="h-12 px-6 rounded-xl font-medium shadow-lg shadow-primary/20"
             >
                 {isImporting ? <Spinner /> : null}
-                Import Data
+                Seed Data
             </Button>
          </div>
       </div>

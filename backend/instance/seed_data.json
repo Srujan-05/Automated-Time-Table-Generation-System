@@ -1,0 +1,25 @@
+{
+    "faculties": [
+        { "name": "Dr. Rakesh", "email": "rakesh@mahindrauniversity.edu.in" },
+        { "name": "Dr. Anagha Tobi", "email": "anagha.tobi@mahindrauniversity.edu.in" },
+        { "name": "Dr. Shabnam", "email": "shabnam@mahindrauniversity.edu.in" },
+        { "name": "Dr. Ravi Kishor", "email": "ravi.kishor@mahindrauniversity.edu.in" },
+        { "name": "Dr. Neha", "email": "neha@mahindrauniversity.edu.in" }
+    ],
+    "rooms": [
+        { "name": "ELT 1", "is_lab": false, "capacity": 150 },
+        { "name": "ELT 2", "is_lab": false, "capacity": 150 },
+        { "name": "CS LAB 1", "is_lab": true, "capacity": 100 },
+        { "name": "CS LAB 2", "is_lab": true, "capacity": 100 }
+    ],
+    "student_groups": [
+        { "name": "CS1", "size": 80 }
+    ],
+    "course_requirements": [
+        { "course_code": "MA2103", "session_type": "lecture", "professor": "Dr. Rakesh", "student_group": "CS1", "slots_required": 3, "slots_continuous": false, "preference_bin": 1 },
+        { "course_code": "HS2102", "session_type": "lecture", "professor": "Dr. Anagha Tobi", "student_group": "CS1", "slots_required": 2, "slots_continuous": false, "preference_bin": 1 },
+        { "course_code": "CS2101", "session_type": "lecture", "professor": "Dr. Ravi Kishor", "student_group": "CS1", "slots_required": 2, "slots_continuous": false, "preference_bin": 2 },
+        { "course_code": "CS2102", "session_type": "lab", "professor": "Dr. Shabnam", "student_group": "CS1", "slots_required": 2, "slots_continuous": true, "preference_bin": 2 },
+        { "course_code": "CS2103", "session_type": "lab", "professor": "Dr. Neha", "student_group": "CS1", "slots_required": 2, "slots_continuous": true, "preference_bin": 2 }
+    ]
+}

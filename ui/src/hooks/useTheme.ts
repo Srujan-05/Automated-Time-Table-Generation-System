@@ -7,6 +7,12 @@ export const useTheme = () => {
   });
 
   useEffect(() => {
+    const root = window.document.documentElement;
+    if (isDark) {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
     localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark]);
 

@@ -1,0 +1,35 @@
+name,is_lab,capacity
+ELT 1,False,120
+ELT 2,False,120
+ELT 3,False,120
+ELT 4,False,120
+ELT 5,False,120
+E-LT 1,False,100
+E-LT 2,False,100
+E-LT 3,False,100
+E-LT 4,False,100
+E-LT 5,False,100
+ECR 2,False,80
+ECR 3,False,80
+ECR 5,False,80
+ECR 7,False,80
+ECR 8,False,80
+ECR 9,False,80
+ECR 10,False,80
+ECR 11,False,80
+ECR 13,False,80
+ECR 15,False,80
+ETR 1,False,70
+ETR 2,False,70
+ETR 3,False,70
+ETR 4,False,70
+ETR 5,False,70
+IT2 block,True,90
+CS LAB 1,True,70
+CS LAB 2,True,70
+CS LAB 3,True,70
+Comp Lab 3,True,65
+Material Testing Lab,True,40
+Geology Lab,True,30
+Auditorium,False,400
+E-Lab,False,150

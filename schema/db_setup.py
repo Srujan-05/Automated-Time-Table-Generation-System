@@ -6,37 +6,83 @@ This script:
 2. Creates all necessary tables for raw inputs and GA outputs
 3. Seeds sample data extracted from all_years.md
 
-Run this ONCE after creating timetable_db in pgAdmin
+Run this once when setting up a fresh database.
 """
 
 import psycopg2
 from psycopg2 import Error
 import os
 from pathlib import Path
+from urllib.parse import urlparse, parse_qs
 from dotenv import load_dotenv
 
-# Load .env from current directory
-env_path = Path(__file__).parent / '.env'
-load_dotenv(dotenv_path=env_path)
-print(f"[INIT] Loading environment from: {env_path}")
+ROOT_ENV_PATH = Path(__file__).resolve().parent.parent / '.env'
+SCHEMA_ENV_PATH = Path(__file__).resolve().parent / '.env'
+
+# Load root .env first, then allow schema/.env to override if present.
+load_dotenv(dotenv_path=ROOT_ENV_PATH)
+load_dotenv(dotenv_path=SCHEMA_ENV_PATH, override=True)
+
+
+def _clean_env_value(value: str | None) -> str | None:
+    """Normalize env values copied from .env (strip spaces/quotes)."""
+    if value is None:
+        return None
+
+    cleaned = value.strip()
+    if len(cleaned) >= 2 and cleaned[0] == cleaned[-1] and cleaned[0] in {"\"", "'"}:
+        cleaned = cleaned[1:-1].strip()
+    return cleaned
+
+
+def _build_connection_params() -> dict:
+    """Build psycopg2 connection args from DATABASE_URL or DB_* vars."""
+    database_url = _clean_env_value(os.getenv("DATABASE_URL"))
+
+    if database_url:
+        parsed = urlparse(database_url)
+        if parsed.scheme not in {"postgres", "postgresql"}:
+            raise ValueError("DATABASE_URL must start with postgres:// or postgresql://")
+
+        query_params = parse_qs(parsed.query)
+        sslmode = query_params.get("sslmode", [None])[0] or "require"
+
+        return {
+            "dbname": parsed.path.lstrip("/"),
+            "user": parsed.username,
+            "password": parsed.password,
+            "host": parsed.hostname,
+            "port": parsed.port or 5432,
+            "sslmode": sslmode,
+        }
+
+    # Fallback to individual vars.
+    return {
+        "dbname": _clean_env_value(os.getenv("DB_NAME")),
+        "user": _clean_env_value(os.getenv("DB_USER")),
+        "password": _clean_env_value(os.getenv("DB_PASSWORD")),
+        "host": _clean_env_value(os.getenv("DB_HOST")),
+        "port": int(_clean_env_value(os.getenv("DB_PORT")) or 5432),
+        "sslmode": _clean_env_value(os.getenv("DB_SSLMODE")) or "require",
+    }
 
 def get_db_connection():
     """Create and return a PostgreSQL connection"""
     try:
-        conn = psycopg2.connect(
-            dbname=os.getenv("DB_NAME"),
-            user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD"),
-            host=os.getenv("DB_HOST"),
-            port=os.getenv("DB_PORT")
-        )
+        conn_params = _build_connection_params()
+        missing = [k for k in ("dbname", "user", "password", "host") if not conn_params.get(k)]
+        if missing:
+            raise ValueError(f"Missing required DB config keys: {', '.join(missing)}")
+
+        conn = psycopg2.connect(**conn_params)
         return conn
     except Error as e:
         print(f"❌ Database connection failed: {e}")
-        print("\nMake sure you:")
-        print("  1. Have PostgreSQL running")
-        print("  2. Created timetable_db in pgAdmin")
-        print("  3. Filled in .env with correct password")
+        print("\nCheck your .env connection values and try again.")
+        exit(1)
+    except ValueError as e:
+        print(f"❌ Invalid database configuration: {e}")
+        print("\nUse either DATABASE_URL or DB_NAME/DB_USER/DB_PASSWORD/DB_HOST/DB_PORT.")
         exit(1)
 
 
