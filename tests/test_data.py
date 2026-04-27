@@ -445,7 +445,7 @@ def create_test_data():
 
 def test_ga_search():
     """Test the GASearch class with dummy data"""
-    from schema.genetic_algorithm import GASearch
+    from ga.algorithm import GASearch
     import sys
     import time
     
@@ -509,7 +509,7 @@ def test_ga_search():
         preference_bins=data['preference_bins'],
         objective_function_weights=data['objective_function_weights'],
         rooms=data['rooms'],
-        population_size=1,  # Generate 10 candidates
+        population_size=5,  # Generate 5 candidates
         generations=10,
         mutation_rate=0.1
     )
@@ -564,7 +564,70 @@ def test_ga_search():
                         print(f"  Slot {slot}: {course_names}")
                     else:
                         print(f"  Slot {slot}: [empty]")
-        
+
+                        # --- Mutation Test ---
+            print(f"\nMutation Test (5 attempts):")
+            mutation_changes = 0
+            mutation_failures = 0
+
+            for mut_attempt in range(5):
+                mutated_tt = ga.mutate(timetable)
+
+                if mutated_tt is None:
+                    print(f"  ✗ Mutation {mut_attempt+1}: mutate() returned None (likely unimplemented)")
+                    mutation_failures += 1
+                    continue
+
+                # Helper to serialise a timetable for comparison
+                def serialise(tt):
+                    return str([
+                        (day, slot, [(c.course_id, c.session_type, c.room.name) for c in slist])
+                        for day, slots in tt.items()
+                        for slot, slist in slots.items()
+                    ])
+
+                original_repr = serialise(timetable)
+                mutated_repr = serialise(mutated_tt)
+
+                changed = (original_repr != mutated_repr)
+
+                if changed:
+                    mutation_changes += 1
+                    valid = ga.check_constraints(mutated_tt)
+                    if not valid:
+                        print(f"  ✗ Mutation {mut_attempt+1}: timetable changed but INVALID CONSTRAINTS!")
+                        mutation_failures += 1
+                else:
+                    # unchanged – still must be valid
+                    if not ga.check_constraints(mutated_tt):
+                        print(f"  ✗ Mutation {mut_attempt+1}: no change but invalid constraints!")
+                        mutation_failures += 1
+
+            print(f"  Summary: {mutation_changes}/5 mutations changed the timetable, "
+                  f"{mutation_failures} failures.")
+            
+            # ============================================================
+            # --- Test Tournament Selection ---
+            print("\n" + "=" * 80)
+            print("TESTING TOURNAMENT SELECTION")
+            print("=" * 80)
+            
+            # Compute fitness for each individual in the population
+            fitness_scores = [ga.fitness(individual) for individual in population]
+            for idx, (ind, fit) in enumerate(zip(population, fitness_scores)):
+                print(f"Candidate {idx+1}: fitness = {fit:.2f}")
+            
+            print("\nRunning selection 4 times:")
+            for i in range(4):
+                p1, p2 = ga.select_parents(population, fitness_scores)
+                # Find indices of the parents in the population
+                idx1 = population.index(p1)
+                idx2 = population.index(p2)
+                print(f"  Selection {i+1}: Parent1 = Candidate {idx1+1}, Parent2 = Candidate {idx2+1}")
+            
+            print("\nSelection test completed.")
+            # ============================================================
+
         print("\n" + "=" * 80)
         print("✓ ALL TESTS PASSED")
         print("=" * 80)
