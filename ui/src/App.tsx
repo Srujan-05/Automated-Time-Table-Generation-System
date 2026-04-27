@@ -22,7 +22,7 @@ export function App() {
   const sidebarProps = useSidebar();
 
 return (
-    <div className={`App bg-background text-foreground min-h-screen ${isDark ? "dark" : ""}`}>
+    <div className="App bg-background text-foreground min-h-screen">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Auth />} />

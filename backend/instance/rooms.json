@@ -1,0 +1,172 @@
+[
+    {
+        "name": "ELT 1",
+        "is_lab": false,
+        "capacity": 120
+    },
+    {
+        "name": "ELT 2",
+        "is_lab": false,
+        "capacity": 120
+    },
+    {
+        "name": "ELT 3",
+        "is_lab": false,
+        "capacity": 120
+    },
+    {
+        "name": "ELT 4",
+        "is_lab": false,
+        "capacity": 120
+    },
+    {
+        "name": "ELT 5",
+        "is_lab": false,
+        "capacity": 120
+    },
+    {
+        "name": "E-LT 1",
+        "is_lab": false,
+        "capacity": 100
+    },
+    {
+        "name": "E-LT 2",
+        "is_lab": false,
+        "capacity": 100
+    },
+    {
+        "name": "E-LT 3",
+        "is_lab": false,
+        "capacity": 100
+    },
+    {
+        "name": "E-LT 4",
+        "is_lab": false,
+        "capacity": 100
+    },
+    {
+        "name": "E-LT 5",
+        "is_lab": false,
+        "capacity": 100
+    },
+    {
+        "name": "ECR 2",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 3",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 5",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 7",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 8",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 9",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 10",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 11",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 13",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ECR 15",
+        "is_lab": false,
+        "capacity": 80
+    },
+    {
+        "name": "ETR 1",
+        "is_lab": false,
+        "capacity": 70
+    },
+    {
+        "name": "ETR 2",
+        "is_lab": false,
+        "capacity": 70
+    },
+    {
+        "name": "ETR 3",
+        "is_lab": false,
+        "capacity": 70
+    },
+    {
+        "name": "ETR 4",
+        "is_lab": false,
+        "capacity": 70
+    },
+    {
+        "name": "ETR 5",
+        "is_lab": false,
+        "capacity": 70
+    },
+    {
+        "name": "IT2 block",
+        "is_lab": true,
+        "capacity": 90
+    },
+    {
+        "name": "CS LAB 1",
+        "is_lab": true,
+        "capacity": 70
+    },
+    {
+        "name": "CS LAB 2",
+        "is_lab": true,
+        "capacity": 70
+    },
+    {
+        "name": "CS LAB 3",
+        "is_lab": true,
+        "capacity": 70
+    },
+    {
+        "name": "Comp Lab 3",
+        "is_lab": true,
+        "capacity": 65
+    },
+    {
+        "name": "Material Testing Lab",
+        "is_lab": true,
+        "capacity": 40
+    },
+    {
+        "name": "Geology Lab",
+        "is_lab": true,
+        "capacity": 30
+    },
+    {
+        "name": "Auditorium",
+        "is_lab": false,
+        "capacity": 400
+    },
+    {
+        "name": "E-Lab",
+        "is_lab": false,
+        "capacity": 150
+    }
+]

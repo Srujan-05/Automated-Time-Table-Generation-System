@@ -201,7 +201,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #ef4444;
+    background: #444444;
 }
 
 .glass-panel {
@@ -230,6 +230,55 @@
 
     to {
         height: 0;
+    }
+}
+
+/* Print Styles */
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 5mm;
+    }
+
+    /* Simple hiding */
+    header, nav, aside, button, .Toaster, [data-radix-popper-content-wrapper] {
+        display: none !important;
+    }
+
+    body, html, #root, .App, main {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+        background: white !important;
+    }
+
+    div, h1, h2, h3, h4, h5, h6, p, span {
+        color: black !important;
+    }
+
+    .printable-grid {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: block !important;
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important; /* Remove complex scaling */
+    }
+
+    /* Force the inner grid to use all space */
+    .printable-grid > div {
+        min-width: 1000px !important; /* Set a fixed width that fits landscape */
+        width: 100% !important;
+    }
+
+    .printable-grid * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
     }
 }
 
