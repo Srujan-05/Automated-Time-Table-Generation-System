@@ -4,9 +4,8 @@ from .population import PopulationMixin
 from .constraints import ConstraintsMixin
 from .fitness import FitnessMixin
 from .operators import OperatorsMixin
-from .parallel import ParallelEvaluationMixin
 
-class GASearch(PopulationMixin, ConstraintsMixin, FitnessMixin, OperatorsMixin, ParallelEvaluationMixin):
+class GASearch(PopulationMixin, ConstraintsMixin, FitnessMixin, OperatorsMixin):
     def __init__(self, time_slots, courses, preference_bins,
                  objective_function_weights, rooms,
                  population_size=20, generations=100, mutation_rate=0.1):
