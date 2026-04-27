@@ -105,3 +105,19 @@ class OperatorsMixin:
         parent1 = tournament()
         parent2 = tournament()
         return parent1, parent2
+    
+    def crossover(self, parent1, parent2):
+        """
+        Uniform crossover at the day-slot level.
+        Returns a new timetable (deep copy of selected parts).
+        """
+        import copy
+        child = {}
+        for day in parent1:
+            child[day] = {}
+            for slot in parent1[day]:
+                if random.random() < 0.5:
+                    child[day][slot] = copy.deepcopy(parent1[day][slot])
+                else:
+                    child[day][slot] = copy.deepcopy(parent2[day][slot])
+        return child

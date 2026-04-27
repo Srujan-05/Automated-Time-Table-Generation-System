@@ -1,4 +1,18 @@
 class ConstraintsMixin:
+    def _ancestors(self, group):
+        """Return a set of name strings of the group and all its super_groups (recursively)."""
+        names = set()
+        stack = [group]
+        while stack:
+            g = stack.pop()
+            name = g.name if hasattr(g, 'name') else str(g)
+            if name not in names:
+                names.add(name)
+                if hasattr(g, 'super_groups'):
+                    for sg in g.super_groups:
+                        stack.append(sg)
+        return names
+
     def check_constraints(self, time_table, verbose=False):
         for day in time_table:
             for time_slot in time_table[day]:
@@ -16,55 +30,26 @@ class ConstraintsMixin:
                         return False
                     professor_ids.append(course.instructor.id)
 
-                # 2. student group collisions (direct)
-                student_grp_names = []
-                for course in courses:
-                    grp_name = (course.student_grp.name
-                                if hasattr(course.student_grp, 'name')
-                                else str(course.student_grp))
-                    if grp_name in student_grp_names:
-                        if verbose:
-                            self.logger.info(
-                                f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
-                                f"Student group conflict ({grp_name})"
-                            )
-                        return False
-                    student_grp_names.append(grp_name)
+                # 2. student group + ancestor conflicts (with allow_parallel exemption)
+                ancestor_sets = [self._ancestors(c.student_grp) for c in courses]
+                allow_parallel_flags = [getattr(c, 'allow_parallel', False) for c in courses]
 
-                # 3. super group collisions
-                for course in courses:
-                    if hasattr(course.student_grp, 'super_groups'):
-                        for super_grp in course.student_grp.super_groups:
-                            super_grp_name = (super_grp.name
-                                              if hasattr(super_grp, 'name')
-                                              else str(super_grp))
-                            for other in courses:
-                                if other == course:
-                                    continue
-                                other_grp_name = (other.student_grp.name
-                                                  if hasattr(other.student_grp, 'name')
-                                                  else str(other.student_grp))
-                                if super_grp_name == other_grp_name:
-                                    if verbose:
-                                        self.logger.info(
-                                            f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
-                                            f"Super group conflict ({super_grp_name})"
-                                        )
-                                    return False
-                                if hasattr(other.student_grp, 'super_groups'):
-                                    for other_super in other.student_grp.super_groups:
-                                        other_super_name = (other_super.name
-                                                            if hasattr(other_super, 'name')
-                                                            else str(other_super))
-                                        if super_grp_name == other_super_name:
-                                            if verbose:
-                                                self.logger.info(
-                                                    f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
-                                                    f"Super group conflict ({super_grp_name})"
-                                                )
-                                            return False
+                for i in range(len(ancestor_sets)):
+                    for j in range(i + 1, len(ancestor_sets)):
+                        # If both courses explicitly allow parallel scheduling, skip ancestor conflict
+                        if allow_parallel_flags[i] and allow_parallel_flags[j]:
+                            continue
+                        if ancestor_sets[i] & ancestor_sets[j]:
+                            if verbose:
+                                grp_i = courses[i].student_grp.name if hasattr(courses[i].student_grp, 'name') else str(courses[i].student_grp)
+                                grp_j = courses[j].student_grp.name if hasattr(courses[j].student_grp, 'name') else str(courses[j].student_grp)
+                                self.logger.info(
+                                    f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
+                                    f"Student group conflict between {grp_i} and {grp_j}"
+                                )
+                            return False
 
-                # 4. room collisions
+                # 3. room collisions
                 room_ids = []
                 for course in courses:
                     if course.room.id in room_ids:
@@ -76,7 +61,7 @@ class ConstraintsMixin:
                         return False
                     room_ids.append(course.room.id)
 
-                # 5. lab room constraint
+                # 4. lab room constraint
                 for course in courses:
                     if course.session_type == 'lab':
                         if not hasattr(course.room, 'is_lab') or not course.room.is_lab:
@@ -87,7 +72,7 @@ class ConstraintsMixin:
                                 )
                             return False
 
-                # 6. room capacity
+                # 5. room capacity
                 for course in courses:
                     if hasattr(course.student_grp, 'size') and hasattr(course.room, 'capacity'):
                         if course.room.capacity < course.student_grp.size:
@@ -99,7 +84,7 @@ class ConstraintsMixin:
                                 )
                             return False
 
-            # 7. lectures per day (unless lecture_consecutive=True)
+            # 6. lectures per day (unless lecture_consecutive=True)
             lectures_per_day = {}
             seen_instances = set()
             for time_slot in sorted(time_table[day].keys()):
@@ -108,7 +93,6 @@ class ConstraintsMixin:
                         grp_name = (course.student_grp.name
                                     if hasattr(course.student_grp, 'name')
                                     else str(course.student_grp))
-                        # Use course.id attribute to identify unique instances
                         instance_id = course.id if hasattr(course, 'id') else id(course)
                         if instance_id not in seen_instances:
                             seen_instances.add(instance_id)
@@ -128,7 +112,7 @@ class ConstraintsMixin:
                                         )
                                     return False
 
-            # 8. continuous slots
+            # 7. continuous slots
             for time_slot in sorted(time_table[day].keys()):
                 for course in time_table[day][time_slot]:
                     if course.slots_continuous:
@@ -147,7 +131,7 @@ class ConstraintsMixin:
                                         )
                                     return False
 
-        # 9. each course scheduled exactly slots_req times
+        # 8. each course scheduled exactly slots_req times
         course_slot_count = {}
         for day in time_table:
             for time_slot in time_table[day]:
@@ -187,37 +171,12 @@ class ConstraintsMixin:
         if assigned_room.id == existing_course.room.id:
             return False
 
-        new_grp_name = (new_course.student_grp.name
-                        if hasattr(new_course.student_grp, 'name')
-                        else str(new_course.student_grp))
-        existing_grp_name = (existing_course.student_grp.name
-                             if hasattr(existing_course.student_grp, 'name')
-                             else str(existing_course.student_grp))
-        if new_grp_name == existing_grp_name:
-            return False
-
-        if hasattr(new_course.student_grp, 'super_groups') and hasattr(existing_course.student_grp, 'super_groups'):
-            new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
-            existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
-            if existing_grp_name in new_super_names:
-                # If both courses explicitly allow parallel scheduling, skip this check
-                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
-                    return False
-            if new_grp_name in existing_super_names:
-                # If both courses explicitly allow parallel scheduling, skip this check
-                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
-                    return False
-            if set(new_super_names) & set(existing_super_names):
-                # If both courses explicitly allow parallel scheduling, skip super-group conflict
-                if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
-                    return False
-        elif hasattr(new_course.student_grp, 'super_groups'):
-            new_supers = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
-            if existing_grp_name in new_supers:
-                return False
-        elif hasattr(existing_course.student_grp, 'super_groups'):
-            exist_supers = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
-            if new_grp_name in exist_supers:
+        # Student group conflict: ancestor intersection, with allow_parallel exemption
+        new_ancestors = self._ancestors(new_course.student_grp)
+        existing_ancestors = self._ancestors(existing_course.student_grp)
+        if new_ancestors & existing_ancestors:
+            # If both explicitly allow parallel scheduling, ignore ancestor conflict
+            if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
                 return False
 
         return True
