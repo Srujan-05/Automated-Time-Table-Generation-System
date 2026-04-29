@@ -50,7 +50,7 @@ class Course:
 class CourseInstance:
     """Represents a single instance of a course session (lecture, tutorial, or lab)"""
     def __init__(self, id, course_id, session_type, instructor, room, student_grp, 
-                 slots_req, slots_continuous=False, preference_bin=1, lecture_consecutive=False, allow_parallel=False):
+                 slots_req, slots_continuous=False, preference_bin=1, lecture_consecutive=False, parallelizable_id=None):
         self.id = id
         self.course_id = course_id  # e.g., "CS201"
         self.session_type = session_type  # "lecture", "tutorial", or "lab"
@@ -61,7 +61,7 @@ class CourseInstance:
         self.slots_continuous = slots_continuous
         self.preference_bin = preference_bin  # 1=morning, 2=noon, 3=evening (per instance)
         self.lecture_consecutive = lecture_consecutive  # If True, allows multiple lectures on same day; if False, max 1 lecture/day
-        self.allow_parallel = allow_parallel  # Can run in parallel with other allow_parallel courses?
+        self.parallelizable_id = parallelizable_id  # None=can run with any; Int=grouped electives (same ID can coexist, different ID cannot)
         self.course_credits = None  # Will be set during course generation
     
     def __repr__(self):
@@ -130,10 +130,25 @@ def create_test_data():
     cse_genai_track = StudentGroup(name="CSE-GenAI-Track", size=30, super_groups=[cse_2025])
     ece_genai_track = StudentGroup(name="ECE-GenAI-Track", size=30, super_groups=[ece_2025])
     
-    # Elective groups with track-based hierarchy
-    rl_elective_2025 = StudentGroup(name="RL-Elective-2025", size=35, super_groups=[cse_rl_nlp_track, ece_rl_nlp_track])
-    nl_elective_2025 = StudentGroup(name="NL-Elective-2025", size=35, super_groups=[cse_rl_nlp_track, ece_rl_nlp_track])
-    ga_elective_2025 = StudentGroup(name="GA-Elective-2025", size=30, super_groups=[cse_genai_track, ece_genai_track])
+    # Elective groups with track-based hierarchy for 2025 batch
+    rl_elective_2025 = StudentGroup(name="RL-Elective-2025", size=35, super_groups=[cse_rl_nlp_track, ece_rl_nlp_track, cse_2025, ece_2025, class_2025])
+    nl_elective_2025 = StudentGroup(name="NL-Elective-2025", size=35, super_groups=[cse_rl_nlp_track, ece_rl_nlp_track, cse_2025, ece_2025, class_2025])
+    ga_elective_2025 = StudentGroup(name="GA-Elective-2025", size=30, super_groups=[cse_genai_track, ece_genai_track, cse_2025, ece_2025, class_2025])
+    
+    # Elective track groups for 2026 batch (CSE-202x groups)
+    cse_systems_track = StudentGroup(name="CSE-Systems-Track", size=40, super_groups=[cse_2025])
+    ece_systems_track = StudentGroup(name="ECE-Systems-Track", size=40, super_groups=[ece_2025])
+    
+    cse_databases_track = StudentGroup(name="CSE-Databases-Track", size=35, super_groups=[cse_2025])
+    ece_databases_track = StudentGroup(name="ECE-Databases-Track", size=35, super_groups=[ece_2025])
+    
+    cse_cloud_track = StudentGroup(name="CSE-Cloud-Track", size=38, super_groups=[cse_2025])
+    ece_cloud_track = StudentGroup(name="ECE-Cloud-Track", size=38, super_groups=[ece_2025])
+    
+    # Elective groups with track-based hierarchy for 2026 batch
+    systems_elective_2026 = StudentGroup(name="Systems-Elective-2025", size=40, super_groups=[cse_systems_track, ece_systems_track, cse_2025, ece_2025, class_2025])
+    databases_elective_2026 = StudentGroup(name="Databases-Elective-2025", size=35, super_groups=[cse_databases_track, ece_databases_track, cse_2025, ece_2025, class_2025])
+    cloud_elective_2026 = StudentGroup(name="Cloud-Elective-2025", size=38, super_groups=[cse_cloud_track, ece_cloud_track, cse_2025, ece_2025, class_2025])
 
     student_groups = [
         class_2025, class_2026, class_2027,
@@ -142,7 +157,11 @@ def create_test_data():
         cse_2027, me_2027, ece_2027,
         cse_rl_nlp_track, ece_rl_nlp_track,
         cse_genai_track, ece_genai_track,
-        rl_elective_2025, nl_elective_2025, ga_elective_2025
+        rl_elective_2025, nl_elective_2025, ga_elective_2025,
+        cse_systems_track, ece_systems_track,
+        cse_databases_track, ece_databases_track,
+        cse_cloud_track, ece_cloud_track,
+        systems_elective_2026, databases_elective_2026, cloud_elective_2026
     ]
     
     # ========== COURSES ==========
@@ -234,6 +253,39 @@ def create_test_data():
         practicals=0
     )
     base_courses.append(ga201)
+    
+    # SYS201 - Systems Design (Elective): 3L, 0T, 0P (total 3 credits)
+    sys201 = Course(
+        course_id="SYS201",
+        name="Systems Design",
+        total_credits=3,
+        lectures=3,
+        tutorials=0,
+        practicals=0
+    )
+    base_courses.append(sys201)
+    
+    # DB201 - Advanced Databases (Elective): 3L, 0T, 0P (total 3 credits)
+    db201 = Course(
+        course_id="DB201",
+        name="Advanced Databases",
+        total_credits=3,
+        lectures=3,
+        tutorials=0,
+        practicals=0
+    )
+    base_courses.append(db201)
+    
+    # CLOUD201 - Cloud Computing (Elective): 3L, 0T, 0P (total 3 credits)
+    cloud201 = Course(
+        course_id="CLOUD201",
+        name="Cloud Computing",
+        total_credits=3,
+        lectures=3,
+        tutorials=0,
+        practicals=0
+    )
+    base_courses.append(cloud201)
     
     # Now create instances of these courses for different student groups
     courses = []
@@ -375,33 +427,71 @@ def create_test_data():
     ))
     instance_counter += 1
     
-    # RL201 - Reinforcement Learning elective instances for 2025 batch (CSE + ECE students, 35 total)
-    # 3 lecture instances - marked as parallelizable with GA201
+    # ========== ELECTIVES FOR 2025 BATCH ==========
+    # Parallelizable Group 1: RL and NL (mutually exclusive - same track)
+    # Parallelizable Group 2: GA (independent track)
+    
+    # RL201 - Reinforcement Learning elective instances for 2025 batch
+    # 3 lecture instances - parallelizable_id=1 (grouped with NL, same track)
     for i in range(rl201.lectures):
         courses.append(CourseInstance(
             id=instance_counter, course_id="RL201", session_type="lecture",
             instructor=prof_patel, room=room_101, student_grp=rl_elective_2025,
-            slots_req=1, slots_continuous=False, preference_bin=2, allow_parallel=True
+            slots_req=1, slots_continuous=False, preference_bin=2, parallelizable_id=1
         ))
         instance_counter += 1
 
-    # NL201 - Natural Language Processing (NOT parallelizable with RL)
-    # 3 lecture instances
+    # NL201 - Natural Language Processing (same track as RL, mutually exclusive)
+    # 3 lecture instances - parallelizable_id=1 (grouped with RL)
     for i in range(nl201.lectures):
         courses.append(CourseInstance(
             id=instance_counter, course_id="NL201", session_type="lecture",
             instructor=prof_karan, room=room_101, student_grp=nl_elective_2025,
-            slots_req=1, slots_continuous=False, preference_bin=2, allow_parallel=False
+            slots_req=1, slots_continuous=False, preference_bin=2, parallelizable_id=1
         ))
         instance_counter += 1
     
-    # GA201 - Generative AI (parallelizable with RL, but not NLP due to track hierarchy)
-    # 3 lecture instances
+    # GA201 - Generative AI (independent track)
+    # 3 lecture instances - parallelizable_id=2 (different from RL/NL)
     for i in range(ga201.lectures):
         courses.append(CourseInstance(
             id=instance_counter, course_id="GA201", session_type="lecture",
             instructor=prof_singh, room=room_102, student_grp=ga_elective_2025,
-            slots_req=1, slots_continuous=False, preference_bin=2, allow_parallel=True
+            slots_req=1, slots_continuous=False, preference_bin=2, parallelizable_id=2
+        ))
+        instance_counter += 1
+    
+    # ========== ELECTIVES FOR 2026 BATCH (CSE-202x) ==========
+    # Parallelizable Group 3: Systems Design
+    # Parallelizable Group 4: Databases and Cloud Computing (mutually exclusive)
+    
+    # SYS201 - Systems Design elective instances for 2026 batch
+    # 3 lecture instances - parallelizable_id=3 (independent group)
+    for i in range(sys201.lectures):
+        courses.append(CourseInstance(
+            id=instance_counter, course_id="SYS201", session_type="lecture",
+            instructor=prof_sharma, room=room_103, student_grp=systems_elective_2026,
+            slots_req=1, slots_continuous=False, preference_bin=1, parallelizable_id=2
+        ))
+        instance_counter += 1
+    
+    # DB201 - Advanced Databases elective instances for 2026 batch
+    # 3 lecture instances - parallelizable_id=4 (grouped with CLOUD201, same track)
+    for i in range(db201.lectures):
+        courses.append(CourseInstance(
+            id=instance_counter, course_id="DB201", session_type="lecture",
+            instructor=prof_patel, room=room_104, student_grp=databases_elective_2026,
+            slots_req=1, slots_continuous=False, preference_bin=1, parallelizable_id=3
+        ))
+        instance_counter += 1
+    
+    # CLOUD201 - Cloud Computing elective instances for 2026 batch
+    # 3 lecture instances - parallelizable_id=4 (grouped with DB201, same track)
+    for i in range(cloud201.lectures):
+        courses.append(CourseInstance(
+            id=instance_counter, course_id="CLOUD201", session_type="lecture",
+            instructor=prof_khan, room=room_102, student_grp=cloud_elective_2026,
+            slots_req=1, slots_continuous=False, preference_bin=1, parallelizable_id=3
         ))
         instance_counter += 1
     
@@ -445,8 +535,10 @@ def create_test_data():
 
 def test_ga_search():
     """Test the GASearch class with dummy data"""
-    from ga.algorithm import GASearch
     import sys
+    import os
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from ga.algorithm import GASearch
     import time
     
     # Create test data
@@ -605,18 +697,18 @@ def test_ga_search():
 
             print(f"  Summary: {mutation_changes}/5 mutations changed the timetable, "
                   f"{mutation_failures} failures.")
-            
+
             # ============================================================
             # --- Test Tournament Selection ---
             print("\n" + "=" * 80)
             print("TESTING TOURNAMENT SELECTION")
             print("=" * 80)
-            
+
             # Compute fitness for each individual in the population
             fitness_scores = [ga.fitness(individual) for individual in population]
             for idx, (ind, fit) in enumerate(zip(population, fitness_scores)):
                 print(f"Candidate {idx+1}: fitness = {fit:.2f}")
-            
+
             print("\nRunning selection 4 times:")
             for i in range(4):
                 p1, p2 = ga.select_parents(population, fitness_scores)
@@ -624,7 +716,7 @@ def test_ga_search():
                 idx1 = population.index(p1)
                 idx2 = population.index(p2)
                 print(f"  Selection {i+1}: Parent1 = Candidate {idx1+1}, Parent2 = Candidate {idx2+1}")
-            
+
             print("\nSelection test completed.")
             # ============================================================
 

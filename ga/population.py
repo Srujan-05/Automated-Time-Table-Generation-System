@@ -185,6 +185,15 @@ class PopulationMixin:
                 if slots_available:
                     # Assign to an available room
                     assigned_room = random.choice(available_rooms)
+                    
+                    # Validate room type constraint (labs only for labs, non-labs for lectures/tutorials)
+                    if course.session_type == 'lab':
+                        if not hasattr(assigned_room, 'is_lab') or not assigned_room.is_lab:
+                            continue  # Skip this slot, room type mismatch
+                    elif course.session_type in ['lecture', 'tutorial']:
+                        if hasattr(assigned_room, 'is_lab') and assigned_room.is_lab:
+                            continue  # Skip this slot, room type mismatch
+                    
                     course_with_room = copy.copy(course)  # Shallow copy to preserve object references
                     course_with_room.room = assigned_room
                     
@@ -254,6 +263,14 @@ class PopulationMixin:
                             break
                 
                 if slot_available and assigned_room:
+                    # Validate room type constraint (labs only for labs, non-labs for lectures/tutorials)
+                    if course.session_type == 'lab':
+                        if not hasattr(assigned_room, 'is_lab') or not assigned_room.is_lab:
+                            continue  # Skip this slot, room type mismatch
+                    elif course.session_type in ['lecture', 'tutorial']:
+                        if hasattr(assigned_room, 'is_lab') and assigned_room.is_lab:
+                            continue  # Skip this slot, room type mismatch
+                    
                     course_with_room = copy.copy(course)  # Shallow copy to preserve object references
                     course_with_room.room = assigned_room
                     time_table[day][slot].append(course_with_room)
@@ -266,3 +283,127 @@ class PopulationMixin:
         # [DEPRECATED] Use _generate_smart_timetable instead
         # Kept for backwards compatibility
         return self._generate_smart_timetable()
+
+    def run(self, convergence_threshold=0.1, min_generations=5, max_generations=None):
+        """
+        Run the genetic algorithm to find the optimal timetable.
+        
+        Args:
+            convergence_threshold: If improvement is less than this, consider it converged
+            min_generations: Minimum number of generations to run before checking convergence
+            max_generations: Maximum number of generations (prevents infinite loops)
+        
+        Returns:
+            best_timetable: The best timetable found
+            best_fitness: The fitness value of the best timetable
+        """
+        if max_generations is None:
+            max_generations = self.generations
+        
+        self.logger.info("\n" + "="*80)
+        self.logger.info("STARTING GENETIC ALGORITHM")
+        self.logger.info("="*80)
+        self.logger.info(f"Population size: {self.population_size}")
+        self.logger.info(f"Max generations: {max_generations}")
+        self.logger.info(f"Convergence threshold: {convergence_threshold}")
+        self.logger.info(f"Min generations: {min_generations}")
+        
+        # Step 1: Initialize population
+        self.logger.info("\n[GA] Step 1: Creating initial population...")
+        population = self.create_population()
+        
+        if not population:
+            self.logger.error("[GA] ✗ Failed to create initial population")
+            return None, float('inf')
+        
+        # Step 2: Evaluate initial candidates
+        self.logger.info(f"\n[GA] Step 2: Evaluating {len(population)} initial candidates...")
+        fitnesses = [self.fitness(timetable) for timetable in population]
+        best_fitness = min(fitnesses)
+        best_timetable = population[fitnesses.index(best_fitness)]
+        
+        self.logger.info(f"[GA] Initial best fitness: {best_fitness:.2f}")
+        
+        # Track convergence
+        previous_best_fitness = best_fitness
+        generation = 0
+        no_improvement_count = 0
+        
+        # Main GA loop
+        while generation < max_generations:
+            generation += 1
+            self.logger.info(f"\n[GA] Generation {generation}/{max_generations}")
+            
+            # Step 3 & 4: Generate N new candidates through selection, crossover, and mutation
+            self.logger.info(f"[GA] Generating {len(population)} new candidates...")
+            new_candidates = []
+            valid_count = 0
+            
+            attempts = 0
+            max_attempts = len(population) * 3  # Try up to 3x to get N valid candidates
+            
+            while len(new_candidates) < len(population) and attempts < max_attempts:
+                attempts += 1
+                
+                # Select 2 parents
+                parent1, parent2 = self.select_parents(population, fitnesses)
+                
+                # Crossover
+                child = self.crossover(parent1, parent2)
+                
+                # Mutation
+                mutated_child = self.mutate(child)
+                
+                # Step 4: Check if mutated candidate satisfies constraints
+                if self.check_constraints(mutated_child, verbose=False):
+                    new_candidates.append(mutated_child)
+                    valid_count += 1
+            
+            self.logger.info(f"[GA] Created {valid_count} valid candidates from {attempts} attempts")
+            
+            # Step 6: Combine population and new candidates, then select best N
+            self.logger.info(f"[GA] Selecting best {len(population)} from {len(population) + len(new_candidates)} candidates...")
+            combined_population = population + new_candidates
+            combined_fitnesses = [self.fitness(timetable) for timetable in combined_population]
+            
+            # Sort by fitness (lower is better) and keep top N
+            sorted_indices = sorted(range(len(combined_fitnesses)), key=lambda i: combined_fitnesses[i])
+            population = [combined_population[i] for i in sorted_indices[:len(population)]]
+            fitnesses = [combined_fitnesses[i] for i in sorted_indices[:len(population)]]
+            
+            # Update best solution
+            current_best_fitness = min(fitnesses)
+            current_best_idx = fitnesses.index(current_best_fitness)
+            current_best_timetable = population[current_best_idx]
+            
+            # Step 7: Check convergence
+            improvement = previous_best_fitness - current_best_fitness
+            
+            self.logger.info(f"[GA] Generation best fitness: {current_best_fitness:.2f}")
+            self.logger.info(f"[GA] Improvement: {improvement:.2f}")
+            
+            if current_best_fitness < best_fitness:
+                best_fitness = current_best_fitness
+                best_timetable = current_best_timetable
+                no_improvement_count = 0
+                self.logger.info(f"[GA] ✓ New best found! Best fitness: {best_fitness:.2f}")
+            else:
+                no_improvement_count += 1
+            
+            # Check convergence criteria
+            if generation >= min_generations:
+                if improvement < convergence_threshold:
+                    self.logger.info(f"[GA] Convergence detected! (improvement {improvement:.4f} < threshold {convergence_threshold})")
+                    break
+            
+            previous_best_fitness = current_best_fitness
+        
+        # Final summary
+        self.logger.info("\n" + "="*80)
+        self.logger.info("GENETIC ALGORITHM COMPLETED")
+        self.logger.info("="*80)
+        self.logger.info(f"Total generations run: {generation}")
+        self.logger.info(f"Best fitness achieved: {best_fitness:.2f}")
+        self.logger.info("="*80)
+        
+        return best_timetable, best_fitness

@@ -337,13 +337,24 @@ class GASearch:
         if assigned_room.id == existing_course.room.id:
             return False
         
+        # Parallelizable_id constraint: different non-None IDs cannot coexist
+        new_p_id = getattr(new_course, 'parallelizable_id', None)
+        existing_p_id = getattr(existing_course, 'parallelizable_id', None)
+        if new_p_id is not None and existing_p_id is not None and new_p_id != existing_p_id:
+            return False
+        
         # Student group conflict (direct) - use NAME comparison, not object identity
+        # But if both courses have same parallelizable_id, they can coexist even with shared ancestors
         new_grp_name = new_course.student_grp.name if hasattr(new_course.student_grp, 'name') else str(new_course.student_grp)
         existing_grp_name = existing_course.student_grp.name if hasattr(existing_course.student_grp, 'name') else str(existing_course.student_grp)
         if new_grp_name == existing_grp_name:
             return False
         
         # Student group conflict (super groups) - use NAME comparison
+        # Skip if both have same parallelizable_id (same elective group)
+        if new_p_id == existing_p_id:
+            return True  # Same group, can coexist
+        
         if hasattr(new_course.student_grp, 'super_groups') and hasattr(existing_course.student_grp, 'super_groups'):
             new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
             existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
@@ -407,6 +418,20 @@ class GASearch:
                         return False  # Professor conflict
                     professor_ids.append(course.instructor.id)
                 
+                # Check parallelizable_id constraint: different non-None IDs cannot coexist in same slot
+                parallelizable_ids = [getattr(c, 'parallelizable_id', None) for c in courses]
+                for i in range(len(parallelizable_ids)):
+                    for j in range(i + 1, len(parallelizable_ids)):
+                        id_i = parallelizable_ids[i]
+                        id_j = parallelizable_ids[j]
+                        # If both have different non-None parallelizable_ids, they cannot coexist
+                        if id_i is not None and id_j is not None and id_i != id_j:
+                            if verbose:
+                                grp_i = courses[i].student_grp.name if hasattr(courses[i].student_grp, 'name') else str(courses[i].student_grp)
+                                grp_j = courses[j].student_grp.name if hasattr(courses[j].student_grp, 'name') else str(courses[j].student_grp)
+                                self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Parallelizable conflict - {grp_i} (id={id_i}) and {grp_j} (id={id_j}) cannot coexist")
+                            return False  # Parallelizable conflict
+                
                 # Check for student group collisions (direct groups) - use NAME comparison, not object identity
                 student_grp_names = []
                 for course in courses:
@@ -426,6 +451,37 @@ class GASearch:
                             self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Room conflict (Room {course.room.id})")
                         return False  # Room conflict
                     room_ids.append(course.room.id)
+                
+                # Check student group ancestor conflicts (but allow if same parallelizable_id)
+                for i in range(len(courses)):
+                    for j in range(i + 1, len(courses)):
+                        # If same parallelizable_id, allow ancestor conflicts
+                        if parallelizable_ids[i] == parallelizable_ids[j]:
+                            continue
+                        
+                        # Check ancestor conflicts
+                        course_i = courses[i]
+                        course_j = courses[j]
+                        if hasattr(course_i.student_grp, 'super_groups') or hasattr(course_j.student_grp, 'super_groups'):
+                            # Build ancestor sets
+                            ancestors_i = set()
+                            ancestors_i.add(course_i.student_grp.name if hasattr(course_i.student_grp, 'name') else str(course_i.student_grp))
+                            if hasattr(course_i.student_grp, 'super_groups'):
+                                for sg in course_i.student_grp.super_groups:
+                                    ancestors_i.add(sg.name if hasattr(sg, 'name') else str(sg))
+                            
+                            ancestors_j = set()
+                            ancestors_j.add(course_j.student_grp.name if hasattr(course_j.student_grp, 'name') else str(course_j.student_grp))
+                            if hasattr(course_j.student_grp, 'super_groups'):
+                                for sg in course_j.student_grp.super_groups:
+                                    ancestors_j.add(sg.name if hasattr(sg, 'name') else str(sg))
+                            
+                            if ancestors_i & ancestors_j:
+                                if verbose:
+                                    grp_i = course_i.student_grp.name if hasattr(course_i.student_grp, 'name') else str(course_i.student_grp)
+                                    grp_j = course_j.student_grp.name if hasattr(course_j.student_grp, 'name') else str(course_j.student_grp)
+                                    self.logger.info(f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: Student ancestor conflict between {grp_i} and {grp_j}")
+                                return False
                 
                 # Check room type constraint (lab courses must be in lab rooms)
                 for course in courses:

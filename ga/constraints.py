@@ -1,18 +1,4 @@
 class ConstraintsMixin:
-    def _ancestors(self, group):
-        """Return a set of name strings of the group and all its super_groups (recursively)."""
-        names = set()
-        stack = [group]
-        while stack:
-            g = stack.pop()
-            name = g.name if hasattr(g, 'name') else str(g)
-            if name not in names:
-                names.add(name)
-                if hasattr(g, 'super_groups'):
-                    for sg in g.super_groups:
-                        stack.append(sg)
-        return names
-
     def check_constraints(self, time_table, verbose=False):
         for day in time_table:
             for time_slot in time_table[day]:
@@ -30,22 +16,20 @@ class ConstraintsMixin:
                         return False
                     professor_ids.append(course.instructor.id)
 
-                # 2. student group + ancestor conflicts (with allow_parallel exemption)
-                ancestor_sets = [self._ancestors(c.student_grp) for c in courses]
-                allow_parallel_flags = [getattr(c, 'allow_parallel', False) for c in courses]
-
-                for i in range(len(ancestor_sets)):
-                    for j in range(i + 1, len(ancestor_sets)):
-                        # If both courses explicitly allow parallel scheduling, skip ancestor conflict
-                        if allow_parallel_flags[i] and allow_parallel_flags[j]:
-                            continue
-                        if ancestor_sets[i] & ancestor_sets[j]:
+                # 2a. parallelizable_id constraint: different IDs cannot coexist in same slot
+                parallelizable_ids = [getattr(c, 'parallelizable_id', None) for c in courses]
+                for i in range(len(parallelizable_ids)):
+                    for j in range(i + 1, len(parallelizable_ids)):
+                        id_i = parallelizable_ids[i]
+                        id_j = parallelizable_ids[j]
+                        # If both have different non-None parallelizable_ids, they cannot coexist
+                        if id_i is not None and id_j is not None and id_i != id_j:
                             if verbose:
                                 grp_i = courses[i].student_grp.name if hasattr(courses[i].student_grp, 'name') else str(courses[i].student_grp)
                                 grp_j = courses[j].student_grp.name if hasattr(courses[j].student_grp, 'name') else str(courses[j].student_grp)
                                 self.logger.info(
                                     f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
-                                    f"Student group conflict between {grp_i} and {grp_j}"
+                                    f"Parallelizable conflict: {grp_i} (id={id_i}) and {grp_j} (id={id_j}) cannot coexist"
                                 )
                             return False
 
@@ -69,6 +53,17 @@ class ConstraintsMixin:
                                 self.logger.info(
                                     f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
                                     f"{course.course_id}-lab in non‑lab room ({course.room.name})"
+                                )
+                            return False
+
+                # 4b. non-lab room constraint (lectures and tutorials must use non-lab rooms)
+                for course in courses:
+                    if course.session_type in ['lecture', 'tutorial']:
+                        if hasattr(course.room, 'is_lab') and course.room.is_lab:
+                            if verbose:
+                                self.logger.info(
+                                    f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
+                                    f"{course.course_id}-{course.session_type} in lab room ({course.room.name})"
                                 )
                             return False
 
@@ -166,27 +161,77 @@ class ConstraintsMixin:
         return True
 
     def _can_add_course(self, new_course, assigned_room, existing_course):
+        # Check if new_course can be added to a slot with existing_course
+        # Return False if they conflict
+        
+        # Room type constraint: labs only for lab sessions, non-labs only for lectures/tutorials
+        if new_course.session_type == 'lab':
+            if not hasattr(assigned_room, 'is_lab') or not assigned_room.is_lab:
+                return False
+        elif new_course.session_type in ['lecture', 'tutorial']:
+            if hasattr(assigned_room, 'is_lab') and assigned_room.is_lab:
+                return False
+        
+        # Professor conflict
         if new_course.instructor.id == existing_course.instructor.id:
             return False
+        
+        # Room conflict
         if assigned_room.id == existing_course.room.id:
             return False
-
-        # Student group conflict: ancestor intersection, with allow_parallel exemption
-        new_ancestors = self._ancestors(new_course.student_grp)
-        existing_ancestors = self._ancestors(existing_course.student_grp)
-        if new_ancestors & existing_ancestors:
-            # If both explicitly allow parallel scheduling, ignore ancestor conflict
-            if not (getattr(new_course, 'allow_parallel', False) and getattr(existing_course, 'allow_parallel', False)):
+        
+        # Parallelizable_id constraint: different non-None IDs cannot coexist
+        new_p_id = getattr(new_course, 'parallelizable_id', None)
+        existing_p_id = getattr(existing_course, 'parallelizable_id', None)
+        if new_p_id is not None and existing_p_id is not None and new_p_id != existing_p_id:
+            return False
+        
+        # Student group conflict (direct) - use NAME comparison, not object identity
+        # If both courses have same parallelizable_id, they can coexist even with shared super groups
+        new_grp_name = new_course.student_grp.name if hasattr(new_course.student_grp, 'name') else str(new_course.student_grp)
+        existing_grp_name = existing_course.student_grp.name if hasattr(existing_course.student_grp, 'name') else str(existing_course.student_grp)
+        if new_grp_name == existing_grp_name:
+            return False
+        
+        # Student group conflict (super groups) - use NAME comparison
+        # Skip if both have same parallelizable_id (same elective group)
+        if new_p_id == existing_p_id:
+            return True  # Same group, can coexist
+        
+        if hasattr(new_course.student_grp, 'super_groups') and hasattr(existing_course.student_grp, 'super_groups'):
+            new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
+            existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
+            if existing_grp_name in new_super_names:
                 return False
-
+            if new_grp_name in existing_super_names:
+                return False
+            # Check for shared super groups
+            if set(new_super_names) & set(existing_super_names):
+                return False
+        elif hasattr(new_course.student_grp, 'super_groups'):
+            new_super_names = [s.name if hasattr(s, 'name') else str(s) for s in new_course.student_grp.super_groups]
+            if existing_grp_name in new_super_names:
+                return False
+        elif hasattr(existing_course.student_grp, 'super_groups'):
+            existing_super_names = [s.name if hasattr(s, 'name') else str(s) for s in existing_course.student_grp.super_groups]
+            if new_grp_name in existing_super_names:
+                return False
+        
         return True
 
     def _get_available_rooms(self, course):
         available_rooms = []
         for room in self.rooms:
+            # For lab sessions: only use lab rooms
             if course.session_type == 'lab':
                 if not hasattr(room, 'is_lab') or not room.is_lab:
                     continue
+            # For lectures and tutorials: only use non-lab rooms
+            elif course.session_type in ['lecture', 'tutorial']:
+                if hasattr(room, 'is_lab') and room.is_lab:
+                    continue
+            
+            # Check room capacity
             if hasattr(course.student_grp, 'size') and hasattr(room, 'capacity'):
                 if room.capacity < course.student_grp.size:
                     continue
