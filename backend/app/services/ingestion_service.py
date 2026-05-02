@@ -48,6 +48,20 @@ class IngestionService:
             group = StudentGroup.query.filter_by(name=item['student_group']).first() or StudentGroup(name=item['student_group'], size=80)
             if group.id is None: db.session.add(group); db.session.flush()
 
+            # HIERARCHY SUPPORT: Link parents
+            hierarchy = item.get('hierarchy', {})
+            parents = hierarchy.get('parents', [])
+            for p_name in parents:
+                parent_group = StudentGroup.query.filter_by(name=p_name).first()
+                if not parent_group:
+                    parent_group = StudentGroup(name=p_name, size=80, level='super')
+                    db.session.add(parent_group)
+                    db.session.flush()
+                
+                # Link if not already linked
+                if parent_group not in group.parent_groups:
+                    group.parent_groups.append(parent_group)
+
             db.session.add(CourseInstance(
                 course_id=code,
                 session_type=item.get('session_type', 'lecture').lower(),
@@ -68,9 +82,25 @@ class IngestionService:
         with open(seed_json_path, 'r') as f:
             data = json.load(f)
         
+        # Priority: Reset completely to ensure hierarchy is clean
+        db.session.execute(db.text("DELETE FROM student_group_hierarchy"))
+        CourseInstance.query.delete()
+        Course.query.delete()
+        Professor.query.delete()
+        Room.query.delete()
+        StudentGroup.query.delete()
+        db.session.commit()
+
         if isinstance(data, list):
             c_count = IngestionService.ingest_course_data(data)
         else:
+            # Handle student groups first if provided separately
+            if 'student_groups' in data:
+                for g in data['student_groups']:
+                    if not StudentGroup.query.filter_by(name=g['name']).first():
+                        db.session.add(StudentGroup(name=g['name'], level=g.get('level', 'batch'), size=80))
+                db.session.commit()
+
             IngestionService.ingest_faculty_data(data.get('professors', []))
             IngestionService.ingest_room_data(data.get('rooms', []))
             c_count = IngestionService.ingest_course_data(data.get('courses', []))

@@ -4,7 +4,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api
 
 // Caching Layer
 const cache: Record<string, { data: any, timestamp: number }> = {};
-const CACHE_TTL = 30000*60*24; // 1 day in milliseconds
+const CACHE_TTL = 30000; // 30 seconds
 
 const fetchWithCache = async (url: string, options: RequestInit = {}) => {
     const isGet = !options.method || options.method === 'GET';
@@ -21,7 +21,6 @@ const fetchWithCache = async (url: string, options: RequestInit = {}) => {
     if (isGet) {
         cache[cacheKey] = { data, timestamp: Date.now() };
     } else {
-        // Invalidate cache on mutations (POST/PUT/DELETE)
         Object.keys(cache).forEach(key => delete cache[key]);
     }
     return data;
@@ -60,14 +59,29 @@ export const api = {
         fetchDashboardStats: async (): Promise<DashboardStats> => {
             return fetchWithCache(`${BASE_URL}/timetable/stats`, { headers: getHeaders() });
         },
-        triggerGeneration: async (): Promise<{ msg: string; schedule_id: number; fitness: number }> => {
+        search: async (query: string): Promise<any[]> => {
+            return fetchWithCache(`${BASE_URL}/timetable/search?q=${query}`, { headers: getHeaders() });
+        },
+        listRooms: async (): Promise<string[]> => {
+            return fetchWithCache(`${BASE_URL}/timetable/rooms`, { headers: getHeaders() });
+        },
+        listCourses: async (): Promise<string[]> => {
+            return fetchWithCache(`${BASE_URL}/timetable/courses`, { headers: getHeaders() });
+        },
+        listProfessors: async (): Promise<string[]> => {
+            return fetchWithCache(`${BASE_URL}/timetable/professors`, { headers: getHeaders() });
+        },
+        listGroups: async (): Promise<string[]> => {
+            return fetchWithCache(`${BASE_URL}/timetable/groups`, { headers: getHeaders() });
+        },
+        triggerGeneration: async (config: any): Promise<{ msg: string; schedule_id: number; fitness: number }> => {
             return fetchWithCache(`${BASE_URL}/timetable/generate`, {
                 method: "POST",
-                headers: getHeaders()
+                headers: getHeaders(),
+                body: JSON.stringify(config)
             });
         },
         exportCsv: async () => {
-            // No cache for blob/exports
             const res = await fetch(`${BASE_URL}/timetable/export`, { headers: getHeaders() });
             if (!res.ok) throw new Error("Failed to export timetable");
             return res.blob();
@@ -92,7 +106,6 @@ export const api = {
                 body: formData
             });
             if (!res.ok) throw new Error("Upload failed");
-            // Clear cache on upload
             Object.keys(cache).forEach(key => delete cache[key]);
             return res.json();
         }

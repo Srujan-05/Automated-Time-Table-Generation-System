@@ -1,17 +1,26 @@
-import { DownloadSimpleIcon, CalendarBlankIcon, FunnelIcon, XIcon } from "@phosphor-icons/react";
+import React from "react";
+import { 
+  DownloadSimpleIcon, 
+  CalendarBlankIcon, 
+  FunnelIcon, 
+  XIcon, 
+  UserIcon, 
+  BookIcon, 
+  GraduationCapIcon,
+  MapPinIcon
+} from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { TimetableGrid } from "@/components/timetable/TimetableGrid";
 import { type TimetableMap } from "@/lib/types";
 import { useTimetable } from "@/hooks/useTimetable";
 import { Skeleton } from "@/components/ui/skeleton";
 import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger,
-  DropdownMenuLabel,
-  DropdownMenuSeparator
-} from "@/components/ui/dropdown-menu";
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from "@/components/ui/select";
 
 const Timetable = () => {
   const { 
@@ -19,8 +28,10 @@ const Timetable = () => {
     timetable, 
     days, 
     times, 
-    filter, 
-    setFilter, 
+    filters, 
+    filterOptions,
+    updateFilter,
+    clearFilters,
     handlePrint, 
     handleExportCalendar 
   } = useTimetable();
@@ -28,19 +39,10 @@ const Timetable = () => {
   const userRole = (localStorage.getItem("userRole") || "student").toLowerCase();
   const isAdmin = userRole === "admin";
 
-  const studentGroups = ["CS1", "CS2", "AI1", "AI2", "ECE", "ECM", "BT", "CE", "ME"];
-
   if (isLoading && !timetable) {
     return (
         <div className="space-y-6 h-full flex flex-col pb-8">
-            <div className="flex justify-between items-center">
-                <Skeleton className="h-12 w-64" />
-                <div className="flex gap-2">
-                    <Skeleton className="h-12 w-32" />
-                    <Skeleton className="h-12 w-32" />
-                    <Skeleton className="h-12 w-32" />
-                </div>
-            </div>
+            <Skeleton className="h-12 w-64" />
             <Skeleton className="flex-1 rounded-2xl" />
         </div>
     );
@@ -48,66 +50,138 @@ const Timetable = () => {
 
   return (
     <div className="space-y-6 h-full flex flex-col pb-8">
+      {/* Header & Main Actions */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
            <h1 className="text-3xl font-bold text-foreground tracking-tight">
              {isAdmin ? "Master Schedule" : "My Schedule"}
            </h1>
            <p className="text-muted-foreground text-sm">
-             Viewing as <span className="text-primary font-bold capitalize">{userRole}</span> • Spring 2026
-             {isAdmin && filter && <span className="ml-2 inline-flex items-center gap-1 bg-primary/10 text-primary px-2 py-0.5 rounded-full text-xs font-bold">
-                Filtered: {filter}
-                <button onClick={() => setFilter("")} className="hover:text-foreground">
-                    <XIcon size={12} weight="bold" />
-                </button>
-             </span>}
+             Spring 2026 Academic Calendar
            </p>
         </div>
         <div className="flex gap-2">
-            {isAdmin && (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant={filter ? "default" : "outline"} className="h-12 px-6 rounded-xl gap-2 font-medium">
-                            <FunnelIcon size={18} /> {filter || "Filter"}
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56 rounded-xl">
-                        <DropdownMenuLabel>Filter by Group</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => setFilter("")} className="rounded-lg">
-                            All Groups
-                        </DropdownMenuItem>
-                        {studentGroups.map(group => (
-                            <DropdownMenuItem key={group} onClick={() => setFilter(group)} className="rounded-lg">
-                                {group}
-                            </DropdownMenuItem>
-                        ))}
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            )}
-
-            <Button 
-                variant="secondary" 
-                onClick={handleExportCalendar}
-                className="h-12 px-6 rounded-xl gap-2 font-medium"
-            >
-              <CalendarBlankIcon size={18} weight="bold" /> Export Calendar
+            <Button variant="outline" onClick={handleExportCalendar} className="h-11 rounded-xl gap-2 hidden md:flex">
+              <CalendarBlankIcon size={18} /> Export
             </Button>
-            <Button 
-                onClick={handlePrint}
-                className="h-12 px-6 rounded-xl gap-2 font-medium shadow-lg shadow-primary/20"
-            >
-              <DownloadSimpleIcon size={18} /> Export PDF
+            <Button onClick={handlePrint} className="h-11 rounded-xl gap-2 shadow-lg shadow-primary/10">
+              <DownloadSimpleIcon size={18} /> PDF
             </Button>
         </div>
       </div>
 
-      <div className="flex-1 relative">
+      {/* Filter Bar */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 p-4 bg-card/50 border border-border/50 rounded-2xl backdrop-blur-sm print:hidden">
+        {/* Year Filter */}
+        <Select 
+            value={filters.year || "all"} 
+            onValueChange={(val) => updateFilter('year', val === "all" ? "" : val)}
+        >
+            <SelectTrigger className="h-10 w-full rounded-xl bg-background border-border/50">
+                <div className="flex items-center gap-2">
+                    <GraduationCapIcon className="text-muted-foreground size-4" />
+                    <SelectValue placeholder="All Years" />
+                </div>
+            </SelectTrigger>
+            <SelectContent className="rounded-xl">
+                <SelectItem value="all">All Years</SelectItem>
+                {filterOptions.years.map(y => (
+                    <SelectItem key={y} value={y}>{y}{y.length === 1 ? "th Year" : ""}</SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
+
+        {/* Batch Filter */}
+        <Select 
+            value={filters.group || "all"} 
+            onValueChange={(val) => {
+                updateFilter('group', val === "all" ? "" : val);
+            }}
+        >
+            <SelectTrigger className="h-10 w-full rounded-xl bg-background border-border/50">
+                <div className="flex items-center gap-2">
+                    <FunnelIcon className="text-muted-foreground size-4" />
+                    <SelectValue placeholder="Select Batch" />
+                </div>
+            </SelectTrigger>
+            <SelectContent className="rounded-xl max-h-[300px]">
+                <SelectItem value="all">All Batches</SelectItem>
+                {filterOptions.batches.map(b => (
+                    <SelectItem key={b} value={b}>{b}</SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
+
+        {/* Professor Filter */}
+        <Select 
+            value={filters.professor || "all"} 
+            onValueChange={(val) => updateFilter('professor', val === "all" ? "" : val)}
+        >
+            <SelectTrigger className="h-10 w-full rounded-xl bg-background border-border/50">
+                <div className="flex items-center gap-2">
+                    <UserIcon className="text-muted-foreground size-4" />
+                    <SelectValue placeholder="Filter by Professor" />
+                </div>
+            </SelectTrigger>
+            <SelectContent className="rounded-xl max-h-[300px]">
+                <SelectItem value="all">All Professors</SelectItem>
+                {filterOptions.professors.map(p => (
+                    <SelectItem key={p} value={p}>{p}</SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
+
+        {/* Subject Filter */}
+        <Select 
+            value={filters.course || "all"} 
+            onValueChange={(val) => updateFilter('course', val === "all" ? "" : val)}
+        >
+            <SelectTrigger className="h-10 w-full rounded-xl bg-background border-border/50">
+                <div className="flex items-center gap-2">
+                    <BookIcon className="text-muted-foreground size-4" />
+                    <SelectValue placeholder="Filter by Subject" />
+                </div>
+            </SelectTrigger>
+            <SelectContent className="rounded-xl max-h-[300px]">
+                <SelectItem value="all">All Subjects</SelectItem>
+                {filterOptions.courses.map(c => (
+                    <SelectItem key={c} value={c}>{c}</SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
+
+        {/* Room Filter */}
+        <Select 
+            value={filters.room || "all"} 
+            onValueChange={(val) => updateFilter('room', val === "all" ? "" : val)}
+        >
+            <SelectTrigger className="h-10 w-full rounded-xl bg-background border-border/50">
+                <div className="flex items-center gap-2">
+                    <MapPinIcon className="text-muted-foreground size-4" />
+                    <SelectValue placeholder="Filter by Room" />
+                </div>
+            </SelectTrigger>
+            <SelectContent className="rounded-xl max-h-[300px]">
+                <SelectItem value="all">All Rooms</SelectItem>
+                {filterOptions.rooms.map(r => (
+                    <SelectItem key={r} value={r}>{r}</SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
+
+        {(filters.group || filters.year || filters.professor || filters.course || filters.room) && (
+            <Button variant="ghost" size="sm" onClick={clearFilters} className="h-10 rounded-xl text-primary font-bold lg:col-start-5">
+                <XIcon className="mr-2" /> Clear All
+            </Button>
+        )}
+      </div>
+
+      {/* Grid Container */}
+      <div className="flex-1 relative min-h-[500px]">
         {isLoading && (
             <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] z-50 flex items-center justify-center rounded-2xl">
-                <div className="bg-card p-4 rounded-2xl shadow-xl border border-border flex items-center gap-3">
-                    <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                    <span className="text-sm font-medium">Updating Schedule...</span>
+                <div className="bg-card p-4 rounded-2xl shadow-xl border border-border flex items-center gap-3 animate-bounce">
+                    <span className="text-sm font-bold text-primary">Updating Schedule...</span>
                 </div>
             </div>
         )}

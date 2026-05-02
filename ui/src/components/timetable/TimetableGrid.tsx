@@ -19,12 +19,17 @@ export const TimetableGrid: React.FC<TimetableGridProps> = ({
     return daySchedule.find(entry => entry.slot?.toString() === slot);
   };
 
+  const gridTemplate = `60px repeat(${times.length}, 1fr)`;
+
   return (
-    <div className="flex-1 overflow-auto bg-card/30 border border-border rounded-2xl shadow-sm backdrop-blur-sm printable-grid">
-      <div className="min-w-[1500px]">
+    <div className="flex-1 overflow-auto bg-card/30 border border-border rounded-2xl shadow-sm backdrop-blur-sm printable-grid print:bg-white print:shadow-none print:border-none">
+      <div style={{ minWidth: Math.max(1500, times.length * 150) + 'px' }} className="print:min-w-0 print:w-full">
 
         {/* Header */}
-        <div className="grid grid-cols-[60px_repeat(10,1fr)] gap-1 mb-2 border-b border-border pt-3 pb-3 sticky top-0 bg-background/80 backdrop-blur z-10 print:grid-cols-[40px_repeat(10,1fr)] print:pt-0 print:bg-white print:gap-0">
+        <div 
+          className="grid gap-1 mb-2 border-b border-border pt-3 pb-3 sticky top-0 bg-background/80 backdrop-blur z-10 print:pt-0 print:bg-white print:gap-0"
+          style={{ gridTemplateColumns: gridTemplate }}
+        >
           <div className="text-muted-foreground font-mono text-[10px] uppercase tracking-wider flex items-center justify-center print:text-black">
             SLOT
           </div>
@@ -38,7 +43,11 @@ export const TimetableGrid: React.FC<TimetableGridProps> = ({
         {/* Body */}
         <div className="space-y-1 print:space-y-0">
           {days.map(day => (
-            <div key={day} className="grid grid-cols-[60px_repeat(10,1fr)] gap-1 group print:grid-cols-[40px_repeat(10,1fr)] print:gap-0 print:border-b print:border-gray-300">
+            <div 
+              key={day} 
+              className="grid gap-1 group print:gap-0 print:border-b print:border-gray-300"
+              style={{ gridTemplateColumns: gridTemplate }}
+            >
               <div className="flex items-center justify-center font-bold text-muted-foreground text-xs uppercase tracking-tighter py-4 group-hover:text-primary transition-colors border-r border-border/50 print:text-black print:text-[8px] print:py-1 print:border-gray-300">
                 {day.substring(0, 3)}
               </div>

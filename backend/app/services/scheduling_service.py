@@ -15,13 +15,18 @@ from schema.classes import Instructor, Room as GARoom, StudentGroup as GAStudent
 
 class SchedulingService:
     @staticmethod
-    def generate_optimized_schedule(schedule_name="Automated Schedule"):
-        """Fetches data, runs the GA engine, and persists the best result to the database."""
-        db.session.add(ActivityLog(
-            category='NOTIFICATION', 
-            title='GA Start', 
-            message='Timetable generation process started.'
-        ))
+    def generate_optimized_schedule(config=None):
+        """Fetches data, runs the GA engine, and persists the best result."""
+        config = config or {}
+        
+        # Dynamic Parameters from UI
+        time_slots = int(config.get('slots', 10))
+        population_size = int(config.get('population_size', 50))
+        max_gens = int(config.get('max_generations', 100))
+        min_gens = int(config.get('min_generations', 10))
+        schedule_name = config.get('name', f"Schedule ({time_slots} slots)")
+
+        db.session.add(ActivityLog(category='NOTIFICATION', title='GA Start', message=f'Generation started with {time_slots} slots.'))
         db.session.commit()
 
         # 1. Gather all required scheduling entities
@@ -36,8 +41,14 @@ class SchedulingService:
         # 2. Map Database Models to GA-compatible Objects
         instructors_map = {p.id: Instructor(p.id, p.name) for p in all_professors}
         ga_rooms = [GARoom(r.id, r.name, r.is_lab, r.capacity, r.x, r.y, r.z) for r in all_rooms]
-        groups_map = {g.id: GAStudentGroup(g.name, g.size) for g in all_groups}
         
+        # Map groups including their hierarchy for constraint checking
+        groups_map = {}
+        for g in all_groups:
+            ga_g = GAStudentGroup(g.name, g.size)
+            ga_g.id = g.id # Keep DB ID for mapping
+            groups_map[g.id] = ga_g
+
         ga_course_instances = []
         for instance in all_instances:
             ga_instance = GAInstance(
@@ -52,43 +63,34 @@ class SchedulingService:
                 lecture_consecutive=instance.lecture_consecutive,
                 parallelizable_id=instance.parallelizable_id
             )
-            # Attach DB ID for back-mapping
             ga_instance.db_record_id = instance.id
             ga_course_instances.append(ga_instance)
 
         # 3. Configure and Initialize GA Engine
-        # Define default time slot bins (Morning/Noon/Evening)
-        time_slot_bins = {i: (1 if i <= 3 else 2 if i <= 6 else 3) for i in range(1, 10)}
+        time_slot_bins = {i: (1 if i <= (time_slots//3) else 2 if i <= (2*time_slots//3) else 3) for i in range(1, time_slots + 1)}
         ga_engine = GASearch(
-            time_slots=9,
+            time_slots=time_slots,
             courses=ga_course_instances,
             preference_bins=time_slot_bins,
             objective_function_weights=[1.0, 1.0, 1.0],
             rooms=ga_rooms,
-            population_size=50, 
-            generations=100
+            population_size=population_size, 
+            generations=max_gens
         )
 
         # 4. Execute Evolutionary Search
         try:
             best_timetable, best_fitness = ga_engine.run(
                 convergence_threshold=0.1, 
-                min_generations=10
+                min_generations=min_gens
             )
         except Exception as e:
-            db.session.add(ActivityLog(
-                category='NOTIFICATION', 
-                title='GA Failed', 
-                message=f'Engine Error: {str(e)}'
-            ))
+            db.session.add(ActivityLog(category='NOTIFICATION', title='GA Failed', message=f'Engine Error: {str(e)}'))
             db.session.commit()
             raise RuntimeError(f"GA Engine failed: {str(e)}")
 
         if not best_timetable:
-            error_msg = "GA engine failed to find a valid solution."
-            db.session.add(ActivityLog(category='NOTIFICATION', title='GA Failed', message=error_msg))
-            db.session.commit()
-            raise RuntimeError(error_msg)
+            raise RuntimeError("GA engine failed to find a valid solution.")
 
         # 5. Persist the Resulting Schedule
         Schedule.query.update({Schedule.is_active: False})
@@ -100,8 +102,7 @@ class SchedulingService:
             for slot_idx, courses in slots.items():
                 for course in courses:
                     db_id = getattr(course, 'db_record_id', None)
-                    if not db_id: 
-                        continue
+                    if not db_id: continue
 
                     entry = TimetableEntry(
                         schedule_id=new_schedule_record.id,
@@ -110,14 +111,10 @@ class SchedulingService:
                         course_instance_id=db_id,
                         room_id=course.room.id if course.room else None,
                         instructor_id=course.instructor.id,
-                        student_group_id=course.student_grp.id if hasattr(course.student_grp, 'id') else 1 
+                        student_group_id=course.student_grp.id
                     )
                     db.session.add(entry)
         
-        db.session.add(ActivityLog(
-            category='CHANGE', 
-            title='Schedule Generated', 
-            message=f'Fitness Score: {best_fitness:.2f}.'
-        ))
+        db.session.add(ActivityLog(category='CHANGE', title='Schedule Generated', message=f'Fitness Score: {best_fitness:.2f}.'))
         db.session.commit()
         return new_schedule_record

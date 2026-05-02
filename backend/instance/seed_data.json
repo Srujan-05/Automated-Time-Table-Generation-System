@@ -477,6 +477,7 @@
       "name": "Material Testing Lab"
     }
   ],
+  "groups": [],
   "courses": [
     {
       "course_code": "MA2103",
@@ -487,7 +488,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "HS2102",
@@ -498,7 +505,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS/AI2101",
@@ -509,7 +522,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS/AI 2102",
@@ -520,7 +539,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS2102",
@@ -531,7 +556,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "HS2103",
@@ -542,7 +573,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "ECR 11",
@@ -553,7 +590,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "ECR 13",
@@ -564,7 +607,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "MA2106",
@@ -575,7 +624,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "HS2103",
@@ -586,7 +641,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
     },
     {
       "course_code": "BT 2111",
@@ -597,7 +658,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
     },
     {
       "course_code": "EC2103",
@@ -608,7 +675,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
     },
     {
       "course_code": "EC 2102",
@@ -619,7 +692,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
     },
     {
       "course_code": "BT 2111",
@@ -630,7 +709,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
     },
     {
       "course_code": "HS2103",
@@ -641,7 +726,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "CS/AI 2102",
@@ -652,7 +743,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "HS2103",
@@ -663,7 +760,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "HS2103",
@@ -674,7 +777,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "BT 2110",
@@ -685,7 +794,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "BT 2108",
@@ -696,7 +811,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "BT 2108",
@@ -707,7 +828,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "CE 2105",
@@ -718,7 +845,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 10",
@@ -729,7 +862,115 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Sanjukta",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Anagha Tobi",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Shabnam",
+      "room": "IT2 Block",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Murtaza",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Vandna Gokhroo",
+      "room": "ECR7",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Satyanarayana Akula",
+      "room": "ECR7",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "PH2102",
@@ -740,7 +981,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "EC 2102",
@@ -751,7 +998,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "ECR 11",
@@ -762,7 +1015,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS/AI 2102",
@@ -773,7 +1032,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "MA2106",
@@ -784,7 +1049,64 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2111",
+      "course_name": "BT 2111",
+      "professor": "Dr. Sabeeha",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Anil Annadi",
+      "room": "ECR7",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2109",
+      "course_name": "BT 2109",
+      "professor": "Dr. Mittika",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
     },
     {
       "course_code": "CS/AI 2102",
@@ -795,7 +1117,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "EC 2102",
@@ -806,7 +1134,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "PH2102",
@@ -817,7 +1151,30 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 2102",
+      "course_name": "AI 2102",
+      "professor": "Dr. Neha",
+      "room": "ELT3",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "ECR 13",
@@ -828,7 +1185,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "BT 2109",
@@ -839,7 +1202,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "HS2103",
@@ -850,7 +1219,47 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2110",
+      "course_name": "BT 2110",
+      "professor": "Dr. Arun",
+      "room": "ETR5",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2108",
+      "course_name": "BT 2108",
+      "professor": "Dr. Akankasha Singh",
+      "room": "ETR3",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "CE 2103",
@@ -861,7 +1270,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "BT1102",
@@ -872,7 +1287,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "CH2103",
@@ -883,7 +1304,98 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Vandna Gokhroo",
+      "room": "ECR7",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Sanjukta",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Anagha Tobi",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI2101",
+      "course_name": "CS/AI2101",
+      "professor": "Dr. Rakhee",
+      "room": "ELT5",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Sayantan",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "MA2103",
@@ -894,7 +1406,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "MA2106",
@@ -905,7 +1423,251 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Ankita",
+      "room": "ECR7",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC2103",
+      "course_name": "EC2103",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR8",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2111",
+      "course_name": "BT 2111",
+      "professor": "Dr. Sabeeha",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Rakesh",
+      "room": "ECR7",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Rakesh",
+      "room": "ECR9",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2109",
+      "course_name": "BT 2109",
+      "professor": "Dr. Mittika",
+      "room": "TBD",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2110",
+      "course_name": "BT 2110",
+      "professor": "Dr. Arun",
+      "room": "ETR3",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 2103",
+      "course_name": "CE 2103",
+      "professor": "Dr. Anil",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME 2115",
+      "course_name": "ME 2115",
+      "professor": "Dr. Anil",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Rakesh",
+      "room": "ECR9",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Anagha Tobi",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Sayantan",
+      "room": "ELT4",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI2101",
+      "course_name": "CS/AI2101",
+      "professor": "Dr. Rakhee",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Murtaza",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "MA2103",
@@ -916,7 +1678,64 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2110",
+      "course_name": "BT 2110",
+      "professor": "Dr. Arun",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Nidhi Gupta",
+      "room": "ECR9",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Ravi Kishor",
+      "room": "ELT5",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "EC 2102",
@@ -927,7 +1746,234 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2110",
+      "course_name": "BT 2110",
+      "professor": "Dr. Aruna Kumar Chelluboyina",
+      "room": "TBD",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2109",
+      "course_name": "BT 2109",
+      "professor": "Dr. Mittika",
+      "room": "ETR3",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2111",
+      "course_name": "BT 2111",
+      "professor": "Dr. Sabeeha",
+      "room": "TBD",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT1102",
+      "course_name": "BT1102",
+      "professor": "Dr. Jayaprakash",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Balaji Prashanth",
+      "room": "ECR7",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MT 2101",
+      "course_name": "MT 2101",
+      "professor": "Dr. Ramakant",
+      "room": "ETR5",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME2116",
+      "course_name": "ME2116",
+      "professor": "Dr. Prasad",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH2103",
+      "course_name": "CH2103",
+      "professor": "Dr. Bill Reynolds",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Rakesh",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Ravi Kishor",
+      "room": "Auditorium",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Murtaza",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Kumudham",
+      "room": "ECR7",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Anagha Tobi",
+      "room": "ECR7",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "HS2103",
@@ -938,7 +1984,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "HS2102",
@@ -949,7 +2001,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "HS2102",
@@ -960,7 +2018,166 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 11",
+      "course_name": "ECR 11",
+      "professor": "Dr. Balaji Prashanth",
+      "room": "ECR11",
+      "student_group": "CS3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Ankita",
+      "room": "ECR11",
+      "student_group": "CS3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Anagha Tobi",
+      "room": "ECR9",
+      "student_group": "CS4",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 13",
+      "course_name": "ECR 13",
+      "professor": "Dr. Nidhi Gupta",
+      "room": "ECR13",
+      "student_group": "CS4",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Sayantan",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2109",
+      "course_name": "BT 2109",
+      "professor": "Dr. Mittika",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC2103",
+      "course_name": "EC2103",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR7",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Kumudham",
+      "room": "ECR9",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Ravi Kishor",
+      "room": "ELT5",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "ECR11",
@@ -971,7 +2188,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "ECR 13",
@@ -982,7 +2205,234 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2108",
+      "course_name": "BT 2108",
+      "professor": "Dr. Akankasha Singh",
+      "room": "ETR3",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Nidhi Gupta",
+      "room": "ECR8",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT 2108",
+      "course_name": "BT 2108",
+      "professor": "Dr. Akankasha Singh",
+      "room": "ETR3",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Kamana",
+      "room": "ECR8",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MT 2101",
+      "course_name": "MT 2101",
+      "professor": "Dr. Ramakant",
+      "room": "ETR4",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 2104",
+      "course_name": "CE 2104",
+      "professor": "Dr. Manish",
+      "room": "ECR8",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME2116",
+      "course_name": "ME2116",
+      "professor": "Dr. Prasad",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 2103",
+      "course_name": "CE 2103",
+      "professor": "Dr. Anil",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH2103",
+      "course_name": "CH2103",
+      "professor": "Dr. Bill Reynolds",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Sayantan",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Sayantan",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "ECE"
+        ]
+      }
+    },
+    {
+      "course_code": "MT 2101",
+      "course_name": "MT 2101",
+      "professor": "Dr. Ramakant",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "BT1102",
+      "course_name": "BT1102",
+      "professor": "Dr. Santosh Thakur",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 2",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "CS/AI 3102",
@@ -993,7 +2443,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS 3105",
@@ -1004,7 +2460,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS/AI3103",
@@ -1015,7 +2477,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS 3106",
@@ -1026,7 +2494,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "ECR 11",
@@ -1037,7 +2511,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 15",
@@ -1048,7 +2528,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 15",
@@ -1059,7 +2545,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC 3107",
@@ -1070,7 +2562,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC3101",
@@ -1081,7 +2579,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC 3103",
@@ -1092,7 +2596,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC 3109",
@@ -1103,7 +2613,115 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 3105",
+      "course_name": "AI 3105",
+      "professor": "Dr. Mahesh",
+      "room": "ELT1",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 3102",
+      "course_name": "CS/AI 3102",
+      "professor": "Dr. Neeraj",
+      "room": "ELT2",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 3106",
+      "course_name": "AI 3106",
+      "professor": "Dr. Avinash",
+      "room": "ELT2",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3115",
+      "course_name": "CE3115",
+      "professor": "Dr. Prabhakar",
+      "room": "ECR10",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3111",
+      "course_name": "CE3111",
+      "professor": "Dr. Deepti",
+      "room": "ECR10",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3110",
+      "course_name": "CE3110",
+      "professor": "Dr. Jahnabi",
+      "room": "ECR10",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 12",
@@ -1114,7 +2732,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 12",
@@ -1125,18 +2749,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
-    },
-    {
-      "course_code": "ECR 12",
-      "course_name": "ECR 12",
-      "professor": "Dr. Ravi",
-      "room": "ECR12",
-      "student_group": "ME",
-      "session_type": "lecture",
-      "slots_required": 1,
-      "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 12",
@@ -1147,7 +2766,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 14",
@@ -1158,7 +2783,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 12",
@@ -1169,7 +2800,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 16",
@@ -1180,7 +2817,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 11",
@@ -1191,7 +2834,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "CH3105",
@@ -1202,7 +2851,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "PH3101",
@@ -1213,7 +2868,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "CS/AI 3102",
@@ -1224,7 +2885,81 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 3101",
+      "course_name": "CS/AI 3101",
+      "professor": "Dr. Tauheed",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI3103",
+      "course_name": "CS/AI3103",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS 3106",
+      "course_name": "CS 3106",
+      "professor": "Dr. Praveen",
+      "room": "ELT6",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS 3105",
+      "course_name": "CS 3105",
+      "professor": "Dr. Veeraiah",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "MA3115",
@@ -1235,7 +2970,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "MA3116",
@@ -1246,7 +2987,30 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MA3117",
+      "course_name": "MA3117",
+      "professor": "Dr. Ravi Babu",
+      "room": "ECR2",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC 3109",
@@ -1257,7 +3021,149 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 3103",
+      "course_name": "EC 3103",
+      "professor": "Dr. Bharghava",
+      "room": "ECR5",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 3107",
+      "course_name": "EC 3107",
+      "professor": "Dr. Yashwanth",
+      "room": "ECR5",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 3102",
+      "course_name": "CS/AI 3102",
+      "professor": "Dr. Neeraj",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 3106",
+      "course_name": "AI 3106",
+      "professor": "Dr. Avinash Chauhan",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 3107",
+      "course_name": "AI 3107",
+      "professor": "Dr. Deepti Mishra",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3115",
+      "course_name": "CE3115",
+      "professor": "Dr. Prabhakar",
+      "room": "ECR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3110",
+      "course_name": "CE3110",
+      "professor": "Dr. Jahnabi",
+      "room": "ECR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3112",
+      "course_name": "CE3112",
+      "professor": "Dr. Dilip",
+      "room": "TBD",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ME4069",
@@ -1268,7 +3174,64 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3113",
+      "course_name": "ME3113",
+      "professor": "Dr. Kondaiah",
+      "room": "ECR2",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Deep",
+      "room": "ECR12",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3108",
+      "course_name": "ME3108",
+      "professor": "Dr. Praveen Konka",
+      "room": "ECR3",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 14",
@@ -1279,7 +3242,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "MT3105",
@@ -1290,7 +3259,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 10",
@@ -1301,7 +3276,30 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 10",
+      "course_name": "ECR 10",
+      "professor": "Dr. Sebasteian",
+      "room": "ECR10",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "ECR 16",
@@ -1312,7 +3310,608 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH3105",
+      "course_name": "CH3105",
+      "professor": "Dr. Gomathi",
+      "room": "ECR16",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "PH3102",
+      "course_name": "PH3102",
+      "professor": "Dr. Jayasri",
+      "room": "TBD",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH3105",
+      "course_name": "CH3105",
+      "professor": "Dr. Gomathi",
+      "room": "ECR2",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "PH3101",
+      "course_name": "PH3101",
+      "professor": "Dr. Anil Annandi",
+      "room": "ECR8",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 3102",
+      "course_name": "CS/AI 3102",
+      "professor": "Dr. Yayati",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI3103",
+      "course_name": "CS/AI3103",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Manoj",
+      "room": "ECR14",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Ravi Babu",
+      "room": "ECR14",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC3101",
+      "course_name": "EC3101",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR4",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3115",
+      "course_name": "CE3115",
+      "professor": "Dr. Prabhakar",
+      "room": "ECR2",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3108",
+      "course_name": "ME3108",
+      "professor": "Dr. Praveen Konka",
+      "room": "ECR2",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3103",
+      "course_name": "ME3103",
+      "professor": "Dr. Deep",
+      "room": "ECR3",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Ravi",
+      "room": "ECR12",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3104",
+      "course_name": "ME3104",
+      "professor": "Dr. Sebastian",
+      "room": "ECR3",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Pavani",
+      "room": "ECR12",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Anil",
+      "room": "ECR14",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH3106",
+      "course_name": "CH3106",
+      "professor": "Dr. Venkataraman",
+      "room": "TBD",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 10",
+      "course_name": "ECR 10",
+      "professor": "Dr. Dibkar",
+      "room": "ECR10",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-10",
+      "course_name": "ECR-10",
+      "professor": "Dr. Abhinav",
+      "room": "ECR1",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "MA3115",
+      "course_name": "MA3115",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR3",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 3107",
+      "course_name": "AI 3107",
+      "professor": "Dr. Deepti Mishra",
+      "room": "ELT6",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 3106",
+      "course_name": "AI 3106",
+      "professor": "Dr. Avinash Chauhan",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3111",
+      "course_name": "CE3111",
+      "professor": "Dr. Deepti",
+      "room": "ECR2",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3102",
+      "course_name": "ME3102",
+      "professor": "Dr. Ravi",
+      "room": "TBD",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3113",
+      "course_name": "ME3113",
+      "professor": "Dr. Kondaiah",
+      "room": "ECR2",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MT3107",
+      "course_name": "MT3107",
+      "professor": "Dr. Ashish Kumar",
+      "room": "ECR2",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME3101",
+      "course_name": "ME3101",
+      "professor": "Dr. Abhijit",
+      "room": "TBD",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH3106",
+      "course_name": "CH3106",
+      "professor": "Dr. Venkataraman",
+      "room": "ECR3",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MA3115",
+      "course_name": "MA3115",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR3",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH3105",
+      "course_name": "CH3105",
+      "professor": "Dr. Gomathi",
+      "room": "ECR3",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "PH3101",
+      "course_name": "PH3101",
+      "professor": "Dr. Dibkar",
+      "room": "ECR8",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS3104",
+      "course_name": "CS3104",
+      "professor": "Dr. Sukhija",
+      "room": "IT2 Block",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-10",
+      "course_name": "ECR-10",
+      "professor": "Dr. Abhinav Chaturvedi",
+      "room": "ECR10",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 3101",
+      "course_name": "CS/AI 3101",
+      "professor": "Dr. Tauheed",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 10",
+      "course_name": "ECR 10",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR10",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC3101",
@@ -1323,7 +3922,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC3101",
@@ -1334,7 +3939,455 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI3104",
+      "course_name": "AI3104",
+      "professor": "Dr. Nidhi",
+      "room": "IT2 Block",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3110",
+      "course_name": "CE3110",
+      "professor": "Dr. Jahnabi",
+      "room": "ECR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE3110",
+      "course_name": "CE3110",
+      "professor": "Dr. Jahnabi",
+      "room": "TBD",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME4069",
+      "course_name": "ME4069",
+      "professor": "Dr. Prasad",
+      "room": "ECR3",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Sebastian",
+      "room": "ECR14",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Kondaiah",
+      "room": "ECR14",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Pavani",
+      "room": "ECR12",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "MT3107",
+      "course_name": "MT3107",
+      "professor": "Dr. Ashish Kumar Sahu",
+      "room": "ECR8",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CH3106",
+      "course_name": "CH3106",
+      "professor": "Dr. Venkataraman",
+      "room": "ECR12",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 10",
+      "course_name": "ECR 10",
+      "professor": "Dr. Jayasri Dontabhaktuni",
+      "room": "ECR10",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-10",
+      "course_name": "ECR-10",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR10",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "PH3101",
+      "course_name": "PH3101",
+      "professor": "Dr. Anil Annandi",
+      "room": "ECR8",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS/AI 3101",
+      "course_name": "CS/AI 3101",
+      "professor": "Dr. Tauheed",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 3",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4101",
+      "course_name": "CS4101",
+      "professor": "Dr. Satish",
+      "room": "ELT1",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4102",
+      "course_name": "CS4102",
+      "professor": "Dr. Veeraiah",
+      "room": "ELT2",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4103",
+      "course_name": "CS4103",
+      "professor": "Dr. Ragu",
+      "room": "ELT5",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-13",
+      "course_name": "ECR-13",
+      "professor": "Dr. Ani Thomas",
+      "room": "ECR1",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4103",
+      "course_name": "AI 4103",
+      "professor": "Dr. Nemade",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4102",
+      "course_name": "AI 4102",
+      "professor": "Dr. Saha",
+      "room": "ELT3",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4183",
+      "course_name": "CS4183",
+      "professor": "Dr. Jayashri",
+      "room": "ECR15",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI4101",
+      "course_name": "AI4101",
+      "professor": "Dr. Rahul",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4034",
+      "course_name": "BT4034",
+      "professor": "Dr. Bhaskar",
+      "room": "ECR7",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4033",
+      "course_name": "BT4033",
+      "professor": "Dr. Debasis",
+      "room": "ECR2",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4103",
+      "course_name": "AI 4103",
+      "professor": "Dr. Nemade",
+      "room": "Auditorium",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4102",
+      "course_name": "AI 4102",
+      "professor": "Dr. Saha",
+      "room": "ELT3",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI4101",
+      "course_name": "AI4101",
+      "professor": "Dr. Rahul",
+      "room": "Auditorium",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "CS 3105",
@@ -1345,7 +4398,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC 4121",
@@ -1356,7 +4415,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EC 4124",
@@ -1367,7 +4432,13 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
     },
     {
       "course_code": "EE 4101",
@@ -1378,7 +4449,455 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS 3105",
+      "course_name": "CS 3105",
+      "professor": "Dr. Prasad",
+      "room": "ECR14",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ME 4109",
+      "course_name": "ME 4109",
+      "professor": "Dr. Abhijit",
+      "room": "ECR8",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 4117",
+      "course_name": "CE 4117",
+      "professor": "Dr. Deepti",
+      "room": "ETR4",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 4116",
+      "course_name": "CE 4116",
+      "professor": "Dr. Md Ataullah",
+      "room": "ETR4",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4102",
+      "course_name": "CS4102",
+      "professor": "Dr. Veeraiah",
+      "room": "ELT2",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4103",
+      "course_name": "CS4103",
+      "professor": "Dr. Ragu",
+      "room": "ELT2",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4101",
+      "course_name": "CS4101",
+      "professor": "Dr. Satish",
+      "room": "ELT2",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI4101",
+      "course_name": "AI4101",
+      "professor": "Dr. Rahul",
+      "room": "ELT3",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CE4094",
+      "course_name": "CE4094",
+      "professor": "Dr. Arya",
+      "room": "ECR16",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4034",
+      "course_name": "BT4034",
+      "professor": "Dr. Bhaskar",
+      "room": "ECR15",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4183",
+      "course_name": "CS4183",
+      "professor": "Dr. Jayashri",
+      "room": "ECR15",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-10",
+      "course_name": "ECR-10",
+      "professor": "Dr. Ani Thomas",
+      "room": "ECR10",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4033",
+      "course_name": "BT4033",
+      "professor": "Dr. Debasis",
+      "room": "ECR12",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Jai Prakash",
+      "room": "ECR14",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI4101",
+      "course_name": "AI4101",
+      "professor": "Dr. Rahul",
+      "room": "ELT3",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 4121",
+      "course_name": "EC 4121",
+      "professor": "Dr. Bharghava",
+      "room": "ELT6",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 4124",
+      "course_name": "EC 4124",
+      "professor": "Dr. Pooran",
+      "room": "ECR15",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS 3105",
+      "course_name": "CS 3105",
+      "professor": "Dr. Veeraiah",
+      "room": "ELT4",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 10",
+      "course_name": "ECR 10",
+      "professor": "Dr. Abhijit",
+      "room": "ECR10",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4103",
+      "course_name": "CS4103",
+      "professor": "Dr. Ragu",
+      "room": "ELT5",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4102",
+      "course_name": "CS4102",
+      "professor": "Dr. Veeraiah",
+      "room": "ELT5",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4101",
+      "course_name": "CS4101",
+      "professor": "Dr. Satish",
+      "room": "ELT5",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI4101",
+      "course_name": "AI4101",
+      "professor": "Dr. Rahul",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 15",
+      "course_name": "ECR 15",
+      "professor": "Dr. Bhaskar",
+      "room": "ECR15",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CE4094",
+      "course_name": "CE4094",
+      "professor": "Dr. Arya",
+      "room": "ECR16",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4101",
+      "course_name": "CS4101",
+      "professor": "Dr. Satish",
+      "room": "IT Block",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
     },
     {
       "course_code": "CS4101",
@@ -1389,7 +4908,302 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4033",
+      "course_name": "BT4033",
+      "professor": "Dr. Debasis",
+      "room": "ECR10",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI4101",
+      "course_name": "AI4101",
+      "professor": "Dr. Rahul",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 4121",
+      "course_name": "EC 4121",
+      "professor": "Dr. Bharghava",
+      "room": "ELT6",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC 4124",
+      "course_name": "EC 4124",
+      "professor": "Dr. Pooran",
+      "room": "ECR15",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Abhijit",
+      "room": "ECR14",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 4116",
+      "course_name": "CE 4116",
+      "professor": "Dr. Md Ataullah",
+      "room": "ECR16",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 4117",
+      "course_name": "CE 4117",
+      "professor": "Dr. Sandeepan",
+      "room": "ECR16",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4102",
+      "course_name": "AI 4102",
+      "professor": "Dr. Saha",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4103",
+      "course_name": "AI 4103",
+      "professor": "Dr. Nemade",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-15",
+      "course_name": "ECR-15",
+      "professor": "Dr. Bhaskar",
+      "room": "ECR15",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4164",
+      "course_name": "CS4164",
+      "professor": "Dr. Rama Murthy Garimela",
+      "room": "ECR8",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4183",
+      "course_name": "CS4183",
+      "professor": "Dr. Jayashri",
+      "room": "ECR11",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4031",
+      "course_name": "BT4031",
+      "professor": "Dr. Jayato Nayak",
+      "room": "ELT6",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4182",
+      "course_name": "CS4182",
+      "professor": "Dr. Bhanu",
+      "room": "ECR16",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4034",
+      "course_name": "BT4034",
+      "professor": "Dr. Bhaskar",
+      "room": "ECR15",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4102",
+      "course_name": "AI 4102",
+      "professor": "Dr. Saha",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4103",
+      "course_name": "AI 4103",
+      "professor": "Dr. Nemade",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "ECR-12",
@@ -1400,7 +5214,251 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 4116",
+      "course_name": "CE 4116",
+      "professor": "Dr. Md Ataullah",
+      "room": "ECR10",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4103",
+      "course_name": "AI 4103",
+      "professor": "Dr. Nemade",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CE4094",
+      "course_name": "CE4094",
+      "professor": "Dr. Arya",
+      "room": "ECR16",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4102",
+      "course_name": "AI 4102",
+      "professor": "Dr. Saha",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4104",
+      "course_name": "AI 4104",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4104",
+      "course_name": "AI 4104",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4104",
+      "course_name": "AI 4104",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-15",
+      "course_name": "ECR-15",
+      "professor": "Dr. Bhaskar",
+      "room": "ECR15",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "EC4130",
+      "course_name": "EC4130",
+      "professor": "Dr. Aditiya Abburi",
+      "room": "ETR4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4103",
+      "course_name": "AI 4103",
+      "professor": "Dr. Nemade",
+      "room": "Auditorium",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4102",
+      "course_name": "AI 4102",
+      "professor": "Dr. Saha",
+      "room": "Auditorium",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4104",
+      "course_name": "AI 4104",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4104",
+      "course_name": "AI 4104",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
+    },
+    {
+      "course_code": "AI 4104",
+      "course_name": "AI 4104",
+      "professor": "Dr. Prafulla",
+      "room": "ELT4",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "AI"
+        ]
+      }
     },
     {
       "course_code": "ECR-16",
@@ -1411,7 +5469,234 @@
       "session_type": "lecture",
       "slots_required": 1,
       "total_credits": 3,
-      "preference_bin": 1
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "ECR-14",
+      "course_name": "ECR-14",
+      "professor": "Dr. Prasad",
+      "room": "ECR14",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 4116",
+      "course_name": "CE 4116",
+      "professor": "Dr. Md Ataullah",
+      "room": "ECR10",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "CE 4117",
+      "course_name": "CE 4117",
+      "professor": "Dr. Sandeepan",
+      "room": "ETR5",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "General"
+        ]
+      }
+    },
+    {
+      "course_code": "EC4130",
+      "course_name": "EC4130",
+      "professor": "Dr. Aditiya Abburi",
+      "room": "ETR3",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "BT4031",
+      "course_name": "BT4031",
+      "professor": "Dr. Jayato Nayak",
+      "room": "ELT2",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4182",
+      "course_name": "CS4182",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR16",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    },
+    {
+      "course_code": "CS4164",
+      "course_name": "CS4164",
+      "professor": "Dr. Rama Murthy",
+      "room": "ECR16",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1,
+      "hierarchy": {
+        "parents": [
+          "Year 4",
+          "CSE"
+        ]
+      }
+    }
+  ],
+  "student_groups": [
+    {
+      "name": "Year 2",
+      "level": "year"
+    },
+    {
+      "name": "CSE",
+      "level": "department"
+    },
+    {
+      "name": "CS1",
+      "level": "batch"
+    },
+    {
+      "name": "CS2",
+      "level": "batch"
+    },
+    {
+      "name": "CS3",
+      "level": "batch"
+    },
+    {
+      "name": "CS4",
+      "level": "batch"
+    },
+    {
+      "name": "ECE",
+      "level": "department"
+    },
+    {
+      "name": "AI",
+      "level": "department"
+    },
+    {
+      "name": "AI1",
+      "level": "batch"
+    },
+    {
+      "name": "AI2",
+      "level": "batch"
+    },
+    {
+      "name": "AI3",
+      "level": "batch"
+    },
+    {
+      "name": "General",
+      "level": "department"
+    },
+    {
+      "name": "CB",
+      "level": "batch"
+    },
+    {
+      "name": "CE",
+      "level": "batch"
+    },
+    {
+      "name": "Year 3",
+      "level": "year"
+    },
+    {
+      "name": "CSE1",
+      "level": "batch"
+    },
+    {
+      "name": "CM",
+      "level": "batch"
+    },
+    {
+      "name": "ECM",
+      "level": "batch"
+    },
+    {
+      "name": "ME",
+      "level": "batch"
+    },
+    {
+      "name": "MT",
+      "level": "batch"
+    },
+    {
+      "name": "NT",
+      "level": "batch"
+    },
+    {
+      "name": "ECM1",
+      "level": "batch"
+    },
+    {
+      "name": "Year 4",
+      "level": "year"
+    },
+    {
+      "name": "EEE",
+      "level": "batch"
+    },
+    {
+      "name": "CSE3",
+      "level": "batch"
     }
   ]
 }

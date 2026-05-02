@@ -9,125 +9,146 @@ export const useTimetable = () => {
     days: string[];
     times: string[];
   } | null>(null);
-  const [filter, setFilter] = useState<string>("");
+  
+  // Advanced Multi-Faceted Filters
+  const [filters, setFilters] = useState({
+    group: "",
+    year: "",
+    professor: "",
+    room: "",
+    course: ""
+  });
 
-  const fetchTimetable = useCallback(async (params?: string) => {
+  const [filterOptions, setFilterOptions] = useState<{
+    rooms: string[];
+    courses: string[];
+    professors: string[];
+    years: string[];
+    batches: string[];
+  }>({ rooms: [], courses: [], professors: [], years: [], batches: [] });
+
+  const fetchFilterOptions = useCallback(async () => {
+    try {
+        const [rooms, courses, professors, groups] = await Promise.all([
+            api.timetable.listRooms(),
+            api.timetable.listCourses(),
+            api.timetable.listProfessors(),
+            api.timetable.listGroups()
+        ]);
+        
+        // Categorize groups: if they start with "Year" they are years, otherwise batches
+        const years = groups.filter(g => g.startsWith("Year")).map(g => g.replace("Year ", ""));
+        const batches = groups.filter(g => !g.startsWith("Year"));
+
+        setFilterOptions({ rooms, courses, professors, years, batches });
+    } catch (err) {
+        console.error("Failed to fetch filter options", err);
+    }
+  }, []);
+
+  const updateFilter = (key: keyof typeof filters, value: string) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
+  };
+
+  const clearFilters = () => {
+    setFilters({ group: "", year: "", professor: "", room: "", course: "" });
+  };
+
+  const fetchTimetable = useCallback(async () => {
     setIsLoading(true);
     try {
-      const entries = await api.timetable.fetchSchedule(params);
+      // Build query string from active filters
+      const params = new URLSearchParams();
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) params.append(key, value);
+      });
+
+      const entries = await api.timetable.fetchSchedule(params.toString());
       
       const timetable: TimetableMap = {};
+      let maxSlot = 0;
+
       entries.forEach((e: TimetableEntry) => {
           const day = e.day || "Monday";
           if (!timetable[day]) timetable[day] = [];
-          timetable[day].push({
-              id: e.id,
-              course: e.course,
-              professor: e.professor,
-              room: e.room,
-              type: e.type,
-              group: e.group,
-              day: e.day,
-              slot: e.slot
-          });
+          timetable[day].push(e);
+          if (e.slot > maxSlot) maxSlot = e.slot;
       });
+
+      // Dynamic slot count based on data (min 10)
+      const slotCount = Math.max(10, maxSlot);
 
       setData({
         timetable,
         days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        times: Array.from({ length: 10 }, (_, i) => `${i + 1}`)
+        times: Array.from({ length: slotCount }, (_, i) => `${i + 1}`)
       });
     } catch (err) {
       console.error("Timetable fetch error:", err);
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [filters]);
 
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   const handleExportCalendar = () => {
     if (!data?.timetable) return;
-
-    const now = new Date();
-    const nextMonday = new Date();
-    nextMonday.setDate(now.getDate() + (1 + 7 - now.getDay()) % 7);
-    nextMonday.setHours(0, 0, 0, 0);
-
-    let icsContent = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PROID:-//MU//Timetable//EN",
-      "CALSCALE:GREGORIAN",
-      "METHOD:PUBLISH"
-    ].join("\n");
-
-    const dayOffsets: Record<string, number> = {
-      "Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4
-    };
-
-    const getSlotTime = (slot: number) => {
-        const startHour = 8 + slot; 
-        return { start: startHour, end: startHour + 1 };
+    
+    let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//ATGS//Timetable//EN\n";
+    
+    // Day mapping for ICS
+    const dayMap: Record<string, string> = {
+      "Monday": "MO", "Tuesday": "TU", "Wednesday": "WE", "Thursday": "TH", "Friday": "FR"
     };
 
     Object.entries(data.timetable).forEach(([day, entries]) => {
-      const offset = dayOffsets[day] || 0;
-      const eventDate = new Date(nextMonday);
-      eventDate.setDate(nextMonday.getDate() + offset);
-
-      entries.forEach(entry => {
-        if (!entry.slot) return;
+      entries.forEach(e => {
+        const startHour = 8 + e.slot; // Rough estimate: classes start at 9AM (slot 1)
+        const dateStr = new Date().toISOString().split('T')[0].replace(/-/g, '');
         
-        const { start, end } = getSlotTime(entry.slot);
-        
-        const startDate = new Date(eventDate);
-        startDate.setHours(start, 0, 0);
-        
-        const endDate = new Date(eventDate);
-        endDate.setHours(end, 0, 0);
-
-        const formatDate = (date: Date) => {
-          return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-        };
-
-        icsContent += "\n" + [
-          "BEGIN:VEVENT",
-          `SUMMARY:${entry.course} (${entry.type})`,
-          `DTSTART:${formatDate(startDate)}`,
-          `DTEND:${formatDate(endDate)}`,
-          `DESCRIPTION:Professor: ${entry.professor}\\nGroup: ${entry.group}\\nRoom: ${entry.room}`,
-          `LOCATION:${entry.room}`,
-          "END:VEVENT"
-        ].join("\n");
+        icsContent += "BEGIN:VEVENT\n";
+        icsContent += `SUMMARY:${e.course} (${e.type})\n`;
+        icsContent += `DESCRIPTION:Prof: ${e.professor}, Group: ${e.group}\n`;
+        icsContent += `LOCATION:${e.room}\n`;
+        icsContent += `RRULE:FREQ=WEEKLY;BYDAY=${dayMap[day] || 'MO'}\n`;
+        // Dummy times for the event
+        icsContent += `DTSTART:${dateStr}T${startHour.toString().padStart(2, '0')}0000\n`;
+        icsContent += `DTEND:${dateStr}T${(startHour + 1).toString().padStart(2, '0')}0000\n`;
+        icsContent += "END:VEVENT\n";
       });
     });
 
-    icsContent += "\nEND:VCALENDAR";
+    icsContent += "END:VCALENDAR";
 
     const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-    const link = document.createElement("a");
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute("download", `timetable_${filter || 'master'}.ics`);
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `timetable_calendar_${new Date().toISOString().split('T')[0]}.ics`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
   };
 
   useEffect(() => {
-    const params = filter ? `group=${filter}` : undefined;
-    fetchTimetable(params);
-  }, [filter, fetchTimetable]);
+    fetchTimetable();
+  }, [fetchTimetable]);
+
+  useEffect(() => {
+    fetchFilterOptions();
+  }, [fetchFilterOptions]);
 
   return {
     isLoading,
     ...data,
-    filter,
-    setFilter,
+    filters,
+    filterOptions,
+    updateFilter,
+    clearFilters,
     handlePrint,
     handleExportCalendar,
-    refresh: () => fetchTimetable(filter ? `group=${filter}` : undefined)
+    refresh: fetchTimetable
   };
 };

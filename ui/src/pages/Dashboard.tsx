@@ -7,14 +7,16 @@ import { NotificationItem } from "@/components/dashboard/NotificationItem";
 import { useDashboard } from "@/hooks/useDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { toast } from "sonner";
 import { Spinner } from "@/components/common/Spinner";
 import { motion } from "framer-motion";
+import { GASettingsDialog } from "@/components/dashboard/GASettingsDialog";
 
 const Dashboard: React.FC = () => {
   const { 
     isLoading, 
     isGenerating, 
+    isSettingsOpen,
+    setIsSettingsOpen,
     user, 
     notifications, 
     upcoming, 
@@ -24,7 +26,6 @@ const Dashboard: React.FC = () => {
     refresh 
   } = useDashboard();
 
-  // Strictly identify admin for dashboard widgets
   const isAdmin = user?.role === 'admin';
   const isStudent = user?.role === 'student';
 
@@ -46,6 +47,13 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-8 pb-8">
+      <GASettingsDialog 
+        isOpen={isSettingsOpen} 
+        onClose={() => setIsSettingsOpen(false)} 
+        onConfirm={handleRunGA}
+        isGenerating={isGenerating}
+      />
+
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -61,14 +69,14 @@ const Dashboard: React.FC = () => {
                 <BellIcon className="w-5 h-5" />
              </Button>
              {isAdmin && (
-                <Button className="h-12 px-6 rounded-xl font-medium" onClick={() => toast.info("Report generation in progress...")}>
-                    Generate Report
+                <Button className="h-12 px-6 rounded-xl font-medium" onClick={() => refresh()}>
+                    Refresh Data
                 </Button>
              )}
         </div>
       </div>
 
-      {/* Stats Grid - Role Specific */}
+      {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard 
             title={stats.primary?.label || "Courses"} 
@@ -92,10 +100,7 @@ const Dashboard: React.FC = () => {
         />
       </div>
 
-      {/* Main Content Area */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* Upcoming Timetable */}
         <div className={cn(isAdmin ? "lg:col-span-2" : "lg:col-span-3", "space-y-6")}>
             <div className="space-y-4">
                 <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -147,7 +152,7 @@ const Dashboard: React.FC = () => {
                         <Button 
                             variant="destructive" 
                             className="w-full h-12 rounded-xl font-medium mt-4"
-                            onClick={handleRunGA}
+                            onClick={() => setIsSettingsOpen(true)}
                             disabled={isGenerating}
                         >
                             {isGenerating ? <Spinner className="mr-2" /> : null}
@@ -169,7 +174,6 @@ const Dashboard: React.FC = () => {
             )}
         </div>
 
-        {/* Admin only sidebar widgets */}
         {isAdmin && (
             <div className="space-y-6">
                 <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -181,39 +185,9 @@ const Dashboard: React.FC = () => {
                             <NotificationItem key={n.id} {...n} />
                         ))}
                     </div>
-                    <Button 
-                        variant="ghost" 
-                        className="w-full py-6 text-sm text-muted-foreground hover:text-primary transition-colors rounded-xl"
-                        onClick={() => refresh()}
-                    >
-                        Refresh Logs
-                    </Button>
-                </Card>
-
-                <Card className="bg-card border-border p-6 rounded-2xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <CheckCircleIcon size={100} weight="fill" />
-                    </div>
-                    <h3 className="font-bold text-foreground">System Status</h3>
-                    <div className="flex items-center gap-2 text-green-500 mt-2">
-                        <div className={cn(
-                            "w-2 h-2 rounded-full animate-pulse",
-                            stats.active_schedule ? "bg-green-500" : "bg-amber-500"
-                        )} />
-                        <span className={cn(
-                            "text-sm font-mono",
-                            stats.active_schedule ? "text-green-500" : "text-amber-500"
-                        )}>
-                            {stats.active_schedule ? "Active" : "Inactive"}
-                        </span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                        {stats.active_schedule ? "Schedule is currently live" : "Run optimizer to activate"}
-                    </p>
                 </Card>
             </div>
         )}
-
       </div>
     </div>
   );

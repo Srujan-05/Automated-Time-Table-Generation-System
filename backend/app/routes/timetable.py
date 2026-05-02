@@ -10,20 +10,25 @@ timetable_bp = Blueprint('timetable', __name__)
 @timetable_bp.route('', methods=['GET'])
 @jwt_required()
 def fetch_timetable_data():
-    """Returns the active schedule entries for the authenticated user."""
+    """Returns the active schedule entries with multi-faceted filtering."""
     claims = get_jwt()
     role, email = claims.get('role'), claims.get('email')
     user_id = get_jwt_identity()
     
-    group_filter = request.args.get('group')
+    filters = {
+        'group': request.args.get('group'),
+        'year': request.args.get('year'),
+        'professor': request.args.get('professor'),
+        'room': request.args.get('room'),
+        'course': request.args.get('course')
+    }
+    
     entries = TimetableService.get_active_schedule_for_user(
         role, 
         int(user_id) if user_id else None, 
-        email
+        email,
+        filters=filters
     )
-    
-    if group_filter: 
-        entries = [e for e in entries if e['group'] == group_filter]
         
     return jsonify(entries), 200
 
@@ -38,7 +43,6 @@ def fetch_dashboard_statistics():
     role, email = claims.get('role'), claims.get('email')
     user_id = get_jwt_identity()
 
-    # Determine system status
     active_schedule = Schedule.query.filter_by(is_active=True).first()
     stats_package = {
         "active_schedule": active_schedule is not None,
@@ -46,7 +50,6 @@ def fetch_dashboard_statistics():
         "upcoming": []
     }
 
-    # Retrieve recent activity logs
     recent_logs = ActivityLog.query.order_by(ActivityLog.created_at.desc()).limit(10).all()
     stats_package["activities"] = [
         {
@@ -55,14 +58,13 @@ def fetch_dashboard_statistics():
         } for log in recent_logs
     ]
 
-    # Calculate role-based metrics
     if role == 'ADMIN':
         stats_package.update({
             "primary": {"label": "Total Instances", "value": CourseInstance.query.count()},
             "secondary": {"label": "Active Faculty", "value": Professor.query.count()},
             "tertiary": {"label": "Total Rooms", "value": Room.query.count()},
-            "quaternary": {"label": "Global Conflicts", "value": 0 if stats_package["active_schedule"] else "N/A"},
-            "requirements": CourseInstance.query.count(), # UI Legacy Compatibility
+            "quaternary": {"label": "Active Schedule", "value": active_schedule.name if active_schedule else "None"},
+            "requirements": CourseInstance.query.count(),
             "professors": Professor.query.count()
         })
     
@@ -71,17 +73,11 @@ def fetch_dashboard_statistics():
                     Professor.query.filter_by(email=email).first()
         if professor:
             assigned_instances = CourseInstance.query.filter_by(instructor_id=professor.id).all()
-            total_hours = sum(inst.slots_required for inst in assigned_instances)
-            
-            # Determine primary preference
-            pref_bin = assigned_instances[0].preference_bin if assigned_instances else 1
-            pref_label = {1: "Morning", 2: "Afternoon", 3: "Evening"}.get(pref_bin, "Morning")
-            
             stats_package.update({
                 "primary": {"label": "My Courses", "value": len(set(i.course_id for i in assigned_instances))},
-                "secondary": {"label": "Weekly Hours", "value": total_hours},
+                "secondary": {"label": "Weekly Load", "value": f"{len(assigned_instances)} hrs"},
                 "tertiary": {"label": "Student Groups", "value": len(set(i.student_group_id for i in assigned_instances))},
-                "quaternary": {"label": "My Preference", "value": pref_label},
+                "quaternary": {"label": "Status", "value": "Profile Active"},
                 "requirements": len(assigned_instances),
                 "professors": 1
             })
@@ -91,30 +87,16 @@ def fetch_dashboard_statistics():
         group = StudentGroup.query.filter_by(name=group_name).first() or StudentGroup.query.first()
             
         if group:
-            enrolled_instances = CourseInstance.query.filter_by(student_group_id=group.id).all()
-            distinct_rooms = 0
-            if active_schedule:
-                distinct_rooms = db.session.query(db.func.count(db.distinct(TimetableEntry.room_id))).filter(
-                    TimetableEntry.student_group_id == group.id,
-                    TimetableEntry.schedule_id == active_schedule.id
-                ).scalar() or 0
-
             stats_package.update({
-                "primary": {"label": "Enrolled Courses", "value": len(set(i.course_id for i in enrolled_instances))},
-                "secondary": {"label": "Active Rooms", "value": distinct_rooms},
-                "tertiary": {"label": "Total Professors", "value": len(set(i.instructor_id for i in enrolled_instances))},
-                "quaternary": {"label": "My Group", "value": group.name},
-                "requirements": len(enrolled_instances),
-                "professors": len(set(i.instructor_id for i in enrolled_instances))
+                "primary": {"label": "My Courses", "value": CourseInstance.query.filter_by(student_group_id=group.id).count()},
+                "secondary": {"label": "My Group", "value": group.name},
+                "tertiary": {"label": "Status", "value": "Enrolled"},
+                "quaternary": {"label": "Schedule", "value": "Active" if active_schedule else "Pending"},
+                "requirements": 0,
+                "professors": 0
             })
 
-    # Fetch next scheduled sessions
-    stats_package["upcoming"] = TimetableService.get_active_schedule_for_user(
-        role, 
-        int(user_id) if user_id else None, 
-        email
-    )[:6]
-
+    stats_package["upcoming"] = TimetableService.get_active_schedule_for_user(role, int(user_id) if user_id else None, email)[:6]
     return jsonify(stats_package), 200
 
 @timetable_bp.route('/export', methods=['GET'])
@@ -124,34 +106,18 @@ def export_timetable_csv():
     import csv
     import io
     from flask import Response
-    from ..models import TimetableEntry, CourseInstance, Professor, Room, StudentGroup
+    from ..models import TimetableEntry
 
     try:
         entries = TimetableEntry.query.all()
-        
         output = io.StringIO()
         writer = csv.writer(output)
-        
-        # Header
         writer.writerow(['ID', 'Day', 'Slot', 'Course', 'Professor', 'Room', 'Student Group', 'Type'])
         
         for e in entries:
-            # Safely fetch relationships
-            prof_name = e.course_instance.professor.name if e.course_instance and e.course_instance.professor else 'N/A'
-            room_name = e.room.name if e.room else 'N/A'
-            group_name = e.student_group.name if e.student_group else 'N/A'
-            course_id = e.course_instance.course_id if e.course_instance else 'Unknown'
-            session_type = e.course_instance.session_type if e.course_instance else 'lecture'
-            
             writer.writerow([
-                e.id,
-                e.day_of_week,
-                e.time_slot,
-                course_id,
-                prof_name,
-                room_name,
-                group_name,
-                session_type
+                e.id, e.day_of_week, e.time_slot, e.course_instance.course_id,
+                e.instructor.name, e.room.name, e.student_grp.name, e.course_instance.session_type
             ])
             
         output.seek(0)
@@ -163,13 +129,72 @@ def export_timetable_csv():
     except Exception as e:
         return jsonify({"msg": str(e)}), 500
 
+@timetable_bp.route('/rooms', methods=['GET'])
+@jwt_required()
+def list_rooms():
+    """Returns a simple list of all room names."""
+    from ..models import Room
+    rooms = Room.query.order_by(Room.name).all()
+    return jsonify([r.name for r in rooms]), 200
+
+@timetable_bp.route('/courses', methods=['GET'])
+@jwt_required()
+def list_courses():
+    """Returns a simple list of all unique course IDs."""
+    from ..models import Course
+    courses = Course.query.order_by(Course.course_id).all()
+    return jsonify([c.course_id for c in courses]), 200
+
+@timetable_bp.route('/professors', methods=['GET'])
+@jwt_required()
+def list_professors():
+    """Returns a simple list of all professor names."""
+    from ..models import Professor
+    profs = Professor.query.order_by(Professor.name).all()
+    return jsonify([p.name for p in profs]), 200
+
+@timetable_bp.route('/groups', methods=['GET'])
+@jwt_required()
+def list_groups():
+    """Returns all unique student group names."""
+    from ..models import StudentGroup
+    groups = StudentGroup.query.order_by(StudentGroup.name).all()
+    return jsonify([g.name for g in groups]), 200
+
+@timetable_bp.route('/search', methods=['GET'])
+@jwt_required()
+def search_entities():
+    """Returns a list of searchable items (profs, courses, rooms) for the UI combobox."""
+    from ..models import Professor, Room, Course
+    
+    query = request.args.get('q', '').lower()
+    results = []
+
+    # Professors
+    profs = Professor.query.filter(Professor.name.ilike(f'%{query}%')).limit(5).all()
+    for p in profs:
+        results.append({"id": p.id, "label": p.name, "type": "professor", "value": p.name})
+
+    # Courses
+    courses = Course.query.filter(Course.course_id.ilike(f'%{query}%')).limit(5).all()
+    for c in courses:
+        results.append({"id": c.id, "label": c.course_id, "type": "course", "value": c.course_id})
+
+    # Rooms
+    rooms = Room.query.filter(Room.name.ilike(f'%{query}%')).limit(5).all()
+    for r in rooms:
+        results.append({"id": r.id, "label": r.name, "type": "room", "value": r.name})
+
+    return jsonify(results), 200
+
 @timetable_bp.route('/generate', methods=['POST'])
 @jwt_required()
 @admin_required
 def trigger_schedule_generation():
-    """Initiates the GA-based timetable optimization process."""
+    """Initiates the GA-based timetable optimization process with dynamic config."""
     try:
-        new_schedule = SchedulingService.generate_optimized_schedule()
+        config = request.get_json(force=True, silent=True) or {}
+        new_schedule = SchedulingService.generate_optimized_schedule(config)
         return jsonify({
             "msg": "Schedule generated successfully", 
             "schedule_id": new_schedule.id, 
