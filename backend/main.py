@@ -21,4 +21,4 @@ if __name__ == "__main__":
                 IngestionService.perform_initial_seeding(seed_path)
                 print(" * Automatic seed complete.")
                 
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
