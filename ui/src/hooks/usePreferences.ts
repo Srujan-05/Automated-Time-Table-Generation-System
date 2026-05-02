@@ -15,7 +15,7 @@ export const usePreferences = () => {
 
   const fetchProfessorShift = useCallback(async (id: number) => {
     try {
-        const res = await api.preferences.getShift(id);
+        const res = await api.preferences.fetchShift(id);
         setSelectedShift(res.bin_id);
     } catch (err) {
         toast.error("Failed to fetch professor preference");
@@ -27,19 +27,19 @@ export const usePreferences = () => {
     setIsLoading(true);
     try {
       if (isAdmin) {
-        const profList = await api.preferences.listProfessors();
+        const profList = await api.preferences.listFaculty();
         setProfessors(profList);
         
         // Auto-select first professor if list not empty
         if (profList.length > 0) {
             const firstProfId = profList[0].id.toString();
             setSelectedProfessorId(firstProfId);
-            const res = await api.preferences.getShift(Number(firstProfId));
+            const res = await api.preferences.fetchShift(Number(firstProfId));
             setSelectedShift(res.bin_id);
         }
       } else {
         // Faculty loading their own
-        const res = await api.preferences.getShift();
+        const res = await api.preferences.fetchShift();
         setSelectedShift(res.bin_id);
       }
     } catch (err) {

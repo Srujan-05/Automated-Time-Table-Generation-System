@@ -14,7 +14,7 @@ export const useTimetable = () => {
   const fetchTimetable = useCallback(async (params?: string) => {
     setIsLoading(true);
     try {
-      const entries = await api.timetable.get(params);
+      const entries = await api.timetable.fetchSchedule(params);
       
       const timetable: TimetableMap = {};
       entries.forEach((e: TimetableEntry) => {

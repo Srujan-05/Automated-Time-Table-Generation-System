@@ -38,7 +38,7 @@ export const useIngestion = () => {
         if (file.name.toLowerCase().includes("faculty") || file.name.toLowerCase().includes("prof")) type = "faculties";
         else if (file.name.toLowerCase().includes("room")) type = "rooms";
         
-        await api.ingestion.upload(type, file);
+        await api.ingestion.uploadFile(type, file);
         
         setFiles(prev => prev.map(f => 
           f.name === file.name ? { ...f, status: "completed" } : f
@@ -66,8 +66,8 @@ export const useIngestion = () => {
   const handleSeed = async () => {
     setIsImporting(true);
     try {
-        const res = await api.ingestion.seed();
-        toast.success(`Database seeded: ${res.faculties} faculties, ${res.rooms} rooms, ${res.courses} courses`);
+        const res = await api.ingestion.triggerSeed();
+        toast.success(`Database seeded: ${res.professors_added} professors, ${res.rooms_added} rooms, ${res.instances_created} instances`);
         setFiles([]);
     } catch (err) {
         toast.error("Failed to seed database");

@@ -155,14 +155,14 @@ const Dashboard: React.FC = () => {
                         </Button>
                     </Card>
                     <Card className="bg-card border-border p-6 rounded-2xl">
-                        <h3 className="font-bold text-foreground">Export Data</h3>
-                        <p className="text-muted-foreground text-sm">Download current database snapshot for backup.</p>
+                        <h3 className="font-bold text-foreground">Export Timetable</h3>
+                        <p className="text-muted-foreground text-sm">Download the current schedule in CSV format.</p>
                         <Button 
                             variant="secondary" 
                             className="w-full h-12 rounded-xl font-medium mt-4"
                             onClick={handleExport}
                         >
-                            Download DB
+                            Export CSV
                         </Button>
                     </Card>
                 </div>

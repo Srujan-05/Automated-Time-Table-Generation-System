@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
-import { type NotificationItem, type RecentChange, type TimetableEntry, type DashboardStats, type BackendActivity } from "@/lib/types";
+import { type NotificationItem, type RecentChange, type TimetableEntry, type DashboardStats } from "@/lib/types";
 
 export const useDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +21,7 @@ export const useDashboard = () => {
       const email = localStorage.getItem("userEmail") || "user@college.edu";
       const name = email.split('@')[0].replace('.', ' ').split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
       
-      const stats: DashboardStats = await api.timetable.getStats();
+      const stats: DashboardStats = await api.timetable.fetchDashboardStats();
 
       const backendActivities = stats.activities || [];
       const backendUpcoming = stats.upcoming || [];
@@ -80,7 +80,7 @@ export const useDashboard = () => {
   const handleRunGA = async () => {
     setIsGenerating(true);
     try {
-        const res = await api.timetable.generate();
+        const res = await api.timetable.triggerGeneration();
         toast.success(`Schedule generated! Fitness: ${res.fitness.toFixed(2)}`);
         fetchDashboardData();
     } catch (err) {
@@ -90,16 +90,23 @@ export const useDashboard = () => {
     }
   };
 
-  const handleExport = () => {
-    toast.info("Preparing export...");
-    setTimeout(() => {
+  const handleExport = async () => {
+    toast.info("Preparing CSV export...");
+    try {
+        const blob = await api.timetable.exportCsv();
+        const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.href = "http://localhost:5000/instance/timetable.db";
-        link.download = "timetable_backup.db";
+        link.href = url;
+        link.download = `timetable_export_${new Date().toISOString().split('T')[0]}.csv`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    }, 1500);
+        window.URL.revokeObjectURL(url);
+        toast.success("Timetable exported successfully");
+    } catch (err) {
+        console.error("Export failed", err);
+        toast.error("Failed to export timetable");
+    }
   };
 
   useEffect(() => {

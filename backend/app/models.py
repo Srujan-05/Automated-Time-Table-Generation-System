@@ -170,21 +170,6 @@ class TimetableEntry(db.Model):
     student_group_id = db.Column(db.Integer, db.ForeignKey('student_groups.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(UTC))
 
-# ============================================================================
-# DEPRECATED: CourseRequirement (kept for backward compatibility during migration)
-# ============================================================================
-class CourseRequirement(db.Model):
-    __tablename__ = 'course_requirements'
-    id = db.Column(db.Integer, primary_key=True)
-    course_code = db.Column(db.String(20), nullable=False)
-    session_type = db.Column(db.String(20), nullable=False)
-    professor_id = db.Column(db.Integer, db.ForeignKey('professors.id'), nullable=False)
-    student_group_id = db.Column(db.Integer, db.ForeignKey('student_groups.id'), nullable=False)
-    slots_required = db.Column(db.Integer, default=1)
-    slots_continuous = db.Column(db.Boolean, default=False)
-    preference_bin = db.Column(db.Integer, default=1)
-    created_at = db.Column(db.DateTime, default=lambda: datetime.now(UTC))
-
 class ActivityLog(db.Model):
     __tablename__ = 'activity_logs'
     id = db.Column(db.Integer, primary_key=True)

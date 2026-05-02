@@ -1,48 +1,71 @@
-# Timetable System Backend (Flask)
+# Automated Timetable Generation System - Backend
 
-This is the Flask-based backend for the Automated Time Table Generation System. It handles data persistence, authentication, and the Genetic Algorithm for schedule optimization.
+This folder contains the Flask-based REST API and Genetic Algorithm (GA) engine for optimizing institutional timetables.
 
-## Setup Instructions
+## Architecture
 
-### 1. Prerequisites
-- Python 3.12 or higher
-- `uv` (Next-generation Python package manager)
+- **`app/core`**: System configuration, `pathlib`-based universal path resolution, and security settings.
+- **`app/models`**: Database schema using SQLAlchemy. Optimized for `CourseInstance` expansion to allow granular scheduling.
+- **`app/routes`**: API endpoints (Auth, Ingestion, Scheduling, Preferences).
+- **`app/services`**: Business logic layer. Bridges the database models to the `ga/` algorithm.
+- **`instance/`**: Local SQLite database (`timetable.db`) and `seed_data.json`.
+- **`ga/`**: The core Genetic Algorithm engine (independent of the web framework).
 
-### 2. Installation
-Navigate to this directory and sync dependencies:
-```bash
-uv sync
-```
+## Installation & Setup
 
-### 3. Configuration
-Copy the example environment file:
-```bash
-cp .env.example .env
-```
-Update the `DB_TYPE` (`sqlite` or `postgres`) and `DATABASE_URL` in your `.env`.
+The backend supports both modern `uv` (recommended) and standard `python/pip` workflows.
 
-### 4. Database Initialization
-The system uses `flask-migrate`. For the first run on a new database:
-```bash
-uv run flask db upgrade
-```
-*Note: This will set up all tables with the correct column lengths (e.g., VARCHAR(255) for secure hashes).*
+### Option A: Using `uv` (Modern & Fast)
+1. **Sync Dependencies**:
+   ```powershell
+   uv sync
+   ```
+2. **Setup Environment**:
+   - Create a `.env` file (see `.env.example`).
+   - Default `DB_TYPE=sqlite` is recommended for local development.
+3. **Run the Server**:
+   ```powershell
+   uv run main.py
+   ```
 
-### 5. Running the Server
-```bash
-uv run flask run --port 5000
-```
-The API will be available at `http://localhost:5000`.
+### Option B: Using Standard `python`
+1. **Create Virtual Environment**:
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\activate
+   ```
+2. **Install Dependencies**:
+   ```powershell
+   pip install -r requirements.txt
+   ```
+3. **Run the Server**:
+   ```powershell
+   python main.py
+   ```
 
-## System Validation
-To run a full end-to-end stress test (Reset -> Seed -> GA Run -> Verify -> Cleanse):
-```bash
-uv run python validate_system.py
-```
+## Database Management
 
-## Tech Stack
-- **Framework:** Flask
-- **Database:** SQLAlchemy (PostgreSQL/Supabase & SQLite support)
-- **Migrations:** Flask-Migrate (Alembic)
-- **Tooling:** uv
-- **Logic:** Custom Genetic Algorithm Integration
+- **Seeding**: Log in as an Admin in the UI and click **"Seed Data"**. This uses the optimized `seed_data.json` which maps institutional data to the new instance-based schema.
+- **PostgreSQL Support**: Change `DB_TYPE=postgres` and provide `DATABASE_URL` in your `.env` to switch from SQLite to a production-grade database.
+
+## System Maintenance
+
+- **Nuke & Reset Database**:
+  To permanently delete all data and re-initialize clean tables, you MUST specify a target:
+  ```powershell
+  # Reset ONLY SQLite
+  uv run python nuke_db.py --sqlite
+
+  # Reset ONLY PostgreSQL
+  uv run python nuke_db.py --postgres
+
+  # Reset BOTH databases
+  uv run python nuke_db.py --all
+  ```
+  *Note: The script will not run if no target parameter is provided.*
+
+- **Dry Run Validation**:
+  ```powershell
+  uv run python -m compileall .
+  ```
+- **Documentation**: See `doc.md` for the full Genetic Algorithm schema and API implementation details.

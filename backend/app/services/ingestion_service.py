@@ -1,82 +1,83 @@
-import pandas as pd
 import json
 import re
-from ..models import db, Professor, Room, StudentGroup, CourseRequirement
+from ..models import db, Professor, Room, StudentGroup, Course, CourseInstance
 
 class IngestionService:
     @staticmethod
-    def process_faculties(data):
-        count = 0
-        for item in data:
+    def ingest_faculty_data(faculty_list):
+        added_count = 0
+        for item in faculty_list:
             if not Professor.query.filter_by(name=item['name']).first():
-                # Correctly generate dummy email by stripping "Dr. " prefix
                 clean_name = re.sub(r'^dr\.\s*', '', item['name'], flags=re.IGNORECASE).strip()
-                email_prefix = clean_name.lower().replace(' ', '.')
-                email = item.get('email', f"{email_prefix}@mahindrauniversity.edu.in")
-                
-                prof = Professor(name=item['name'], email=email)
-                db.session.add(prof)
-                count += 1
+                email = item.get('email', f"{clean_name.lower().replace(' ', '.')}@mahindrauniversity.edu.in")
+                db.session.add(Professor(name=item['name'], email=email))
+                added_count += 1
         db.session.commit()
-        return count
+        return added_count
 
     @staticmethod
-    def process_rooms(data):
-        count = 0
-        for item in data:
+    def ingest_room_data(room_list):
+        added_count = 0
+        for item in room_list:
             if not Room.query.filter_by(name=item['name']).first():
-                room = Room(
+                db.session.add(Room(
                     name=item['name'], 
                     is_lab=item.get('is_lab', False), 
                     capacity=item.get('capacity', 100)
-                )
-                db.session.add(room)
-                count += 1
+                ))
+                added_count += 1
         db.session.commit()
-        return count
+        return added_count
 
     @staticmethod
-    def process_courses(data):
-        count = 0
-        for item in data:
-            # Resolve Professor
-            prof = Professor.query.filter_by(name=item['professor']).first()
-            if not prof: continue
-            
-            # Resolve Group
-            group = StudentGroup.query.filter_by(name=item['student_group']).first()
-            if not group:
-                group = StudentGroup(name=item['student_group'], size=80)
-                db.session.add(group)
+    def ingest_course_data(course_list):
+        added_count = 0
+        for item in course_list:
+            code = item['course_code']
+            if not Course.query.filter_by(course_id=code).first():
+                db.session.add(Course(course_id=code, name=item.get('course_name', code), total_credits=item.get('total_credits', 3)))
                 db.session.flush()
+            
+            prof = Professor.query.filter_by(name=item['professor']).first() or \
+                   Professor(name=item['professor'], email=f"{item['professor'].lower().replace(' ', '.')}@mahindrauniversity.edu.in")
+            if prof.id is None: db.session.add(prof); db.session.flush()
 
-            req = CourseRequirement(
-                course_code=item['course_code'],
-                session_type=item['session_type'],
-                professor_id=prof.id,
+            room = Room.query.filter_by(name=item['room']).first() or Room(name=item['room'], capacity=100)
+            if room.id is None: db.session.add(room); db.session.flush()
+
+            group = StudentGroup.query.filter_by(name=item['student_group']).first() or StudentGroup(name=item['student_group'], size=80)
+            if group.id is None: db.session.add(group); db.session.flush()
+
+            db.session.add(CourseInstance(
+                course_id=code,
+                session_type=item.get('session_type', 'lecture').lower(),
+                instructor_id=prof.id,
+                room_id=room.id,
                 student_group_id=group.id,
                 slots_required=item.get('slots_required', 1),
                 slots_continuous=item.get('slots_continuous', False),
                 preference_bin=item.get('preference_bin', 1)
-            )
-            db.session.add(req)
-            count += 1
+            ))
+            added_count += 1
+        
         db.session.commit()
-        return count
+        return added_count
 
     @staticmethod
-    def seed_initial_data(seed_json_path):
+    def perform_initial_seeding(seed_json_path):
         with open(seed_json_path, 'r') as f:
             data = json.load(f)
         
-        f_count = IngestionService.process_faculties(data['faculties'])
-        r_count = IngestionService.process_rooms(data['rooms'])
-        
-        # Student groups
-        for g in data['student_groups']:
-            if not StudentGroup.query.filter_by(name=g['name']).first():
-                db.session.add(StudentGroup(name=g['name'], size=g['size']))
-        db.session.commit()
-        
-        c_count = IngestionService.process_courses(data['course_requirements'])
-        return f_count, r_count, c_count
+        if isinstance(data, list):
+            c_count = IngestionService.ingest_course_data(data)
+        else:
+            IngestionService.ingest_faculty_data(data.get('professors', []))
+            IngestionService.ingest_room_data(data.get('rooms', []))
+            c_count = IngestionService.ingest_course_data(data.get('courses', []))
+
+        return {
+            'professors_added': Professor.query.count(),
+            'rooms_added': Room.query.count(),
+            'instances_created': c_count,
+            'groups_found': StudentGroup.query.count()
+        }

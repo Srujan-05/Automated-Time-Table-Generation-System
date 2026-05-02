@@ -1,25 +1,1417 @@
 {
-    "faculties": [
-        { "name": "Dr. Rakesh", "email": "rakesh@mahindrauniversity.edu.in" },
-        { "name": "Dr. Anagha Tobi", "email": "anagha.tobi@mahindrauniversity.edu.in" },
-        { "name": "Dr. Shabnam", "email": "shabnam@mahindrauniversity.edu.in" },
-        { "name": "Dr. Ravi Kishor", "email": "ravi.kishor@mahindrauniversity.edu.in" },
-        { "name": "Dr. Neha", "email": "neha@mahindrauniversity.edu.in" }
-    ],
-    "rooms": [
-        { "name": "ELT 1", "is_lab": false, "capacity": 150 },
-        { "name": "ELT 2", "is_lab": false, "capacity": 150 },
-        { "name": "CS LAB 1", "is_lab": true, "capacity": 100 },
-        { "name": "CS LAB 2", "is_lab": true, "capacity": 100 }
-    ],
-    "student_groups": [
-        { "name": "CS1", "size": 80 }
-    ],
-    "course_requirements": [
-        { "course_code": "MA2103", "session_type": "lecture", "professor": "Dr. Rakesh", "student_group": "CS1", "slots_required": 3, "slots_continuous": false, "preference_bin": 1 },
-        { "course_code": "HS2102", "session_type": "lecture", "professor": "Dr. Anagha Tobi", "student_group": "CS1", "slots_required": 2, "slots_continuous": false, "preference_bin": 1 },
-        { "course_code": "CS2101", "session_type": "lecture", "professor": "Dr. Ravi Kishor", "student_group": "CS1", "slots_required": 2, "slots_continuous": false, "preference_bin": 2 },
-        { "course_code": "CS2102", "session_type": "lab", "professor": "Dr. Shabnam", "student_group": "CS1", "slots_required": 2, "slots_continuous": true, "preference_bin": 2 },
-        { "course_code": "CS2103", "session_type": "lab", "professor": "Dr. Neha", "student_group": "CS1", "slots_required": 2, "slots_continuous": true, "preference_bin": 2 }
-    ]
+  "professors": [
+    {
+      "name": "Dr. Abhijit"
+    },
+    {
+      "name": "Dr. Abhinav"
+    },
+    {
+      "name": "Dr. Abhinav Chaturvedi"
+    },
+    {
+      "name": "Dr. Aditiya Abburi"
+    },
+    {
+      "name": "Dr. Akankasha Singh"
+    },
+    {
+      "name": "Dr. Anagha Tobi"
+    },
+    {
+      "name": "Dr. Ani Thomas"
+    },
+    {
+      "name": "Dr. Anil"
+    },
+    {
+      "name": "Dr. Anil Annadi"
+    },
+    {
+      "name": "Dr. Anil Annandi"
+    },
+    {
+      "name": "Dr. Ankita"
+    },
+    {
+      "name": "Dr. Ankita Jain"
+    },
+    {
+      "name": "Dr. Arun"
+    },
+    {
+      "name": "Dr. Aruna Kumar Chelluboyina"
+    },
+    {
+      "name": "Dr. Arya"
+    },
+    {
+      "name": "Dr. Ashish Kumar"
+    },
+    {
+      "name": "Dr. Ashish Kumar Sahu"
+    },
+    {
+      "name": "Dr. Avinash"
+    },
+    {
+      "name": "Dr. Avinash Chauhan"
+    },
+    {
+      "name": "Dr. Balaji Prashanth"
+    },
+    {
+      "name": "Dr. Bhanu"
+    },
+    {
+      "name": "Dr. Bhanu Kiran"
+    },
+    {
+      "name": "Dr. Bharghava"
+    },
+    {
+      "name": "Dr. Bhaskar"
+    },
+    {
+      "name": "Dr. Bill Reynolds"
+    },
+    {
+      "name": "Dr. Binay Pathak"
+    },
+    {
+      "name": "Dr. Biswarup"
+    },
+    {
+      "name": "Dr. Debasis"
+    },
+    {
+      "name": "Dr. Deep"
+    },
+    {
+      "name": "Dr. Deepti"
+    },
+    {
+      "name": "Dr. Deepti Mishra"
+    },
+    {
+      "name": "Dr. Dibkar"
+    },
+    {
+      "name": "Dr. Dilip"
+    },
+    {
+      "name": "Dr. Gomathi"
+    },
+    {
+      "name": "Dr. Gouripriya"
+    },
+    {
+      "name": "Dr. Hari Prasad"
+    },
+    {
+      "name": "Dr. Hari Prasad Chennarapu"
+    },
+    {
+      "name": "Dr. Jahnabi"
+    },
+    {
+      "name": "Dr. Jai Prakash"
+    },
+    {
+      "name": "Dr. Jayaprakash"
+    },
+    {
+      "name": "Dr. Jayashri"
+    },
+    {
+      "name": "Dr. Jayasri"
+    },
+    {
+      "name": "Dr. Jayasri Dontabhaktuni"
+    },
+    {
+      "name": "Dr. Jayato Nayak"
+    },
+    {
+      "name": "Dr. Kamana"
+    },
+    {
+      "name": "Dr. Kirthi"
+    },
+    {
+      "name": "Dr. Kondaiah"
+    },
+    {
+      "name": "Dr. Kumudham"
+    },
+    {
+      "name": "Dr. Mahesh"
+    },
+    {
+      "name": "Dr. Manish"
+    },
+    {
+      "name": "Dr. Manoj"
+    },
+    {
+      "name": "Dr. Manu"
+    },
+    {
+      "name": "Dr. Manu Smrithi"
+    },
+    {
+      "name": "Dr. Manu Smriti"
+    },
+    {
+      "name": "Dr. Md Ataullah"
+    },
+    {
+      "name": "Dr. Mittika"
+    },
+    {
+      "name": "Dr. Mizaj"
+    },
+    {
+      "name": "Dr. Monali"
+    },
+    {
+      "name": "Dr. Monali Sahu"
+    },
+    {
+      "name": "Dr. Murtaza"
+    },
+    {
+      "name": "Dr. Murtaza Bohra"
+    },
+    {
+      "name": "Dr. Naga Deepthi"
+    },
+    {
+      "name": "Dr. Neeraj"
+    },
+    {
+      "name": "Dr. Neha"
+    },
+    {
+      "name": "Dr. Nemade"
+    },
+    {
+      "name": "Dr. Nidhi"
+    },
+    {
+      "name": "Dr. Nidhi Gupta"
+    },
+    {
+      "name": "Dr. Om Prakash"
+    },
+    {
+      "name": "Dr. Palash"
+    },
+    {
+      "name": "Dr. Pankaj Narke"
+    },
+    {
+      "name": "Dr. Paromita Bose"
+    },
+    {
+      "name": "Dr. Paromita Das"
+    },
+    {
+      "name": "Dr. Pavani"
+    },
+    {
+      "name": "Dr. Pooran"
+    },
+    {
+      "name": "Dr. Prabhakar"
+    },
+    {
+      "name": "Dr. Pradeep"
+    },
+    {
+      "name": "Dr. Prafulla"
+    },
+    {
+      "name": "Dr. Prasad"
+    },
+    {
+      "name": "Dr. Praveen"
+    },
+    {
+      "name": "Dr. Praveen Konka"
+    },
+    {
+      "name": "Dr. Preeti Priya"
+    },
+    {
+      "name": "Dr. Raghu"
+    },
+    {
+      "name": "Dr. Ragu"
+    },
+    {
+      "name": "Dr. Rahul"
+    },
+    {
+      "name": "Dr. Rajkumar Phatate"
+    },
+    {
+      "name": "Dr. Raju"
+    },
+    {
+      "name": "Dr. Rakesh"
+    },
+    {
+      "name": "Dr. Rakhee"
+    },
+    {
+      "name": "Dr. Ram Mohan Vemurai"
+    },
+    {
+      "name": "Dr. Ram Mohan Vemuri"
+    },
+    {
+      "name": "Dr. Rama Krishna"
+    },
+    {
+      "name": "Dr. Rama Murthy"
+    },
+    {
+      "name": "Dr. Rama Murthy Garimela"
+    },
+    {
+      "name": "Dr. Ramakant"
+    },
+    {
+      "name": "Dr. Ravi"
+    },
+    {
+      "name": "Dr. Ravi Babu"
+    },
+    {
+      "name": "Dr. Ravi Kishor"
+    },
+    {
+      "name": "Dr. Runa"
+    },
+    {
+      "name": "Dr. Sabeeha"
+    },
+    {
+      "name": "Dr. Saha"
+    },
+    {
+      "name": "Dr. Salome Benhur"
+    },
+    {
+      "name": "Dr. Sandeepan"
+    },
+    {
+      "name": "Dr. Sanjeev"
+    },
+    {
+      "name": "Dr. Sanjukta"
+    },
+    {
+      "name": "Dr. Santosh Thakur"
+    },
+    {
+      "name": "Dr. Satish"
+    },
+    {
+      "name": "Dr. Satyanarayan"
+    },
+    {
+      "name": "Dr. Satyanarayana Akula"
+    },
+    {
+      "name": "Dr. Sayantan"
+    },
+    {
+      "name": "Dr. Sebasteian"
+    },
+    {
+      "name": "Dr. Sebastian"
+    },
+    {
+      "name": "Dr. Sehar Khwaja"
+    },
+    {
+      "name": "Dr. Shabnam"
+    },
+    {
+      "name": "Dr. Sherlin"
+    },
+    {
+      "name": "Dr. Shivdasini"
+    },
+    {
+      "name": "Dr. Sreedhar Madichetty"
+    },
+    {
+      "name": "Dr. Subbarao"
+    },
+    {
+      "name": "Dr. Sukhija"
+    },
+    {
+      "name": "Dr. Tabitha Chekuri"
+    },
+    {
+      "name": "Dr. Tauheed"
+    },
+    {
+      "name": "Dr. Vandna Gokhroo"
+    },
+    {
+      "name": "Dr. Varun Kumar"
+    },
+    {
+      "name": "Dr. Veeraiah"
+    },
+    {
+      "name": "Dr. Venkataraman"
+    },
+    {
+      "name": "Dr. Visalakshi"
+    },
+    {
+      "name": "Dr. Yashwanth"
+    },
+    {
+      "name": "Dr. Yayati"
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Auditorium"
+    },
+    {
+      "name": "COMP Lab"
+    },
+    {
+      "name": "CS Lab"
+    },
+    {
+      "name": "ECR1"
+    },
+    {
+      "name": "ECR10"
+    },
+    {
+      "name": "ECR11"
+    },
+    {
+      "name": "ECR12"
+    },
+    {
+      "name": "ECR13"
+    },
+    {
+      "name": "ECR14"
+    },
+    {
+      "name": "ECR15"
+    },
+    {
+      "name": "ECR16"
+    },
+    {
+      "name": "ECR2"
+    },
+    {
+      "name": "ECR3"
+    },
+    {
+      "name": "ECR4"
+    },
+    {
+      "name": "ECR5"
+    },
+    {
+      "name": "ECR7"
+    },
+    {
+      "name": "ECR8"
+    },
+    {
+      "name": "ECR9"
+    },
+    {
+      "name": "ELT1"
+    },
+    {
+      "name": "ELT2"
+    },
+    {
+      "name": "ELT3"
+    },
+    {
+      "name": "ELT4"
+    },
+    {
+      "name": "ELT5"
+    },
+    {
+      "name": "ELT6"
+    },
+    {
+      "name": "ETR3"
+    },
+    {
+      "name": "ETR4"
+    },
+    {
+      "name": "ETR5"
+    },
+    {
+      "name": "Geology Lab"
+    },
+    {
+      "name": "IT Block"
+    },
+    {
+      "name": "IT2 Block"
+    },
+    {
+      "name": "Material Testing Lab"
+    }
+  ],
+  "courses": [
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Rakesh",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Anagha Tobi",
+      "room": "ELT3",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI2101",
+      "course_name": "CS/AI2101",
+      "professor": "Dr. Rakhee",
+      "room": "ECR11",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Ravi Kishor",
+      "room": "Auditorium",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS2102",
+      "course_name": "CS2102",
+      "professor": "Dr. Biswarup",
+      "room": "COMP Lab",
+      "student_group": "CS1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Sherlin",
+      "room": "ECR9",
+      "student_group": "CS2",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 11",
+      "course_name": "ECR 11",
+      "professor": "Dr. Balaji Prashanth",
+      "room": "ECR11",
+      "student_group": "CS3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 13",
+      "course_name": "ECR 13",
+      "professor": "Dr. Nidhi Gupta",
+      "room": "ECR13",
+      "student_group": "CS4",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MA2106",
+      "course_name": "MA2106",
+      "professor": "Dr. Pradeep",
+      "room": "ECR7",
+      "student_group": "CS4",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Kumudham",
+      "room": "ECR7",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "BT 2111",
+      "course_name": "BT 2111",
+      "professor": "Dr. Sabeeha",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC2103",
+      "course_name": "EC2103",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR8",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Sayantan",
+      "room": "ELT3",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "BT 2111",
+      "course_name": "BT 2111",
+      "professor": "Dr. Sabeeha",
+      "room": "CS Lab",
+      "student_group": "ECE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Sherlin",
+      "room": "ECR9",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Ravi Kishor",
+      "room": "ELT5",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Balaji Prashanth",
+      "room": "ECR7",
+      "student_group": "AI2",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Nidhi Gupta",
+      "room": "ECR9",
+      "student_group": "AI3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "BT 2110",
+      "course_name": "BT 2110",
+      "professor": "Dr. Aruna Kumar Chelluboyina",
+      "room": "TBD",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "BT 2108",
+      "course_name": "BT 2108",
+      "professor": "Dr. Akankasha Singh",
+      "room": "TBD",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "BT 2108",
+      "course_name": "BT 2108",
+      "professor": "Dr. Akankasha Singh",
+      "room": "ETR3",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CE 2105",
+      "course_name": "CE 2105",
+      "professor": "Dr. Anil",
+      "room": "Geology Lab",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 10",
+      "course_name": "ECR 10",
+      "professor": "Dr. Anil",
+      "room": "ECR10",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Naga Deepthi",
+      "room": "ECR9",
+      "student_group": "CS2",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Ramakant",
+      "room": "ECR9",
+      "student_group": "CS2",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 11",
+      "course_name": "ECR 11",
+      "professor": "Dr. Murtaza Bohra",
+      "room": "ECR11",
+      "student_group": "CS3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Nidhi",
+      "room": "IT2 Block",
+      "student_group": "CS3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MA2106",
+      "course_name": "MA2106",
+      "professor": "Dr. Pradeep",
+      "room": "ECR7",
+      "student_group": "CS4",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI 2102",
+      "course_name": "CS/AI 2102",
+      "professor": "Dr. Ravi Kishor",
+      "room": "IT2 Block",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Ankita",
+      "room": "ECR9",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "PH2102",
+      "course_name": "PH2102",
+      "professor": "Dr. Vandna Gokhroo",
+      "room": "ECR9",
+      "student_group": "AI1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 13",
+      "course_name": "ECR 13",
+      "professor": "Dr. Murtaza Bohra",
+      "room": "ECR13",
+      "student_group": "AI3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "BT 2109",
+      "course_name": "BT 2109",
+      "professor": "Dr. Runa",
+      "room": "TBD",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Kumudham",
+      "room": "ECR8",
+      "student_group": "CB",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CE 2103",
+      "course_name": "CE 2103",
+      "professor": "Dr. Anil",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "BT1102",
+      "course_name": "BT1102",
+      "professor": "Dr. Jayaprakash",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CH2103",
+      "course_name": "CH2103",
+      "professor": "Dr. Bill Reynolds",
+      "room": "ETR3",
+      "student_group": "CE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Rakesh",
+      "room": "ECR8",
+      "student_group": "CS3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MA2106",
+      "course_name": "MA2106",
+      "professor": "Dr. Pradeep",
+      "room": "ECR9",
+      "student_group": "CS4",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MA2103",
+      "course_name": "MA2103",
+      "professor": "Dr. Rakesh",
+      "room": "ECR9",
+      "student_group": "CS4",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 2102",
+      "course_name": "EC 2102",
+      "professor": "Dr. Sayantan",
+      "room": "ECR11",
+      "student_group": "AI3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2103",
+      "course_name": "HS2103",
+      "professor": "Dr. Sherlin",
+      "room": "ECR9",
+      "student_group": "CS2",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Raju",
+      "room": "ECR9",
+      "student_group": "CS2",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "HS2102",
+      "course_name": "HS2102",
+      "professor": "Dr. Raju",
+      "room": "ECR7",
+      "student_group": "CS3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR11",
+      "course_name": "ECR11",
+      "professor": "Dr. Sherlin",
+      "room": "ECR11",
+      "student_group": "AI2",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 13",
+      "course_name": "ECR 13",
+      "professor": "Dr. Balaji Prashanth",
+      "room": "ECR13",
+      "student_group": "AI3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI 3102",
+      "course_name": "CS/AI 3102",
+      "professor": "Dr. Yayati",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS 3105",
+      "course_name": "CS 3105",
+      "professor": "Dr. Veeraiah",
+      "room": "TBD",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI3103",
+      "course_name": "CS/AI3103",
+      "professor": "Dr. Prafulla",
+      "room": "Auditorium",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS 3106",
+      "course_name": "CS 3106",
+      "professor": "Dr. Praveen",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 11",
+      "course_name": "ECR 11",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR11",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 15",
+      "course_name": "ECR 15",
+      "professor": "Dr. Manoj",
+      "room": "ECR15",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 15",
+      "course_name": "ECR 15",
+      "professor": "Dr. Ravi Babu",
+      "room": "ECR15",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 3107",
+      "course_name": "EC 3107",
+      "professor": "Dr. Yashwanth",
+      "room": "ECR5",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC3101",
+      "course_name": "EC3101",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR5",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 3103",
+      "course_name": "EC 3103",
+      "professor": "Dr. Bharghava",
+      "room": "ECR5",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 3109",
+      "course_name": "EC 3109",
+      "professor": "Dr. Subbarao",
+      "room": "ECR5",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Kondaiah",
+      "room": "ECR12",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Deep",
+      "room": "ECR12",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Ravi",
+      "room": "ECR12",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Sebastian",
+      "room": "ECR12",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Abhijit",
+      "room": "ECR14",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 12",
+      "course_name": "ECR 12",
+      "professor": "Dr. Pavani",
+      "room": "ECR12",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 16",
+      "course_name": "ECR 16",
+      "professor": "Dr. Dibkar",
+      "room": "ECR16",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 11",
+      "course_name": "ECR 11",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR11",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CH3105",
+      "course_name": "CH3105",
+      "professor": "Dr. Gomathi",
+      "room": "ECR16",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "PH3101",
+      "course_name": "PH3101",
+      "professor": "Dr. Anil",
+      "room": "TBD",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS/AI 3102",
+      "course_name": "CS/AI 3102",
+      "professor": "Dr. Shabnam",
+      "room": "ELT4",
+      "student_group": "CSE1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MA3115",
+      "course_name": "MA3115",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR2",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MA3116",
+      "course_name": "MA3116",
+      "professor": "Dr. Manoj",
+      "room": "ECR2",
+      "student_group": "CM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 3109",
+      "course_name": "EC 3109",
+      "professor": "Dr. Subbarao",
+      "room": "ECR5",
+      "student_group": "ECM",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ME4069",
+      "course_name": "ME4069",
+      "professor": "Dr. Gouripriya",
+      "room": "ECR2",
+      "student_group": "ME",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 14",
+      "course_name": "ECR 14",
+      "professor": "Dr. Abhijit",
+      "room": "ECR14",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "MT3105",
+      "course_name": "MT3105",
+      "professor": "Dr. Pavani",
+      "room": "ECR8",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 10",
+      "course_name": "ECR 10",
+      "professor": "Dr. Ashish Kumar Sahu",
+      "room": "ECR10",
+      "student_group": "MT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR 16",
+      "course_name": "ECR 16",
+      "professor": "Dr. Satyanarayan",
+      "room": "ECR16",
+      "student_group": "NT",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC3101",
+      "course_name": "EC3101",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR13",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC3101",
+      "course_name": "EC3101",
+      "professor": "Dr. Bhanu Kiran",
+      "room": "ECR13",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS 3105",
+      "course_name": "CS 3105",
+      "professor": "Dr. Gouripriya",
+      "room": "ECR11",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 4121",
+      "course_name": "EC 4121",
+      "professor": "Dr. Bharghava",
+      "room": "ELT6",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EC 4124",
+      "course_name": "EC 4124",
+      "professor": "Dr. Pooran",
+      "room": "ELT1",
+      "student_group": "ECM1",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "EE 4101",
+      "course_name": "EE 4101",
+      "professor": "Dr. Subbarao",
+      "room": "ETR3",
+      "student_group": "EEE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "CS4101",
+      "course_name": "CS4101",
+      "professor": "Dr. Satish",
+      "room": "IT Block",
+      "student_group": "CSE3",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR-12",
+      "course_name": "ECR-12",
+      "professor": "Dr. Subbarao",
+      "room": "ECR12",
+      "student_group": "EEE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    },
+    {
+      "course_code": "ECR-16",
+      "course_name": "ECR-16",
+      "professor": "Dr. Subbarao",
+      "room": "ECR16",
+      "student_group": "EEE",
+      "session_type": "lecture",
+      "slots_required": 1,
+      "total_credits": 3,
+      "preference_bin": 1
+    }
+  ]
 }

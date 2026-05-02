@@ -2,6 +2,31 @@ import type { AuthResponse, IngestionSeedResponse, TimetableEntry, DashboardStat
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
+// Caching Layer
+const cache: Record<string, { data: any, timestamp: number }> = {};
+const CACHE_TTL = 30000*60*24; // 1 day in milliseconds
+
+const fetchWithCache = async (url: string, options: RequestInit = {}) => {
+    const isGet = !options.method || options.method === 'GET';
+    const cacheKey = url + (options.headers ? JSON.stringify(options.headers) : '');
+
+    if (isGet && cache[cacheKey] && (Date.now() - cache[cacheKey].timestamp < CACHE_TTL)) {
+        return cache[cacheKey].data;
+    }
+
+    const res = await fetch(url, options);
+    if (!res.ok) throw new Error((await res.json()).msg || "API Error");
+    
+    const data = await res.json();
+    if (isGet) {
+        cache[cacheKey] = { data, timestamp: Date.now() };
+    } else {
+        // Invalidate cache on mutations (POST/PUT/DELETE)
+        Object.keys(cache).forEach(key => delete cache[key]);
+    }
+    return data;
+};
+
 const getHeaders = () => {
     const token = localStorage.getItem("token");
     return {
@@ -12,56 +37,50 @@ const getHeaders = () => {
 
 export const api = {
     auth: {
-        signup: async (data: Record<string, string>): Promise<{ msg: string; role: string }> => {
-            const res = await fetch(`${BASE_URL}/auth/signup`, {
+        register: async (data: Record<string, string>): Promise<{ msg: string; role: string }> => {
+            return fetchWithCache(`${BASE_URL}/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
-            if (!res.ok) throw new Error((await res.json()).msg || "Signup failed");
-            return res.json();
         },
-        signin: async (data: Record<string, string>): Promise<AuthResponse> => {
-            const res = await fetch(`${BASE_URL}/auth/signin`, {
+        authenticate: async (data: Record<string, string>): Promise<AuthResponse> => {
+            return fetchWithCache(`${BASE_URL}/auth/signin`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
-            if (!res.ok) throw new Error((await res.json()).msg || "Signin failed");
-            return res.json();
         }
     },
     timetable: {
-        get: async (params?: string): Promise<TimetableEntry[]> => {
+        fetchSchedule: async (params?: string): Promise<TimetableEntry[]> => {
             const url = params ? `${BASE_URL}/timetable?${params}` : `${BASE_URL}/timetable`;
-            const res = await fetch(url, { headers: getHeaders() });
-            if (!res.ok) throw new Error("Failed to fetch timetable");
-            return res.json();
+            return fetchWithCache(url, { headers: getHeaders() });
         },
-        getStats: async (): Promise<DashboardStats> => {
-            const res = await fetch(`${BASE_URL}/timetable/stats`, { headers: getHeaders() });
-            if (!res.ok) throw new Error("Failed to fetch stats");
-            return res.json();
+        fetchDashboardStats: async (): Promise<DashboardStats> => {
+            return fetchWithCache(`${BASE_URL}/timetable/stats`, { headers: getHeaders() });
         },
-        generate: async (): Promise<{ msg: string; schedule_id: number; fitness: number }> => {
-            const res = await fetch(`${BASE_URL}/timetable/generate`, {
+        triggerGeneration: async (): Promise<{ msg: string; schedule_id: number; fitness: number }> => {
+            return fetchWithCache(`${BASE_URL}/timetable/generate`, {
                 method: "POST",
                 headers: getHeaders()
             });
-            if (!res.ok) throw new Error((await res.json()).msg || "Generation failed");
-            return res.json();
+        },
+        exportCsv: async () => {
+            // No cache for blob/exports
+            const res = await fetch(`${BASE_URL}/timetable/export`, { headers: getHeaders() });
+            if (!res.ok) throw new Error("Failed to export timetable");
+            return res.blob();
         }
     },
     ingestion: {
-        seed: async (): Promise<IngestionSeedResponse> => {
-            const res = await fetch(`${BASE_URL}/ingestion/seed`, {
+        triggerSeed: async (): Promise<IngestionSeedResponse> => {
+            return fetchWithCache(`${BASE_URL}/ingestion/seed`, {
                 method: "POST",
                 headers: getHeaders()
             });
-            if (!res.ok) throw new Error("Seeding failed");
-            return res.json();
         },
-        upload: async (type: string, file: File): Promise<{ msg: string }> => {
+        uploadFile: async (type: string, file: File): Promise<{ msg: string }> => {
             const formData = new FormData();
             formData.append("file", file);
             const token = localStorage.getItem("token");
@@ -73,30 +92,25 @@ export const api = {
                 body: formData
             });
             if (!res.ok) throw new Error("Upload failed");
+            // Clear cache on upload
+            Object.keys(cache).forEach(key => delete cache[key]);
             return res.json();
         }
     },
     preferences: {
-        listProfessors: async () => {
-            const res = await fetch(`${BASE_URL}/preferences/professors`, { headers: getHeaders() });
-            if (!res.ok) throw new Error("Failed to list professors");
-            return res.json();
+        listFaculty: async () => {
+            return fetchWithCache(`${BASE_URL}/preferences/professors`, { headers: getHeaders() });
         },
-        getShift: async (professorId?: number) => {
+        fetchShift: async (professorId?: number) => {
             const url = professorId ? `${BASE_URL}/preferences/shift?professor_id=${professorId}` : `${BASE_URL}/preferences/shift`;
-            const res = await fetch(url, { headers: getHeaders() });
-            if (!res.ok) throw new Error("Failed to get shift");
-            return res.json();
+            return fetchWithCache(url, { headers: getHeaders() });
         },
         updateShift: async (binId: number, professorId?: number) => {
-            const res = await fetch(`${BASE_URL}/preferences/shift`, {
+            return fetchWithCache(`${BASE_URL}/preferences/shift`, {
                 method: "POST",
                 headers: getHeaders(),
                 body: JSON.stringify({ bin_id: binId, professor_id: professorId })
             });
-            if (!res.ok) throw new Error("Failed to update preferences");
-            return res.json();
         }
     }
-
 };

@@ -1,45 +1,61 @@
 # Timetable System Frontend (React)
 
-A premium, responsive dashboard interface for the Automated Time Table Generation System, built with React, Vite, and Tailwind CSS.
+A premium, responsive dashboard for the Automated Timetable Generation System, built with **React**, **Vite**, and **Tailwind CSS**.
 
-## Setup Instructions
+## Installation & Development
 
-### 1. Prerequisites
-- Node.js 18 or higher
-- **Bun** (Recommended for performance)
+The frontend supports **Bun** (highly recommended for speed) and standard **Node.js/npm** environments.
 
-### 2. Installation
-Navigate to this directory and install dependencies:
+### Option A: Using Bun (Recommended)
+1. **Install Dependencies**:
+   ```bash
+   bun install
+   ```
+2. **Setup Environment**:
+   - Create `.env` from `.env.example`.
+   - Ensure `VITE_API_BASE_URL=http://localhost:5000/api`.
+3. **Run Dev Server**:
+   ```bash
+   bun dev
+   ```
+
+### Option B: Using Node.js (npm / pnpm)
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   # OR
+   pnpm install
+   ```
+2. **Run Dev Server**:
+   ```bash
+   npm run dev
+   # OR
+   pnpm dev
+   ```
+
+## Production Build
+To generate a production-ready static bundle:
 ```bash
-bun install
+bun build  # or npm run build
 ```
+The output will be in the `dist/` directory.
 
-### 3. Configuration
-Copy the example environment file:
-```bash
-cp .env.example .env
-```
-Ensure `VITE_API_BASE_URL` points to your running backend (default: `http://localhost:5000/api`).
+## System Validation
+Before committing changes, run the following to ensure quality:
+- **Linting**: `npm run lint`
+- **Type Checking**: `npx tsc --noEmit`
 
-### 4. Running the Development Server
-```bash
-bun dev
-```
-The UI will be available at `http://localhost:5173`.
-
-## Core Features
-- **Intelligent Dashboard:** Dynamic stats that change based on your role (Admin, Faculty, or Student).
-- **Interactive Timetable:** Click any session to see full details in a themed popup.
-- **Calendar Integration:** Export your schedule as an `.ics` file for Google/Outlook calendars.
-- **Pro Printing:** Perfectly scaled A4 landscape PDF export.
-- **Role-Based Views:**
-  - **Admins:** Global control, GA engine management, and data seeding.
-  - **Faculty:** Teaching window preference management.
-  - **Students:** Group-scoped schedules and enrollment metrics.
+## Advanced Features
+- **Dynamic Role Dashboard**: Tailored metrics for Admins, Faculty, and Students.
+- **Export Engine**:
+  - **ICS**: Sync classes with Google/Outlook calendars.
+  - **PDF**: Pro-grade A4 landscape prints.
+  - **JSON**: Raw data exports for system backups.
+- **GA Feedback**: Real-time toast notifications for GA convergence and fitness scores.
 
 ## Tech Stack
-- **React 18 & Vite**
-- **TypeScript** (Soundly typed)
-- **Tailwind CSS & Framer Motion**
-- **Radix UI** (via Shadcn)
-- **Phosphor Icons**
+- **Framework**: React 18
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + Framer Motion
+- **UI Components**: Radix UI (via Shadcn)
+- **Icons**: Phosphor Icons

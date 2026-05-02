@@ -1,0 +1,3 @@
+name,is_lab,capacity,x,y,z
+ECR-1,false,150,0.0,0.0,0.0
+Lab-101,true,60,10.0,5.0,0.0

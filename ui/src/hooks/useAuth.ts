@@ -16,11 +16,11 @@ export const useAuth = () => {
     setIsLoading(true);
     try {
       if (isSignUp) {
-        await api.auth.signup({ email, password });
+        await api.auth.register({ email, password });
         toast.success("Account created! Please sign in.");
         setIsSignUp(false);
       } else {
-        const data = await api.auth.signin({ email, password });
+        const data = await api.auth.authenticate({ email, password });
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("userRole", data.role.toLowerCase());
         localStorage.setItem("userEmail", email);

@@ -37,9 +37,10 @@ export interface AuthResponse {
 }
 
 export interface IngestionSeedResponse {
-    faculties: number;
-    rooms: number;
-    courses: number;
+    professors_added: number;
+    rooms_added: number;
+    instances_created: number;
+    groups_found: number;
 }
 
 export interface BackendActivity {
