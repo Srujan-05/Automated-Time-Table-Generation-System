@@ -21,7 +21,7 @@ class Instructor:
 
 class Room:
     """Represents a physical classroom, lab, or lecture hall"""
-    def __init__(self, id, name, is_lab=False, capacity=100, x=0.0, y=0.0, z=0.0):
+    def __init__(self, id, name, is_lab=False, capacity=100, x=0.0, y=0.0, z=0.0, allowed_batches=None):
         self.id = id
         self.name = name
         self.is_lab = is_lab
@@ -29,10 +29,12 @@ class Room:
         self.x = x  # X coordinate for distance calculation
         self.y = y  # Y coordinate for distance calculation
         self.z = z  # Z coordinate for distance calculation
+        self.allowed_batches = allowed_batches  # None = all batches allowed, List[str] = specific batches only
     
     def __repr__(self):
         room_type = "Lab" if self.is_lab else "Classroom"
-        return f"Room({self.id}, {self.name}, {room_type}, cap={self.capacity})"
+        batches_str = f", batches={self.allowed_batches}" if self.allowed_batches else ""
+        return f"Room({self.id}, {self.name}, {room_type}, cap={self.capacity}{batches_str})"
 
 
 class StudentGroup:

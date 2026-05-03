@@ -65,7 +65,8 @@ class DataLoader:
                 y=room.y,
                 z=room.z,
                 capacity=room.capacity,
-                is_lab=room.is_lab
+                is_lab=room.is_lab,
+                allowed_batches=room.allowed_batches
             )
             rooms.append(room_obj)
         

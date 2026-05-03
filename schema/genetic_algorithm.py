@@ -119,14 +119,27 @@ class GASearch:
             
             if not available_rooms:
                 # Debug: check why rooms failed
+                student_grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                
                 if course.session_type == 'lab':
                     matching_labs = [r for r in self.rooms if hasattr(r, 'is_lab') and r.is_lab]
                     self.logger.info(f"      [FAIL] No suitable lab rooms (type check: {len(matching_labs)} labs exist)")
                     if hasattr(course.student_grp, 'size'):
                         self.logger.info(f"             Student group size: {course.student_grp.size}, "
                               f"room capacities: {[r.capacity for r in matching_labs if hasattr(r, 'capacity')]}")
+                    # Check batch restrictions
+                    batch_restricted_labs = [r for r in matching_labs if getattr(r, 'allowed_batches', None) is not None 
+                                            and student_grp_name not in getattr(r, 'allowed_batches', [])]
+                    if batch_restricted_labs:
+                        self.logger.info(f"             Batch restrictions exclude {len(batch_restricted_labs)} lab(s) for {student_grp_name}")
                 else:
                     self.logger.info(f"      [FAIL] No suitable rooms available")
+                    # Check batch restrictions for non-lab rooms
+                    non_lab_rooms = [r for r in self.rooms if not (hasattr(r, 'is_lab') and r.is_lab)]
+                    batch_restricted = [r for r in non_lab_rooms if getattr(r, 'allowed_batches', None) is not None 
+                                       and student_grp_name not in getattr(r, 'allowed_batches', [])]
+                    if batch_restricted:
+                        self.logger.info(f"             Batch restrictions exclude {len(batch_restricted)} room(s) for {student_grp_name}")
                 failed_courses.append(course)
                 continue
             

@@ -132,10 +132,26 @@ def export_timetable_csv():
 @timetable_bp.route('/rooms', methods=['GET'])
 @jwt_required()
 def list_rooms():
-    """Returns a simple list of all room names."""
+    """Returns a list of all rooms with optional detailed information."""
     from ..models import Room
+    
+    # Check if detail parameter is passed for detailed room info
+    detailed = request.args.get('detailed', 'false').lower() == 'true'
     rooms = Room.query.order_by(Room.name).all()
-    return jsonify([r.name for r in rooms]), 200
+    
+    if detailed:
+        return jsonify([{
+            'id': r.id,
+            'name': r.name,
+            'is_lab': r.is_lab,
+            'capacity': r.capacity,
+            'allowed_batches': r.allowed_batches,
+            'x': r.x,
+            'y': r.y,
+            'z': r.z
+        } for r in rooms]), 200
+    else:
+        return jsonify([r.name for r in rooms]), 200
 
 @timetable_bp.route('/courses', methods=['GET'])
 @jwt_required()

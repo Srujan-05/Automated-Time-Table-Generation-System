@@ -20,10 +20,13 @@ class IngestionService:
         added_count = 0
         for item in room_list:
             if not Room.query.filter_by(name=item['name']).first():
+                # allowed_batches can be None (all batches allowed) or a list of batch names
+                allowed_batches = item.get('allowed_batches', None)
                 db.session.add(Room(
                     name=item['name'], 
                     is_lab=item.get('is_lab', False), 
-                    capacity=item.get('capacity', 100)
+                    capacity=item.get('capacity', 100),
+                    allowed_batches=allowed_batches
                 ))
                 added_count += 1
         db.session.commit()

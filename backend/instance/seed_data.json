@@ -390,7 +390,8 @@
       "name": "COMP Lab"
     },
     {
-      "name": "CS Lab"
+      "name": "CS Lab",
+      "allowed_batches": ["CS1", "CS2", "CS3", "CS4", "AI1", "AI2", "AI3", "AI4"]
     },
     {
       "name": "ECR1"

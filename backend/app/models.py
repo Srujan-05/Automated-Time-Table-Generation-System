@@ -45,6 +45,7 @@ class Room(db.Model):
     x = db.Column(db.Float, default=0.0)
     y = db.Column(db.Float, default=0.0)
     z = db.Column(db.Float, default=0.0)
+    allowed_batches = db.Column(db.JSON, nullable=True)  # None = all batches allowed, List of batch names = restricted
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(UTC))
     
     course_instances = db.relationship('CourseInstance', backref='room', lazy=True)

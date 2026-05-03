@@ -79,6 +79,23 @@ class ConstraintsMixin:
                                 )
                             return False
 
+                # 5b. allowed_batches constraint (room batch restrictions)
+                for course in courses:
+                    room_allowed_batches = getattr(course.room, 'allowed_batches', None)
+                    if room_allowed_batches is not None:
+                        # If room has restrictions, check if student group is allowed
+                        grp_name = (course.student_grp.name
+                                    if hasattr(course.student_grp, 'name')
+                                    else str(course.student_grp))
+                        if grp_name not in room_allowed_batches:
+                            if verbose:
+                                self.logger.info(
+                                    f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
+                                    f"{grp_name} not allowed in room {course.room.name} "
+                                    f"(allowed: {room_allowed_batches})"
+                                )
+                            return False
+
             # 6. lectures per day (unless lecture_consecutive=True)
             lectures_per_day = {}
             seen_instances = set()
@@ -172,6 +189,13 @@ class ConstraintsMixin:
             if hasattr(assigned_room, 'is_lab') and assigned_room.is_lab:
                 return False
         
+        # Room allowed_batches constraint: check if student group is allowed in this room
+        room_allowed_batches = getattr(assigned_room, 'allowed_batches', None)
+        if room_allowed_batches is not None:
+            grp_name = new_course.student_grp.name if hasattr(new_course.student_grp, 'name') else str(new_course.student_grp)
+            if grp_name not in room_allowed_batches:
+                return False
+        
         # Professor conflict
         if new_course.instructor.id == existing_course.instructor.id:
             return False
@@ -235,5 +259,13 @@ class ConstraintsMixin:
             if hasattr(course.student_grp, 'size') and hasattr(room, 'capacity'):
                 if room.capacity < course.student_grp.size:
                     continue
+            
+            # Check allowed_batches constraint
+            room_allowed_batches = getattr(room, 'allowed_batches', None)
+            if room_allowed_batches is not None:
+                grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                if grp_name not in room_allowed_batches:
+                    continue
+            
             available_rooms.append(room)
         return available_rooms

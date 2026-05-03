@@ -52,10 +52,10 @@ def get_ga_inputs():
     print(f"      ✓ {len(professors)} professors loaded")
     
     print("[2/5] Fetching rooms...")
-    cursor.execute("SELECT id, name, is_lab, capacity FROM rooms ORDER BY id;")
+    cursor.execute("SELECT id, name, is_lab, capacity, allowed_batches FROM rooms ORDER BY id;")
     rooms = []
     for row in cursor.fetchall():
-        room = Room(row[0], row[1], is_lab=row[2], capacity=row[3])
+        room = Room(row[0], row[1], is_lab=row[2], capacity=row[3], allowed_batches=row[4])
         rooms.append(room)
     print(f"      ✓ {len(rooms)} rooms loaded")
     
