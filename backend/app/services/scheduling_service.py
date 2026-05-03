@@ -40,7 +40,7 @@ class SchedulingService:
 
         # 2. Map Database Models to GA-compatible Objects
         instructors_map = {p.id: Instructor(p.id, p.name) for p in all_professors}
-        ga_rooms = [GARoom(r.id, r.name, r.is_lab, r.capacity, r.x, r.y, r.z) for r in all_rooms]
+        ga_rooms = [GARoom(r.id, r.name, r.is_lab, r.capacity, r.x, r.y, r.z, r.allowed_batches) for r in all_rooms]
         
         # Map groups including their hierarchy for constraint checking
         groups_map = {}
@@ -48,6 +48,15 @@ class SchedulingService:
             ga_g = GAStudentGroup(g.name, g.size)
             ga_g.id = g.id # Keep DB ID for mapping
             groups_map[g.id] = ga_g
+        
+        # Map batch names to student group objects
+        groups_map_by_name = {g.name: groups_map[g.id] for g in all_groups}
+        
+        # Convert allowed_batches from batch names to student group objects
+        for room in ga_rooms:
+            if room.allowed_batches:
+                room.allowed_batches = [groups_map_by_name[batch_name] for batch_name in room.allowed_batches 
+                                       if batch_name in groups_map_by_name]
 
         ga_course_instances = []
         for instance in all_instances:

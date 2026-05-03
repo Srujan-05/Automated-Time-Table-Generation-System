@@ -11,7 +11,7 @@ export const useIngestion = () => {
   const ingestionTypes = [
     { type: "Courses", description: "Required fields: course_code, session_type, professor, student_group" },
     { type: "Faculty", description: "Required fields: name, email (optional)" },
-    { type: "Rooms", description: "Required fields: name, is_lab, capacity" },
+    { type: "Rooms", description: "Required fields: name, is_lab, capacity. Optional: allowed_batches (JSON list of batch names)" },
   ];
 
   const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {

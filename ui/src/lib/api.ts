@@ -62,8 +62,11 @@ export const api = {
         search: async (query: string): Promise<any[]> => {
             return fetchWithCache(`${BASE_URL}/timetable/search?q=${query}`, { headers: getHeaders() });
         },
-        listRooms: async (): Promise<string[]> => {
-            return fetchWithCache(`${BASE_URL}/timetable/rooms`, { headers: getHeaders() });
+        listRooms: async (detailed?: boolean): Promise<string[] | any[]> => {
+            const url = detailed 
+                ? `${BASE_URL}/timetable/rooms?detailed=true` 
+                : `${BASE_URL}/timetable/rooms`;
+            return fetchWithCache(url, { headers: getHeaders() });
         },
         listCourses: async (): Promise<string[]> => {
             return fetchWithCache(`${BASE_URL}/timetable/courses`, { headers: getHeaders() });

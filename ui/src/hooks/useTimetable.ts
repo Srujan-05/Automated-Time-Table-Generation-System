@@ -29,20 +29,38 @@ export const useTimetable = () => {
 
   const fetchFilterOptions = useCallback(async () => {
     try {
-        const [rooms, courses, professors, groups] = await Promise.all([
-            api.timetable.listRooms(),
+        const [roomsData, courses, professors, groups] = await Promise.all([
+            api.timetable.listRooms(true), // Request detailed room info
             api.timetable.listCourses(),
             api.timetable.listProfessors(),
             api.timetable.listGroups()
         ]);
         
-        // Categorize groups: if they start with "Year" they are years, otherwise batches
-        const years = groups.filter(g => g.startsWith("Year")).map(g => g.replace("Year ", ""));
-        const batches = groups.filter(g => !g.startsWith("Year"));
+        // Handle rooms: either array of strings or array of room objects
+        const rooms = Array.isArray(roomsData)
+          ? roomsData.map(r => typeof r === 'string' ? r : r.name || '')
+          : [];
+        
+        // Categorize groups more accurately
+        // Check for common year indicators: "Year", numbers, or levels like "1st", "2nd"
+        const years: string[] = [];
+        const batches: string[] = [];
+        
+        groups.forEach((g: string) => {
+          const lowerG = g.toLowerCase();
+          // Check if group is a year: contains "year", "1st", "2nd", "3rd", "4th", or just digits
+          if (lowerG.includes("year") || /^\d+$/.test(g) || /st|nd|rd|th/.test(lowerG)) {
+            years.push(g);
+          } else {
+            batches.push(g);
+          }
+        });
 
         setFilterOptions({ rooms, courses, professors, years, batches });
     } catch (err) {
         console.error("Failed to fetch filter options", err);
+        // Fallback to empty options on error
+        setFilterOptions({ rooms: [], courses: [], professors: [], years: [], batches: [] });
     }
   }, []);
 
@@ -68,11 +86,21 @@ export const useTimetable = () => {
       const timetable: TimetableMap = {};
       let maxSlot = 0;
 
-      entries.forEach((e: TimetableEntry) => {
+      // Sort entries by day and slot for proper rendering
+      const sortedEntries = [...entries].sort((a, b) => {
+        const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+        const dayA = dayOrder.indexOf(a.day || "Monday");
+        const dayB = dayOrder.indexOf(b.day || "Monday");
+        if (dayA !== dayB) return dayA - dayB;
+        return (a.slot || 0) - (b.slot || 0);
+      });
+
+      // Store ALL entries per slot (enabling multi-class display)
+      sortedEntries.forEach((e: TimetableEntry) => {
           const day = e.day || "Monday";
           if (!timetable[day]) timetable[day] = [];
           timetable[day].push(e);
-          if (e.slot > maxSlot) maxSlot = e.slot;
+          if (e.slot && e.slot > maxSlot) maxSlot = e.slot;
       });
 
       // Dynamic slot count based on data (min 10)
@@ -142,7 +170,9 @@ export const useTimetable = () => {
 
   return {
     isLoading,
-    ...data,
+    timetable: data?.timetable,
+    days: data?.days,
+    times: data?.times,
     filters,
     filterOptions,
     updateFilter,

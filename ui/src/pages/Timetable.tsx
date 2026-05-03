@@ -11,6 +11,7 @@ import {
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { TimetableGrid } from "@/components/timetable/TimetableGrid";
+import { ContinuousTimetableGrid } from "@/components/timetable/ContinuousTimetableGrid";
 import { type TimetableMap } from "@/lib/types";
 import { useTimetable } from "@/hooks/useTimetable";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -185,11 +186,19 @@ const Timetable = () => {
                 </div>
             </div>
         )}
-        <TimetableGrid 
+        {filters.group ? (
+          <ContinuousTimetableGrid 
             timetable={timetable as TimetableMap} 
             days={days || []} 
             times={times || []} 
-        />
+          />
+        ) : (
+          <TimetableGrid 
+            timetable={timetable as TimetableMap} 
+            days={days || []} 
+            times={times || []} 
+          />
+        )}
       </div>
     </div>
   );

@@ -26,9 +26,15 @@ export interface Course {
 }
 
 export interface Room {
-    id: string;
-    capacity: number;
-    type: string;
+    id?: string | number;
+    name?: string;
+    capacity?: number;
+    type?: string;
+    is_lab?: boolean;
+    allowed_batches?: string[] | null;
+    x?: number;
+    y?: number;
+    z?: number;
 }
 
 export interface AuthResponse {

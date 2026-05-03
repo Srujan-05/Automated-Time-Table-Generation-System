@@ -1,5 +1,5 @@
 import React from "react";
-import { TimetableCell } from "./TimetableCell";
+import { TimetableMultiCell } from "./TimetableMultiCell";
 import { type TimetableEntry, type TimetableMap } from "@/lib/types";
 
 interface TimetableGridProps {
@@ -13,10 +13,9 @@ export const TimetableGrid: React.FC<TimetableGridProps> = ({
   days, 
   times 
 }) => {
-  const getEntry = (day: string, slot: string): TimetableEntry | undefined => {
+  const getEntries = (day: string, slot: string): TimetableEntry[] => {
     const daySchedule = timetable[day] || [];
-    // slot is 1-indexed string here
-    return daySchedule.find(entry => entry.slot?.toString() === slot);
+    return daySchedule.filter(entry => entry.slot?.toString() === slot);
   };
 
   const gridTemplate = `60px repeat(${times.length}, 1fr)`;
@@ -52,7 +51,10 @@ export const TimetableGrid: React.FC<TimetableGridProps> = ({
                 {day.substring(0, 3)}
               </div>
               {times.map(time => (
-                <TimetableCell key={`${day}-${time}`} entry={getEntry(day, time)} />
+                <TimetableMultiCell 
+                  key={`${day}-${time}`} 
+                  entries={getEntries(day, time)}
+                />
               ))}
             </div>
           ))}
