@@ -30,7 +30,6 @@ Before you begin, ensure you have the following installed:
 
 ### Optional
 - **PostgreSQL:** For production database (Supabase recommended for cloud)
-- **Docker:** For containerized deployment
 
 ---
 
@@ -77,13 +76,10 @@ cp .env.example .env  # (if provided, otherwise create manually)
 uv run flask db upgrade
 
 # Generate seed data (optional, for testing)
-uv run python generate_seed_data.py
-```
-
-#### 2.5 Verify backend setup
-```bash
-# Run validation checks
-uv run python validate_system.py
+# From backend directory:
+uv run python ../tests/generate_seed_data.py
+# OR from project root:
+python tests/generate_seed_data.py
 ```
 
 ### 3. Frontend Setup (React/Vite)
@@ -109,8 +105,7 @@ yarn install
 ```bash
 # Create .env file in ui/ directory
 cat > .env << EOF
-VITE_API_URL=http://localhost:5000
-VITE_API_BASE_PATH=/api
+VITE_API_BASE_URL=http://localhost:5000/api
 EOF
 ```
 
@@ -212,43 +207,28 @@ Then run migrations:
 ```bash
 cd backend
 uv run flask db upgrade
-uv run python generate_seed_data.py
+uv run python ../tests/generate_seed_data.py
 ```
 
 ---
 
 ## 🧪 Testing & Validation
 
-### Run System Validation
-```bash
-cd backend
-uv run python validate_system.py
-```
-
-This validates:
-- Database connectivity
-- GA algorithm functionality
-- API endpoints
-- Seed data integrity
-
 ### Run Tests
 ```bash
-cd backend
+cd tests
 
-# Run all tests
-uv run pytest
+# Run simple test
+python simple_test.py
 
-# Run specific test file
-uv run pytest tests/test_ga.py -v
-
-# Run with coverage
-uv run pytest --cov=app tests/
+# Run full test suite
+python run_test.py
 ```
 
-### Generate Test Timetables
+### Generate Test Timetables (GA Testing)
 ```bash
-cd backend
-uv run python schema/run_ga.py
+cd schema/test
+python run_ga.py
 ```
 
 ---
@@ -263,15 +243,21 @@ Automated Time Table Gen/
 │   │   ├── routes/              # API endpoints
 │   │   ├── services/            # Business logic
 │   │   └── extensions.py        # Flask extensions
-│   ├── ga/                       # Genetic algorithm
-│   │   ├── constraints.py       # Constraint checking
-│   │   ├── population.py        # Population initialization
-│   │   ├── operators.py         # GA operators
-│   │   └── fitness.py           # Fitness evaluation
-│   ├── generate_seed_data.py    # Seed data generator
-│   ├── pyproject.toml           # Python dependencies
+│   ├── migrations/              # Database migrations
+│   ├── instance/                # Database & instance files
 │   ├── main.py                  # Flask app entry point
+│   ├── nuke_db.py               # Database reset utility
+│   ├── pyproject.toml           # Python dependencies
+│   ├── requirements.txt         # Python requirements (legacy)
+│   ├── .env.example             # Environment variables template
 │   └── README.md                # Backend documentation
+│
+├── ga/                           # Genetic algorithm (core)
+│   ├── constraints.py           # Constraint checking
+│   ├── population.py            # Population initialization
+│   ├── operators.py             # GA operators (crossover, mutation)
+│   ├── fitness.py               # Fitness evaluation
+│   └── README.md                # GA documentation
 │
 ├── ui/                           # React/Vite frontend
 │   ├── src/
@@ -284,13 +270,25 @@ Automated Time Table Gen/
 │   ├── vite.config.ts           # Vite config
 │   └── README.md                # Frontend documentation
 │
-├── schema/                       # Data schema & GA testing
-│   ├── genetic_algorithm.py     # GA implementation
-│   └── run_ga.py                # GA test runner
+├── schema/                       # Data schema & experimental GA
+│   ├── genetic_algorithm.py     # GA implementation (legacy)
+│   ├── genetic_algorithm_improved.py # Improved GA version
+│   ├── test/
+│   │   ├── run_ga.py            # GA test runner
+│   │   └── ga_verbose_output.txt # Test output logs
+│   ├── raw_data/                # Sample data files
+│   └── README.md                # Schema documentation
 │
-├── tests/                        # Test files
-├── migrations/                   # Database migrations
-└── README.md                     # This file
+├── tests/                        # Test files & utilities
+│   ├── run_test.py              # Main test runner
+│   ├── simple_test.py           # Simple tests
+│   ├── test_data.py             # Test data generation
+│   └── generate_seed_data.py    # Seed data generator
+│
+├── migrations/                   # Alembic database migrations
+├── .venv/                        # Python virtual environment
+├── README.md                     # This file
+└── .gitignore                    # Git ignore rules
 ```
 
 ---
@@ -304,26 +302,22 @@ FLASK_ENV=development
 FLASK_APP=main.py
 SECRET_KEY=your-super-secret-key-here
 
-# Database
-DATABASE_URL=sqlite:///instance/timetable.db
-# OR for PostgreSQL:
-# DATABASE_URL=postgresql://user:password@localhost:5432/timetable
+# Database Selection: 'sqlite' or 'postgres'
+DB_TYPE=sqlite
 
-# JWT
+# SQLite URL (Used if DB_TYPE=sqlite)
+SQLITE_URL=sqlite:///instance/timetable.db
+
+# PostgreSQL URL (Used if DB_TYPE=postgres)
+DATABASE_URL=postgresql://user:password@localhost:5432/timetable
+
+# JWT Configuration
 JWT_SECRET_KEY=your-jwt-secret-key
-
-# Email (optional, for notifications)
-MAIL_SERVER=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=your-email@example.com
-MAIL_PASSWORD=your-app-password
 ```
 
 ### Frontend (.env)
 ```bash
-VITE_API_URL=http://localhost:5000
-VITE_API_BASE_PATH=/api
-VITE_DEBUG=true
+VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
 ---
@@ -379,21 +373,8 @@ bun install  # or npm install
 **API connection errors:**
 ```bash
 # Verify backend is running on http://localhost:5000
-# Check VITE_API_URL in .env matches backend URL
+# Check VITE_API_BASE_URL in .env matches backend URL (http://localhost:5000/api)
 # Check browser console for CORS errors
-```
-
-### GA Issues
-
-**GA taking too long:**
-- Reduce population size in GA parameters
-- Reduce number of generations
-- Check constraint violations in logs
-
-**Constraint violations:**
-```bash
-cd backend
-uv run python validate_system.py --verbose
 ```
 
 ---
@@ -408,34 +389,3 @@ For detailed information, refer to:
 - [Class Documentation](./CLASSES_DOCUMENTATION.txt)
 
 ---
-
-## 🚀 Production Deployment
-
-### Build Frontend
-```bash
-cd ui
-bun run build
-# Creates optimized build in dist/
-```
-
-### Deploy Backend
-```bash
-cd backend
-
-# Set production environment
-export FLASK_ENV=production
-export DATABASE_URL=postgresql://...  # Use production DB
-
-# Run with production server (gunicorn)
-pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:5000 main:app
-```
-
-### Using Docker (Optional)
-```bash
-# Build Docker images
-docker-compose build
-
-# Run services
-docker-compose up
-```
