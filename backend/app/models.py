@@ -46,6 +46,7 @@ class Room(db.Model):
     y = db.Column(db.Float, default=0.0)
     z = db.Column(db.Float, default=0.0)
     allowed_batches = db.Column(db.JSON, nullable=True)  # None = all batches allowed, List of batch names = restricted
+    allowed_departments = db.Column(db.JSON, nullable=True)  # None/empty = all departments allowed, List of dept codes = restricted
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(UTC))
     
     course_instances = db.relationship('CourseInstance', backref='room', lazy=True)
@@ -120,6 +121,7 @@ class CourseInstance(db.Model):
     parallelizable_id = db.Column(db.Integer)  # Same ID = mutually exclusive in same track
     
     course_credits = db.Column(db.Float)
+    department_name = db.Column(db.String(50), nullable=True)  # e.g., "CSE", "ME", "General" - department owning/teaching this course
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(UTC))
     
     timetable_entries = db.relationship('TimetableEntry', backref='course_instance', lazy=True)

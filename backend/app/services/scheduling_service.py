@@ -93,19 +93,19 @@ class SchedulingService:
                 convergence_threshold=0.1, 
                 min_generations=min_gens
             )
-            print(f"\nFull Timetable:")
-            days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']  # Weekdays only
-            for day in days:
-                print(f"\n{day}:")
-                day_slots = best_timetable[day]
-                for slot in sorted(day_slots.keys()):
-                    courses_in_slot = day_slots[slot]
-                    if courses_in_slot:
-                        course_names = [f"{c.course_id}-{c.session_type}({c.student_grp.name})" for c in
-                                        courses_in_slot]
-                        print(f"  Slot {slot}: {course_names}")
-                    else:
-                        print(f"  Slot {slot}: [empty]")
+            # print(f"\nFull Timetable:")
+            # days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']  # Weekdays only
+            # for day in days:
+            #     print(f"\n{day}:")
+            #     day_slots = best_timetable[day]
+            #     for slot in sorted(day_slots.keys()):
+            #         courses_in_slot = day_slots[slot]
+            #         if courses_in_slot:
+            #             course_names = [f"{c.course_id}-{c.session_type}({c.student_grp.name})" for c in
+            #                             courses_in_slot]
+            #             print(f"  Slot {slot}: {course_names}")
+            #         else:
+            #             print(f"  Slot {slot}: [empty]")
         except Exception as e:
             db.session.add(ActivityLog(category='NOTIFICATION', title='GA Failed', message=f'Engine Error: {str(e)}'))
             db.session.commit()

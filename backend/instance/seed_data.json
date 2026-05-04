@@ -547,330 +547,363 @@
       "name": "CR1",
       "capacity": 120,
       "is_lab": false,
-      "x": 70.25030497988278,
-      "y": 84.49597559843966,
+      "x": 38.18555682010124,
+      "y": 1.8811879222023764,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 2,
       "name": "CR2",
       "capacity": 120,
       "is_lab": false,
-      "x": 33.903897738589095,
-      "y": 58.94079853806646,
+      "x": 67.52351947758034,
+      "y": 22.25441331415644,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 3,
       "name": "CR3",
       "capacity": 120,
       "is_lab": false,
-      "x": 92.92680615612939,
-      "y": 78.39234836392951,
+      "x": 75.64921346117231,
+      "y": 35.98116827790274,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 4,
       "name": "CR4",
       "capacity": 120,
       "is_lab": false,
-      "x": 49.91338870037259,
-      "y": 67.211287197848,
+      "x": 71.76453575524052,
+      "y": 25.613228734225004,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 5,
       "name": "CR5",
       "capacity": 120,
       "is_lab": false,
-      "x": 86.7562366448672,
-      "y": 85.72702135245541,
+      "x": 23.432237647429808,
+      "y": 1.360366567956306,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 6,
       "name": "CR6",
       "capacity": 120,
       "is_lab": false,
-      "x": 73.31943320256727,
-      "y": 74.04877072672468,
+      "x": 50.06824617938661,
+      "y": 87.51098207060903,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 7,
       "name": "CR7",
       "capacity": 120,
       "is_lab": false,
-      "x": 99.36382259281328,
-      "y": 20.353361745986366,
+      "x": 66.70002321891536,
+      "y": 26.56000833612382,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 8,
       "name": "CR8",
       "capacity": 120,
       "is_lab": false,
-      "x": 39.9620857905281,
-      "y": 39.44554338681229,
+      "x": 57.89508499099699,
+      "y": 77.510582524881,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 9,
       "name": "CR9",
       "capacity": 120,
       "is_lab": false,
-      "x": 22.651913365015464,
-      "y": 52.06377453779808,
+      "x": 4.664568153372262,
+      "y": 46.347427525340294,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 10,
       "name": "CR10",
       "capacity": 120,
       "is_lab": false,
-      "x": 36.949974298341544,
-      "y": 22.260693701869915,
+      "x": 13.32376290131293,
+      "y": 78.07920507840593,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 11,
       "name": "CR11",
       "capacity": 120,
       "is_lab": false,
-      "x": 76.810220314539,
-      "y": 25.850460831128263,
+      "x": 75.44336719551991,
+      "y": 57.14938615128439,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 12,
       "name": "CR12",
       "capacity": 120,
       "is_lab": false,
-      "x": 26.77940278758325,
-      "y": 50.18048176288116,
+      "x": 46.437084899050326,
+      "y": 43.54956961715734,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 13,
       "name": "CR13",
       "capacity": 120,
       "is_lab": false,
-      "x": 26.93083240262989,
-      "y": 37.071873811836696,
+      "x": 2.50473800741855,
+      "y": 32.16396648138258,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 14,
       "name": "CR14",
       "capacity": 120,
       "is_lab": false,
-      "x": 3.0380484634021765,
-      "y": 44.95309361542371,
+      "x": 16.32016482720816,
+      "y": 12.752104935258124,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 15,
       "name": "CR15",
       "capacity": 120,
       "is_lab": false,
-      "x": 59.31648156301444,
-      "y": 33.872928934465854,
+      "x": 65.35600982545311,
+      "y": 22.749190779678496,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 16,
       "name": "CR16",
       "capacity": 120,
       "is_lab": false,
-      "x": 2.874061724672028,
-      "y": 53.69525041163651,
+      "x": 61.90507743284418,
+      "y": 95.19250024821866,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 17,
       "name": "CR17",
       "capacity": 120,
       "is_lab": false,
-      "x": 72.50170282742734,
-      "y": 81.25494235955928,
+      "x": 75.46060557411278,
+      "y": 88.34507220886313,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 18,
       "name": "CR18",
       "capacity": 120,
       "is_lab": false,
-      "x": 78.29690161607238,
-      "y": 37.24982289076758,
+      "x": 98.51221431155184,
+      "y": 20.04045041144147,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 19,
       "name": "LH1",
       "capacity": 300,
       "is_lab": false,
-      "x": 32.31645011254992,
-      "y": 72.13848628457686,
+      "x": 68.53651695545369,
+      "y": 35.10342171747447,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 20,
       "name": "LH2",
       "capacity": 300,
       "is_lab": false,
-      "x": 95.92102983975258,
-      "y": 4.2356197413358165,
+      "x": 14.35146751176154,
+      "y": 11.038601592914487,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 21,
       "name": "LH3",
       "capacity": 300,
       "is_lab": false,
-      "x": 21.49465546916607,
-      "y": 19.978734540994424,
+      "x": 27.13027023439848,
+      "y": 20.990673854494148,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 22,
       "name": "LH4",
       "capacity": 300,
       "is_lab": false,
-      "x": 38.899066838447105,
-      "y": 6.006342430040834,
+      "x": 51.81190343588688,
+      "y": 43.18536080790556,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 23,
       "name": "LH5",
       "capacity": 300,
       "is_lab": false,
-      "x": 52.864597301979934,
-      "y": 30.485727232444006,
+      "x": 82.81796197689901,
+      "y": 10.750423442205593,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 24,
       "name": "LH6",
       "capacity": 300,
       "is_lab": false,
-      "x": 35.47917463158067,
-      "y": 31.789839857922708,
+      "x": 46.75937117429952,
+      "y": 96.19089856048555,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 25,
       "name": "LH7",
       "capacity": 300,
       "is_lab": false,
-      "x": 60.57003683972542,
-      "y": 38.58242302763443,
+      "x": 73.46827638299162,
+      "y": 28.183775253112252,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 26,
       "name": "LH8",
       "capacity": 300,
       "is_lab": false,
-      "x": 7.939792406150592,
-      "y": 52.41997736152386,
+      "x": 91.78329258221191,
+      "y": 0.6451125990454942,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 27,
       "name": "LH9",
       "capacity": 300,
       "is_lab": false,
-      "x": 34.88263200023183,
-      "y": 50.642118678599665,
+      "x": 52.69868680166201,
+      "y": 0.14939421369161154,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 28,
       "name": "LH10",
       "capacity": 300,
       "is_lab": false,
-      "x": 41.65572922068071,
-      "y": 62.64946211406814,
+      "x": 72.84416520453551,
+      "y": 29.202134532342427,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 29,
       "name": "LH11",
       "capacity": 300,
       "is_lab": false,
-      "x": 22.340855604008613,
-      "y": 7.39989753207646,
+      "x": 42.5727813324311,
+      "y": 69.75829168277802,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 30,
       "name": "LH12",
       "capacity": 300,
       "is_lab": false,
-      "x": 49.1112181784384,
-      "y": 87.26353075786102,
+      "x": 99.19259620223649,
+      "y": 95.4202054758252,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 31,
       "name": "LH13",
       "capacity": 300,
       "is_lab": false,
-      "x": 38.36570738854276,
-      "y": 87.56498198699121,
+      "x": 99.42846430215903,
+      "y": 52.68086892290904,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 32,
       "name": "LH14",
       "capacity": 300,
       "is_lab": false,
-      "x": 67.56715639634176,
-      "y": 46.88080943411234,
+      "x": 40.540321111827026,
+      "y": 40.75003851896686,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 33,
       "name": "LH15",
       "capacity": 300,
       "is_lab": false,
-      "x": 0.37329445634507463,
-      "y": 57.521878332252015,
+      "x": 37.695885702841316,
+      "y": 83.00373802289242,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 34,
@@ -880,79 +913,89 @@
       "x": 50,
       "y": 50,
       "z": 2,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 35,
       "name": "SCR1",
       "capacity": 60,
       "is_lab": false,
-      "x": 70.74786543521265,
-      "y": 81.49248214796579,
+      "x": 92.40919193232428,
+      "y": 4.486327343718499,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 36,
       "name": "SCR2",
       "capacity": 60,
       "is_lab": false,
-      "x": 5.436309146904872,
-      "y": 22.50635821040481,
+      "x": 0.630206516793197,
+      "y": 50.981544463762255,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 37,
       "name": "SCR3",
       "capacity": 60,
       "is_lab": false,
-      "x": 82.83862689591325,
-      "y": 60.79044207433766,
+      "x": 78.03340826397763,
+      "y": 62.06155472064695,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 38,
       "name": "SCR4",
       "capacity": 60,
       "is_lab": false,
-      "x": 20.28117506169678,
-      "y": 85.37518088213267,
+      "x": 96.46826924160113,
+      "y": 45.81204195189319,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 39,
       "name": "SCR5",
       "capacity": 60,
       "is_lab": false,
-      "x": 80.95389429283014,
-      "y": 41.3730534329951,
+      "x": 68.16060206988837,
+      "y": 31.26832992214141,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 40,
       "name": "SCR6",
       "capacity": 60,
       "is_lab": false,
-      "x": 56.44157274106273,
-      "y": 41.04201358941372,
+      "x": 57.021194701993394,
+      "y": 90.78187497987487,
       "z": 0,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 41,
       "name": "CSE_Lab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 37.097679901226535,
-      "y": 67.52891768479205,
+      "x": 70.28312684896424,
+      "y": 45.00998872430676,
       "z": 1,
       "allowed_batches": [
-        "CS1",
-        "CS2"
+        "CS1-Yr1",
+        "CS1-Yr2"
+      ],
+      "allowed_departments": [
+        "CSE"
       ]
     },
     {
@@ -960,12 +1003,15 @@
       "name": "CSE_Lab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 54.19406538866415,
-      "y": 13.417645110232323,
+      "x": 47.7545279883913,
+      "y": 16.263313505423472,
       "z": 1,
       "allowed_batches": [
-        "CS1",
-        "CS2"
+        "CS1-Yr1",
+        "CS1-Yr2"
+      ],
+      "allowed_departments": [
+        "CSE"
       ]
     },
     {
@@ -973,12 +1019,15 @@
       "name": "AI_Lab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 73.02879777896973,
-      "y": 70.27235548868029,
+      "x": 77.27204770698137,
+      "y": 51.55941305704823,
       "z": 1,
       "allowed_batches": [
-        "AI1",
-        "AI2"
+        "AI1-Yr1",
+        "AI1-Yr2"
+      ],
+      "allowed_departments": [
+        "AI"
       ]
     },
     {
@@ -986,12 +1035,15 @@
       "name": "AI_Lab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 59.98680236432061,
-      "y": 84.51742589058857,
+      "x": 9.443814952779794,
+      "y": 89.1721504916236,
       "z": 1,
       "allowed_batches": [
-        "AI1",
-        "AI2"
+        "AI1-Yr1",
+        "AI1-Yr2"
+      ],
+      "allowed_departments": [
+        "AI"
       ]
     },
     {
@@ -999,12 +1051,15 @@
       "name": "ME_Lab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 85.70122714427998,
-      "y": 57.29718145007359,
+      "x": 7.59542437092342,
+      "y": 42.49679893571518,
       "z": 1,
       "allowed_batches": [
-        "ME1",
-        "ME2"
+        "ME1-Yr1",
+        "ME1-Yr2"
+      ],
+      "allowed_departments": [
+        "ME"
       ]
     },
     {
@@ -1012,12 +1067,15 @@
       "name": "ME_Lab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 4.377245994564671,
-      "y": 21.856539924052953,
+      "x": 90.36061718913594,
+      "y": 64.16919297084169,
       "z": 1,
       "allowed_batches": [
-        "ME1",
-        "ME2"
+        "ME1-Yr1",
+        "ME1-Yr2"
+      ],
+      "allowed_departments": [
+        "ME"
       ]
     },
     {
@@ -1025,12 +1083,15 @@
       "name": "CEC_Lab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 11.552385395864862,
-      "y": 36.817239036558824,
+      "x": 10.969855075177193,
+      "y": 7.252817772471342,
       "z": 1,
       "allowed_batches": [
-        "CEC1",
-        "CEC2"
+        "CEC1-Yr1",
+        "CEC1-Yr2"
+      ],
+      "allowed_departments": [
+        "CEC"
       ]
     },
     {
@@ -1038,12 +1099,15 @@
       "name": "CEC_Lab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 22.11477408609329,
-      "y": 67.44268387948176,
+      "x": 8.37673618304926,
+      "y": 63.023709863704156,
       "z": 1,
       "allowed_batches": [
-        "CEC1",
-        "CEC2"
+        "CEC1-Yr1",
+        "CEC1-Yr2"
+      ],
+      "allowed_departments": [
+        "CEC"
       ]
     },
     {
@@ -1051,12 +1115,15 @@
       "name": "ECE_Lab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 42.78557846138797,
-      "y": 21.53320243269341,
+      "x": 30.28033208887243,
+      "y": 26.610135726702,
       "z": 1,
       "allowed_batches": [
-        "ECE1",
-        "ECE2"
+        "ECE1-Yr1",
+        "ECE1-Yr2"
+      ],
+      "allowed_departments": [
+        "ECE"
       ]
     },
     {
@@ -1064,12 +1131,15 @@
       "name": "ECE_Lab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 0.5357504076524466,
-      "y": 10.358200363586356,
+      "x": 36.61357121380567,
+      "y": 28.856353343094497,
       "z": 1,
       "allowed_batches": [
-        "ECE1",
-        "ECE2"
+        "ECE1-Yr1",
+        "ECE1-Yr2"
+      ],
+      "allowed_departments": [
+        "ECE"
       ]
     },
     {
@@ -1077,12 +1147,15 @@
       "name": "ECM_Lab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 28.633235475905682,
-      "y": 54.075518801088215,
+      "x": 7.174286252212081,
+      "y": 41.461095692807895,
       "z": 1,
       "allowed_batches": [
-        "ECM1",
-        "ECM2"
+        "ECM1-Yr1",
+        "ECM1-Yr2"
+      ],
+      "allowed_departments": [
+        "ECM"
       ]
     },
     {
@@ -1090,12 +1163,15 @@
       "name": "ECM_Lab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 34.26037491249595,
-      "y": 81.23667231953421,
+      "x": 25.760236385304758,
+      "y": 83.96130832930967,
       "z": 1,
       "allowed_batches": [
-        "ECM1",
-        "ECM2"
+        "ECM1-Yr1",
+        "ECM1-Yr2"
+      ],
+      "allowed_departments": [
+        "ECM"
       ]
     },
     {
@@ -1103,12 +1179,15 @@
       "name": "CAM_Lab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 20.66970866187212,
-      "y": 40.03396452414315,
+      "x": 96.18612205141936,
+      "y": 62.014744780537804,
       "z": 1,
       "allowed_batches": [
-        "CAM1",
-        "CAM2"
+        "CAM1-Yr1",
+        "CAM1-Yr2"
+      ],
+      "allowed_departments": [
+        "CAM"
       ]
     },
     {
@@ -1116,12 +1195,15 @@
       "name": "CAM_Lab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 79.89615591734261,
-      "y": 13.654048825370335,
+      "x": 60.41006435180525,
+      "y": 68.93818612534841,
       "z": 1,
       "allowed_batches": [
-        "CAM1",
-        "CAM2"
+        "CAM1-Yr1",
+        "CAM1-Yr2"
+      ],
+      "allowed_departments": [
+        "CAM"
       ]
     },
     {
@@ -1129,69 +1211,55 @@
       "name": "SharedLab1",
       "capacity": 100,
       "is_lab": true,
-      "x": 36.241298903181395,
-      "y": 37.32354040971914,
+      "x": 75.0,
+      "y": 75.0,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 56,
       "name": "SharedLab2",
       "capacity": 100,
       "is_lab": true,
-      "x": 88.88680489065999,
-      "y": 90.43065875903528,
+      "x": 75.0,
+      "y": 75.0,
       "z": 1,
-      "allowed_batches": [
-        "CS1",
-        "CS2",
-        "AI1",
-        "AI2",
-        "ECM1",
-        "ECM2",
-        "CAM1",
-        "CAM2"
-      ]
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 57,
       "name": "SharedLab3",
       "capacity": 100,
       "is_lab": true,
-      "x": 55.8621531972361,
-      "y": 66.40389570523617,
+      "x": 75.0,
+      "y": 75.0,
       "z": 1,
-      "allowed_batches": [
-        "ME1",
-        "ME2",
-        "CEC1",
-        "CEC2"
-      ]
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 58,
       "name": "SharedLab4",
       "capacity": 100,
       "is_lab": true,
-      "x": 7.955697799628558,
-      "y": 17.812575111974247,
+      "x": 75.0,
+      "y": 75.0,
       "z": 1,
-      "allowed_batches": [
-        "ECE1",
-        "ECE2",
-        "ECM1",
-        "ECM2"
-      ]
+      "allowed_batches": null,
+      "allowed_departments": null
     },
     {
       "id": 59,
       "name": "SharedLab5",
       "capacity": 100,
       "is_lab": true,
-      "x": 31.57614931453011,
-      "y": 24.24666064431581,
+      "x": 75.0,
+      "y": 75.0,
       "z": 1,
-      "allowed_batches": null
+      "allowed_batches": null,
+      "allowed_departments": null
     }
   ],
   "student_groups": [
@@ -1468,13 +1536,15 @@
       "course_code": "MA1101",
       "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Priya Sharma",
-      "room": "LH3",
+      "room": "LH4",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1487,13 +1557,15 @@
       "course_code": "MA1101",
       "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Amit Patel",
-      "room": "CR10",
+      "room": "CR13",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1506,13 +1578,15 @@
       "course_code": "PHY1101",
       "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Neha Gupta",
-      "room": "LH6",
+      "room": "LH10",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1525,13 +1599,15 @@
       "course_code": "PHY1101",
       "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Vikram Singh",
-      "room": "CR13",
+      "room": "CR18",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1544,13 +1620,15 @@
       "course_code": "PHY1101",
       "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Deepak Verma",
-      "room": "CSE_Lab1",
+      "room": "CSE_Lab2",
       "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1566,10 +1644,12 @@
       "room": "LH3",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1582,13 +1662,15 @@
       "course_code": "CHM1101",
       "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Prof. Sanjay Mishra",
-      "room": "CR16",
+      "room": "CR4",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1598,16 +1680,18 @@
     },
     {
       "id": 8,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Dr. Kavya Nair",
-      "room": "CSE_Lab1",
-      "session_type": "lab",
+      "room": "LH5",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
+      "total_credits": 2,
+      "lecture_consecutive": true,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1620,13 +1704,15 @@
       "course_code": "ES1101",
       "course_name": "Engineering Drawing and CAD",
       "professor": "Prof. Arjun Desai",
-      "room": "LH11",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR7",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 2,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1636,16 +1722,18 @@
     },
     {
       "id": 10,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Akshay Joshi",
-      "room": "CR13",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH14",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": false,
+      "total_credits": 3,
+      "lecture_consecutive": true,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1658,13 +1746,15 @@
       "course_code": "CS1101",
       "course_name": "Introduction to Programming",
       "professor": "Dr. Pooja Bhat",
-      "room": "LH4",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR3",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1677,13 +1767,15 @@
       "course_code": "CS1101",
       "course_name": "Introduction to Programming",
       "professor": "Dr. Rohan Kapoor",
-      "room": "CR9",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "CSE_Lab1",
+      "session_type": "lab",
+      "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1693,16 +1785,18 @@
     },
     {
       "id": 13,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Prof. Maya Reddy",
-      "room": "CSE_Lab2",
-      "session_type": "lab",
+      "room": "LH2",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
+      "total_credits": 2,
+      "lecture_consecutive": true,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1715,13 +1809,15 @@
       "course_code": "ENG1101",
       "course_name": "English and Technical Communication",
       "professor": "Dr. Nitin Sharma",
-      "room": "LH7",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR16",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 2,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1731,16 +1827,18 @@
     },
     {
       "id": 15,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "CS1102",
+      "course_name": "Discrete Mathematics and Logic",
       "professor": "Prof. Seema Pandey",
-      "room": "CR11",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH10",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": false,
+      "total_credits": 3,
+      "lecture_consecutive": true,
       "student_group": "CS1-Yr1",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1753,13 +1851,15 @@
       "course_code": "CS1102",
       "course_name": "Discrete Mathematics and Logic",
       "professor": "Dr. Rahul Singh",
-      "room": "LH2",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR14",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "CS1-Yr1",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
           "CSE-Yr1",
@@ -1769,19 +1869,21 @@
     },
     {
       "id": 17,
-      "course_code": "CS1102",
-      "course_name": "Discrete Mathematics and Logic",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Prof. Divya Kulkarni",
-      "room": "CR11",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH2",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CS1-Yr1",
+      "lecture_consecutive": true,
+      "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CSE-Yr1",
+          "AI-Yr1",
           "Year 1"
         ]
       }
@@ -1791,13 +1893,15 @@
       "course_code": "MA1101",
       "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Aditya Malhotra",
-      "room": "LH13",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR11",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1807,16 +1911,18 @@
     },
     {
       "id": 19,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Simran Kaur",
-      "room": "CR12",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH10",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1829,13 +1935,15 @@
       "course_code": "PHY1101",
       "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Venkat Naidu",
-      "room": "LH9",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR3",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1848,13 +1956,15 @@
       "course_code": "PHY1101",
       "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Priya Deshmukh",
-      "room": "CR4",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "AI_Lab1",
+      "session_type": "lab",
+      "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1864,16 +1974,18 @@
     },
     {
       "id": 22,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Dr. Arjun Pillai",
-      "room": "AI_Lab1",
-      "session_type": "lab",
+      "room": "LH5",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1886,13 +1998,15 @@
       "course_code": "CHM1101",
       "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Prof. Shreya Iyer",
-      "room": "LH15",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR17",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1902,16 +2016,18 @@
     },
     {
       "id": 24,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Dr. Manish Gupta",
-      "room": "CR16",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH4",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
+      "total_credits": 2,
+      "lecture_consecutive": true,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1921,16 +2037,18 @@
     },
     {
       "id": 25,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Prof. Isha Sharma",
-      "room": "AI_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR8",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1940,16 +2058,18 @@
     },
     {
       "id": 26,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Rajiv Kumar",
-      "room": "LH14",
+      "room": "LH1",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1959,16 +2079,18 @@
     },
     {
       "id": 27,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Prof. Meera Nambiar",
-      "room": "CR8",
+      "room": "CR5",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1981,13 +2103,15 @@
       "course_code": "CS1101",
       "course_name": "Introduction to Programming",
       "professor": "Dr. Sanjay Rao",
-      "room": "LH1",
-      "session_type": "lecture",
+      "room": "AI_Lab2",
+      "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -1997,16 +2121,18 @@
     },
     {
       "id": 29,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Prof. Ananya Singh",
-      "room": "CR12",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH5",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
+      "total_credits": 2,
+      "lecture_consecutive": true,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -2016,16 +2142,18 @@
     },
     {
       "id": 30,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Dr. Karthik Murthy",
-      "room": "AI_Lab2",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR18",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -2035,16 +2163,18 @@
     },
     {
       "id": 31,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "AI1102",
+      "course_name": "Foundations of Artificial Intelligence",
       "professor": "Prof. Harshita Jain",
-      "room": "LH7",
+      "room": "LH5",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "AI1-Yr1",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -2054,16 +2184,18 @@
     },
     {
       "id": 32,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "AI1102",
+      "course_name": "Foundations of Artificial Intelligence",
       "professor": "Dr. Suresh Kumar",
-      "room": "CR14",
+      "room": "CR17",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "AI1-Yr1",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
           "AI-Yr1",
@@ -2073,54 +2205,60 @@
     },
     {
       "id": 33,
-      "course_code": "AI1102",
-      "course_name": "Foundations of Artificial Intelligence",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Prof. Divya Rai",
-      "room": "LH2",
+      "room": "LH9",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "AI1-Yr1",
+      "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "AI-Yr1",
+          "ME-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 34,
-      "course_code": "AI1102",
-      "course_name": "Foundations of Artificial Intelligence",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Ajay Patel",
-      "room": "CR2",
+      "room": "CR10",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "AI1-Yr1",
+      "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "AI-Yr1",
+          "ME-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 35,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Nisha Gupta",
-      "room": "LH14",
+      "room": "LH7",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2130,16 +2268,18 @@
     },
     {
       "id": 36,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Ramesh Sinha",
       "room": "CR10",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2152,13 +2292,15 @@
       "course_code": "PHY1101",
       "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Anjana Rao",
-      "room": "LH2",
-      "session_type": "lecture",
+      "room": "ME_Lab2",
+      "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2168,16 +2310,18 @@
     },
     {
       "id": 38,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Dr. Saurav Dutta",
-      "room": "CR5",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH11",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2187,16 +2331,18 @@
     },
     {
       "id": 39,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Prof. Tejas Kulkarni",
-      "room": "ME_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR7",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2206,16 +2352,18 @@
     },
     {
       "id": 40,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Dr. Shalini Verma",
-      "room": "LH5",
+      "room": "LH15",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": true,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2225,16 +2373,18 @@
     },
     {
       "id": 41,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Prof. Ravi Tiwari",
-      "room": "CR17",
+      "room": "CR1",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2244,16 +2394,18 @@
     },
     {
       "id": 42,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Pankaj Sharma",
-      "room": "ME_Lab1",
-      "session_type": "lab",
+      "room": "LH10",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2263,16 +2415,18 @@
     },
     {
       "id": 43,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Prof. Meera Singh",
-      "room": "LH7",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR9",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": true,
+      "total_credits": 3,
+      "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2282,16 +2436,18 @@
     },
     {
       "id": 44,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Arjun Desai",
-      "room": "CR6",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "ME_Lab2",
+      "session_type": "lab",
+      "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2301,16 +2457,18 @@
     },
     {
       "id": 45,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Prof. Neha Iyer",
-      "room": "LH12",
+      "room": "LH13",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": true,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2320,16 +2478,18 @@
     },
     {
       "id": 46,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Dr. Vikram Kumar",
-      "room": "CR4",
+      "room": "CR13",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2339,16 +2499,18 @@
     },
     {
       "id": 47,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ME1102",
+      "course_name": "Engineering Mechanics",
       "professor": "Prof. Divya Rao",
-      "room": "ME_Lab2",
-      "session_type": "lab",
+      "room": "LH15",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "ME1-Yr1",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2358,16 +2520,18 @@
     },
     {
       "id": 48,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "ME1102",
+      "course_name": "Engineering Mechanics",
       "professor": "Dr. Sandeep Patel",
-      "room": "LH8",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR13",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": true,
+      "total_credits": 3,
+      "lecture_consecutive": false,
       "student_group": "ME1-Yr1",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
           "ME-Yr1",
@@ -2377,73 +2541,81 @@
     },
     {
       "id": 49,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Prof. Priya Nair",
-      "room": "CR14",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH12",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": false,
-      "student_group": "ME1-Yr1",
+      "total_credits": 3,
+      "lecture_consecutive": true,
+      "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ME-Yr1",
+          "CEC-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 50,
-      "course_code": "ME1102",
-      "course_name": "Engineering Mechanics",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Mohan Rao",
-      "room": "LH15",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR14",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ME1-Yr1",
+      "lecture_consecutive": false,
+      "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ME-Yr1",
+          "CEC-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 51,
-      "course_code": "ME1102",
-      "course_name": "Engineering Mechanics",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Sneha Patel",
-      "room": "CR7",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH14",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ME1-Yr1",
+      "lecture_consecutive": true,
+      "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ME-Yr1",
+          "CEC-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 52,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Bhargav Kumar",
-      "room": "LH1",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR17",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2453,16 +2625,18 @@
     },
     {
       "id": 53,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Ananya Ghosh",
-      "room": "CR1",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "CEC_Lab1",
+      "session_type": "lab",
+      "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2472,16 +2646,18 @@
     },
     {
       "id": 54,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Dr. Vinay Sharma",
-      "room": "LH3",
+      "room": "LH4",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2491,16 +2667,18 @@
     },
     {
       "id": 55,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Prof. Kavya Singh",
-      "room": "CR6",
+      "room": "CR7",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2510,16 +2688,18 @@
     },
     {
       "id": 56,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Dr. Suresh Reddy",
-      "room": "CEC_Lab2",
-      "session_type": "lab",
+      "room": "LH2",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
+      "total_credits": 2,
+      "lecture_consecutive": true,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2529,16 +2709,18 @@
     },
     {
       "id": 57,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Prof. Pooja Iyer",
-      "room": "LH11",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR2",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
+      "total_credits": 2,
+      "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2548,16 +2730,18 @@
     },
     {
       "id": 58,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Nikhil Gupta",
-      "room": "CR6",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH1",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2567,16 +2751,18 @@
     },
     {
       "id": 59,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Prof. Ritika Sharma",
-      "room": "CEC_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR3",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2586,16 +2772,18 @@
     },
     {
       "id": 60,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Rajesh Singh",
-      "room": "LH4",
-      "session_type": "lecture",
+      "room": "CEC_Lab1",
+      "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": true,
+      "total_credits": 3,
+      "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2605,16 +2793,18 @@
     },
     {
       "id": 61,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Prof. Anjali Desai",
-      "room": "CR15",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH13",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 2,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2624,16 +2814,18 @@
     },
     {
       "id": 62,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Dr. Vikram Patel",
-      "room": "LH5",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR18",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
+      "total_credits": 2,
+      "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2643,16 +2835,18 @@
     },
     {
       "id": 63,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "CEC1102",
+      "course_name": "Surveying and Mapping Basics",
       "professor": "Prof. Neha Verma",
-      "room": "CR15",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH12",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "CEC1-Yr1",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2662,16 +2856,18 @@
     },
     {
       "id": 64,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "CEC1102",
+      "course_name": "Surveying and Mapping Basics",
       "professor": "Dr. Sanjay Kumar",
-      "room": "CEC_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR14",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CEC1-Yr1",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
           "CEC-Yr1",
@@ -2681,92 +2877,102 @@
     },
     {
       "id": 65,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Prof. Priya Gupta",
       "room": "LH13",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "CEC1-Yr1",
+      "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CEC-Yr1",
+          "CAM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 66,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Arjun Rao",
-      "room": "CR5",
+      "room": "CR10",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CEC1-Yr1",
+      "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CEC-Yr1",
+          "CAM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 67,
-      "course_code": "CEC1102",
-      "course_name": "Surveying and Mapping Basics",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Divya Singh",
-      "room": "LH11",
+      "room": "LH8",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "CEC1-Yr1",
+      "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CEC-Yr1",
+          "CAM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 68,
-      "course_code": "CEC1102",
-      "course_name": "Surveying and Mapping Basics",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Harsh Nair",
-      "room": "CR1",
+      "room": "CR4",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CEC1-Yr1",
+      "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CEC-Yr1",
+          "CAM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 69,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Isha Patel",
-      "room": "LH5",
-      "session_type": "lecture",
+      "room": "CAM_Lab2",
+      "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2776,16 +2982,18 @@
     },
     {
       "id": 70,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Dr. Harish Varma",
-      "room": "CR17",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH13",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2795,16 +3003,18 @@
     },
     {
       "id": 71,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Prof. Jaya Nair",
-      "room": "LH13",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR10",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2814,16 +3024,18 @@
     },
     {
       "id": 72,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Dr. Srinivas Rao",
-      "room": "CR16",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH1",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
+      "total_credits": 2,
+      "lecture_consecutive": true,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2833,16 +3045,18 @@
     },
     {
       "id": 73,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Prof. Sangeeta Kulkarni",
-      "room": "CAM_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR17",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2852,16 +3066,18 @@
     },
     {
       "id": 74,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Aravind Kumar",
-      "room": "LH7",
+      "room": "LH14",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2871,16 +3087,18 @@
     },
     {
       "id": 75,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Prof. Priya Menon",
-      "room": "CR3",
+      "room": "CR14",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2890,16 +3108,18 @@
     },
     {
       "id": 76,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Gopal Singh",
       "room": "CAM_Lab1",
       "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2909,16 +3129,18 @@
     },
     {
       "id": 77,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Prof. Divya Patel",
-      "room": "LH9",
+      "room": "LH3",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 2,
       "lecture_consecutive": true,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2928,16 +3150,18 @@
     },
     {
       "id": 78,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Dr. Vikram Sinha",
       "room": "CR18",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "CAM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2947,16 +3171,18 @@
     },
     {
       "id": 79,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "CAM1102",
+      "course_name": "Computational Mathematics",
       "professor": "Prof. Anu Gupta",
       "room": "LH10",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "CAM1-Yr1",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2966,16 +3192,18 @@
     },
     {
       "id": 80,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "CAM1102",
+      "course_name": "Computational Mathematics",
       "professor": "Dr. Rajkumar Verma",
-      "room": "CR6",
+      "room": "CR16",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "CAM1-Yr1",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
           "CAM-Yr1",
@@ -2985,111 +3213,123 @@
     },
     {
       "id": 81,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Prof. Sandhya Rao",
-      "room": "CAM_Lab2",
-      "session_type": "lab",
+      "room": "LH9",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CAM1-Yr1",
+      "lecture_consecutive": true,
+      "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CAM-Yr1",
+          "ECE-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 82,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Ashok Reddy",
-      "room": "LH12",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR18",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": true,
-      "student_group": "CAM1-Yr1",
+      "total_credits": 3,
+      "lecture_consecutive": false,
+      "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CAM-Yr1",
+          "ECE-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 83,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Meena Singh",
-      "room": "CR1",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH15",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": false,
-      "student_group": "CAM1-Yr1",
+      "total_credits": 3,
+      "lecture_consecutive": true,
+      "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CAM-Yr1",
+          "ECE-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 84,
-      "course_code": "CAM1102",
-      "course_name": "Computational Mathematics",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Rohit Kumar",
-      "room": "LH15",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR16",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "CAM1-Yr1",
+      "lecture_consecutive": false,
+      "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CAM-Yr1",
+          "ECE-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 85,
-      "course_code": "CAM1102",
-      "course_name": "Computational Mathematics",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Neha Iyer",
-      "room": "CR13",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "ECE_Lab1",
+      "session_type": "lab",
+      "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CAM1-Yr1",
+      "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "CAM-Yr1",
+          "ECE-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 86,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Dr. Suresh Patel",
-      "room": "LH10",
+      "room": "LH9",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3099,16 +3339,18 @@
     },
     {
       "id": 87,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Prof. Anjali Mishra",
-      "room": "CR9",
+      "room": "CR2",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3118,16 +3360,18 @@
     },
     {
       "id": 88,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Dr. Gaurav Sharma",
       "room": "LH3",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": true,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3137,16 +3381,18 @@
     },
     {
       "id": 89,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Prof. Isha Nair",
-      "room": "CR6",
+      "room": "CR3",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3156,16 +3402,18 @@
     },
     {
       "id": 90,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Rajesh Kumar",
-      "room": "ECE_Lab1",
-      "session_type": "lab",
+      "room": "LH5",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3175,16 +3423,18 @@
     },
     {
       "id": 91,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Priya Sharma",
-      "room": "LH1",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR9",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3194,16 +3444,18 @@
     },
     {
       "id": 92,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Amit Patel",
-      "room": "CR17",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "ECE_Lab2",
+      "session_type": "lab",
+      "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3213,16 +3465,18 @@
     },
     {
       "id": 93,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Dr. Neha Gupta",
-      "room": "ECE_Lab2",
-      "session_type": "lab",
+      "room": "LH5",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
+      "total_credits": 2,
+      "lecture_consecutive": true,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3232,16 +3486,18 @@
     },
     {
       "id": 94,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Dr. Vikram Singh",
-      "room": "LH7",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR14",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 2,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "ECE1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3251,16 +3507,18 @@
     },
     {
       "id": 95,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "ECE1102",
+      "course_name": "Circuit Analysis and Networks",
       "professor": "Prof. Deepak Verma",
-      "room": "CR7",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH8",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": false,
+      "total_credits": 3,
+      "lecture_consecutive": true,
       "student_group": "ECE1-Yr1",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3270,16 +3528,18 @@
     },
     {
       "id": 96,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "ECE1102",
+      "course_name": "Circuit Analysis and Networks",
       "professor": "Dr. Anjali Rao",
-      "room": "LH12",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR11",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
+      "lecture_consecutive": false,
       "student_group": "ECE1-Yr1",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
           "ECE-Yr1",
@@ -3289,149 +3549,165 @@
     },
     {
       "id": 97,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Prof. Sanjay Mishra",
-      "room": "CR14",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH10",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECE1-Yr1",
+      "lecture_consecutive": true,
+      "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ECE-Yr1",
+          "ECM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 98,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "MA1101",
+      "course_name": "Mathematics I - Calculus and Linear Algebra",
       "professor": "Dr. Kavya Nair",
-      "room": "ECE_Lab2",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR8",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ECE1-Yr1",
+      "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ECE-Yr1",
+          "ECM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 99,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Prof. Arjun Desai",
-      "room": "LH10",
+      "room": "LH12",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "ECE1-Yr1",
+      "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ECE-Yr1",
+          "ECM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 100,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Akshay Joshi",
       "room": "CR13",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ECE1-Yr1",
+      "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ECE-Yr1",
+          "ECM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 101,
-      "course_code": "ECE1102",
-      "course_name": "Circuit Analysis and Networks",
+      "course_code": "PHY1101",
+      "course_name": "Physics I - Mechanics and Thermodynamics",
       "professor": "Dr. Pooja Bhat",
-      "room": "LH7",
-      "session_type": "lecture",
+      "room": "ECM_Lab1",
+      "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECE1-Yr1",
+      "lecture_consecutive": false,
+      "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ECE-Yr1",
+          "ECM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 102,
-      "course_code": "ECE1102",
-      "course_name": "Circuit Analysis and Networks",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Dr. Rohan Kapoor",
-      "room": "CR3",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH1",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECE1-Yr1",
+      "lecture_consecutive": true,
+      "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ECE-Yr1",
+          "ECM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 103,
-      "course_code": "ECE1102",
-      "course_name": "Circuit Analysis and Networks",
+      "course_code": "CHM1101",
+      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
       "professor": "Prof. Maya Reddy",
-      "room": "ECE_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR16",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ECE1-Yr1",
+      "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
-          "ECE-Yr1",
+          "ECM-Yr1",
           "Year 1"
         ]
       }
     },
     {
       "id": 104,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Dr. Nitin Sharma",
-      "room": "LH13",
+      "room": "LH1",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": true,
       "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3441,16 +3717,18 @@
     },
     {
       "id": 105,
-      "course_code": "MA1101",
-      "course_name": "Mathematics I - Calculus and Linear Algebra",
+      "course_code": "ES1101",
+      "course_name": "Engineering Drawing and CAD",
       "professor": "Prof. Seema Pandey",
-      "room": "CR9",
+      "room": "CR7",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3460,16 +3738,18 @@
     },
     {
       "id": 106,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Rahul Singh",
-      "room": "LH10",
+      "room": "LH11",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
       "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3479,16 +3759,18 @@
     },
     {
       "id": 107,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Prof. Divya Kulkarni",
-      "room": "CR8",
+      "room": "CR11",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3498,16 +3780,18 @@
     },
     {
       "id": 108,
-      "course_code": "PHY1101",
-      "course_name": "Physics I - Mechanics and Thermodynamics",
+      "course_code": "CS1101",
+      "course_name": "Introduction to Programming",
       "professor": "Dr. Aditya Malhotra",
       "room": "ECM_Lab2",
       "session_type": "lab",
       "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3517,16 +3801,18 @@
     },
     {
       "id": 109,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Prof. Simran Kaur",
-      "room": "LH6",
+      "room": "LH12",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": true,
       "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3536,16 +3822,18 @@
     },
     {
       "id": 110,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ENG1101",
+      "course_name": "English and Technical Communication",
       "professor": "Dr. Venkat Naidu",
-      "room": "CR5",
+      "room": "CR9",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 3,
+      "total_credits": 2,
       "lecture_consecutive": false,
       "student_group": "ECM1-Yr1",
+      "department_name": "General",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3555,16 +3843,18 @@
     },
     {
       "id": 111,
-      "course_code": "CHM1101",
-      "course_name": "Chemistry I - Physical and Inorganic Chemistry",
+      "course_code": "ECM1102",
+      "course_name": "Digital Logic and Design",
       "professor": "Prof. Priya Deshmukh",
-      "room": "ECM_Lab2",
-      "session_type": "lab",
+      "room": "LH2",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
+      "lecture_consecutive": true,
       "student_group": "ECM1-Yr1",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3574,16 +3864,18 @@
     },
     {
       "id": 112,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "ECM1102",
+      "course_name": "Digital Logic and Design",
       "professor": "Dr. Arjun Pillai",
-      "room": "LH10",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR1",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": true,
+      "total_credits": 3,
+      "lecture_consecutive": false,
       "student_group": "ECM1-Yr1",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
           "ECM-Yr1",
@@ -3593,1213 +3885,900 @@
     },
     {
       "id": 113,
-      "course_code": "ES1101",
-      "course_name": "Engineering Drawing and CAD",
+      "course_code": "CS2101",
+      "course_name": "Data Structures and Algorithms",
       "professor": "Prof. Shreya Iyer",
-      "room": "CR17",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH2",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
-      "lecture_consecutive": false,
-      "student_group": "ECM1-Yr1",
+      "total_credits": 3,
+      "lecture_consecutive": true,
+      "student_group": "CS1-Yr2",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "CSE-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 114,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "CS2101",
+      "course_name": "Data Structures and Algorithms",
       "professor": "Dr. Manish Gupta",
-      "room": "LH15",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR2",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECM1-Yr1",
+      "lecture_consecutive": false,
+      "student_group": "CS1-Yr2",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "CSE-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 115,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "CS2102",
+      "course_name": "Digital Architecture and Design",
       "professor": "Prof. Isha Sharma",
-      "room": "CR6",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH8",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECM1-Yr1",
+      "lecture_consecutive": true,
+      "student_group": "CS1-Yr2",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "CSE-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 116,
-      "course_code": "CS1101",
-      "course_name": "Introduction to Programming",
+      "course_code": "CS2102",
+      "course_name": "Digital Architecture and Design",
       "professor": "Dr. Rajiv Kumar",
-      "room": "ECM_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR1",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ECM1-Yr1",
+      "student_group": "CS1-Yr2",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "CSE-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 117,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "CS2103",
+      "course_name": "Discrete Mathematics and Computation",
       "professor": "Prof. Meera Nambiar",
-      "room": "LH13",
+      "room": "LH6",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "ECM1-Yr1",
+      "student_group": "CS1-Yr2",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "CSE-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 118,
-      "course_code": "ENG1101",
-      "course_name": "English and Technical Communication",
+      "course_code": "CS2103",
+      "course_name": "Discrete Mathematics and Computation",
       "professor": "Dr. Sanjay Rao",
-      "room": "CR4",
+      "room": "CR12",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
-      "total_credits": 2,
+      "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ECM1-Yr1",
+      "student_group": "CS1-Yr2",
+      "department_name": "CSE",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "CSE-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 119,
-      "course_code": "ECM1102",
-      "course_name": "Digital Logic and Design",
+      "course_code": "AI2101",
+      "course_name": "Machine Learning Fundamentals",
       "professor": "Prof. Ananya Singh",
-      "room": "LH15",
+      "room": "LH5",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "ECM1-Yr1",
+      "student_group": "AI1-Yr2",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "AI-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 120,
-      "course_code": "ECM1102",
-      "course_name": "Digital Logic and Design",
+      "course_code": "AI2101",
+      "course_name": "Machine Learning Fundamentals",
       "professor": "Dr. Karthik Murthy",
-      "room": "CR5",
+      "room": "CR7",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ECM1-Yr1",
+      "student_group": "AI1-Yr2",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "AI-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 121,
-      "course_code": "ECM1102",
-      "course_name": "Digital Logic and Design",
+      "course_code": "AI2102",
+      "course_name": "Probability and Statistics for AI",
       "professor": "Prof. Harshita Jain",
-      "room": "ECM_Lab1",
-      "session_type": "lab",
+      "room": "LH11",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECM1-Yr1",
+      "lecture_consecutive": true,
+      "student_group": "AI1-Yr2",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
-          "ECM-Yr1",
-          "Year 1"
+          "AI-Yr2",
+          "Year 2"
         ]
       }
     },
     {
       "id": 122,
-      "course_code": "CS2101",
-      "course_name": "Data Structures and Algorithms",
+      "course_code": "AI2102",
+      "course_name": "Probability and Statistics for AI",
       "professor": "Dr. Suresh Kumar",
-      "room": "LH6",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR10",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "CS1-Yr2",
+      "lecture_consecutive": false,
+      "student_group": "AI1-Yr2",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "AI-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 123,
-      "course_code": "CS2101",
+      "course_code": "AI2103",
       "course_name": "Data Structures and Algorithms",
       "professor": "Prof. Divya Rai",
-      "room": "CR11",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH14",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CS1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "AI1-Yr2",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "AI-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 124,
-      "course_code": "CS2101",
+      "course_code": "AI2103",
       "course_name": "Data Structures and Algorithms",
       "professor": "Dr. Ajay Patel",
-      "room": "CSE_Lab2",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR18",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CS1-Yr2",
+      "student_group": "AI1-Yr2",
+      "department_name": "AI",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "AI-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 125,
-      "course_code": "CS2102",
-      "course_name": "Digital Architecture and Design",
+      "course_code": "ME2101",
+      "course_name": "Mechanics of Materials",
       "professor": "Prof. Nisha Gupta",
-      "room": "LH4",
+      "room": "LH15",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "CS1-Yr2",
+      "student_group": "ME1-Yr2",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "ME-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 126,
-      "course_code": "CS2102",
-      "course_name": "Digital Architecture and Design",
+      "course_code": "ME2101",
+      "course_name": "Mechanics of Materials",
       "professor": "Dr. Ramesh Sinha",
-      "room": "CR10",
+      "room": "CR7",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CS1-Yr2",
+      "student_group": "ME1-Yr2",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "ME-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 127,
-      "course_code": "CS2102",
-      "course_name": "Digital Architecture and Design",
+      "course_code": "ME2102",
+      "course_name": "Thermodynamics I",
       "professor": "Prof. Anjana Rao",
-      "room": "CSE_Lab1",
-      "session_type": "lab",
+      "room": "LH3",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CS1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "ME1-Yr2",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "ME-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 128,
-      "course_code": "CS2103",
-      "course_name": "Discrete Mathematics and Computation",
+      "course_code": "ME2102",
+      "course_name": "Thermodynamics I",
       "professor": "Dr. Saurav Dutta",
-      "room": "LH6",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR5",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "CS1-Yr2",
+      "lecture_consecutive": false,
+      "student_group": "ME1-Yr2",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "ME-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 129,
-      "course_code": "CS2103",
-      "course_name": "Discrete Mathematics and Computation",
+      "course_code": "ME2103",
+      "course_name": "Manufacturing Processes and Workshop",
       "professor": "Prof. Tejas Kulkarni",
-      "room": "CR1",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH7",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CS1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "ME1-Yr2",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
-          "CSE-Yr2",
+          "ME-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 130,
-      "course_code": "AI2101",
-      "course_name": "Machine Learning Fundamentals",
+      "course_code": "ME2103",
+      "course_name": "Manufacturing Processes and Workshop",
       "professor": "Dr. Shalini Verma",
-      "room": "LH8",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR16",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "AI1-Yr2",
+      "lecture_consecutive": false,
+      "student_group": "ME1-Yr2",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "ME-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 131,
-      "course_code": "AI2101",
-      "course_name": "Machine Learning Fundamentals",
+      "course_code": "ME2103",
+      "course_name": "Manufacturing Processes and Workshop",
       "professor": "Prof. Ravi Tiwari",
-      "room": "CR3",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "ME_Lab2",
+      "session_type": "lab",
+      "slots_required": 2,
+      "slots_continuous": true,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "AI1-Yr2",
+      "student_group": "ME1-Yr2",
+      "department_name": "ME",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "ME-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 132,
-      "course_code": "AI2101",
-      "course_name": "Machine Learning Fundamentals",
+      "course_code": "CEC2101",
+      "course_name": "Structural Analysis I",
       "professor": "Dr. Pankaj Sharma",
-      "room": "AI_Lab2",
-      "session_type": "lab",
+      "room": "LH14",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "AI1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "CEC1-Yr2",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "CEC-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 133,
-      "course_code": "AI2102",
-      "course_name": "Probability and Statistics for AI",
+      "course_code": "CEC2101",
+      "course_name": "Structural Analysis I",
       "professor": "Prof. Meera Singh",
-      "room": "LH4",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR15",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "AI1-Yr2",
+      "lecture_consecutive": false,
+      "student_group": "CEC1-Yr2",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "CEC-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 134,
-      "course_code": "AI2102",
-      "course_name": "Probability and Statistics for AI",
+      "course_code": "CEC2102",
+      "course_name": "Surveying I - Instruments and Methods",
       "professor": "Dr. Arjun Desai",
-      "room": "CR16",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH3",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "AI1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "CEC1-Yr2",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "CEC-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 135,
-      "course_code": "AI2103",
-      "course_name": "Data Structures and Algorithms",
+      "course_code": "CEC2102",
+      "course_name": "Surveying I - Instruments and Methods",
       "professor": "Prof. Neha Iyer",
-      "room": "LH6",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR8",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "AI1-Yr2",
+      "lecture_consecutive": false,
+      "student_group": "CEC1-Yr2",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "CEC-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 136,
-      "course_code": "AI2103",
-      "course_name": "Data Structures and Algorithms",
+      "course_code": "CEC2103",
+      "course_name": "Soil Mechanics I",
       "professor": "Dr. Vikram Kumar",
-      "room": "CR16",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH13",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "AI1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "CEC1-Yr2",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "CEC-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 137,
-      "course_code": "AI2103",
-      "course_name": "Data Structures and Algorithms",
+      "course_code": "CEC2103",
+      "course_name": "Soil Mechanics I",
       "professor": "Prof. Divya Rao",
-      "room": "AI_Lab2",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR7",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "AI1-Yr2",
+      "student_group": "CEC1-Yr2",
+      "department_name": "CEC",
       "hierarchy": {
         "parents": [
-          "AI-Yr2",
+          "CEC-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 138,
-      "course_code": "ME2101",
-      "course_name": "Mechanics of Materials",
+      "course_code": "CAM2101",
+      "course_name": "Numerical Analysis and Methods",
       "professor": "Dr. Sandeep Patel",
-      "room": "LH13",
+      "room": "LH7",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "ME1-Yr2",
+      "student_group": "CAM1-Yr2",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "CAM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 139,
-      "course_code": "ME2101",
-      "course_name": "Mechanics of Materials",
+      "course_code": "CAM2101",
+      "course_name": "Numerical Analysis and Methods",
       "professor": "Prof. Priya Nair",
-      "room": "CR3",
+      "room": "CR1",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ME1-Yr2",
+      "student_group": "CAM1-Yr2",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "CAM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 140,
-      "course_code": "ME2102",
-      "course_name": "Thermodynamics I",
+      "course_code": "CAM2102",
+      "course_name": "Optimization Techniques",
       "professor": "Dr. Mohan Rao",
-      "room": "LH2",
+      "room": "LH15",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "ME1-Yr2",
+      "student_group": "CAM1-Yr2",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "CAM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 141,
-      "course_code": "ME2102",
-      "course_name": "Thermodynamics I",
+      "course_code": "CAM2102",
+      "course_name": "Optimization Techniques",
       "professor": "Prof. Sneha Patel",
-      "room": "CR6",
+      "room": "CR16",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ME1-Yr2",
+      "student_group": "CAM1-Yr2",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "CAM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 142,
-      "course_code": "ME2102",
-      "course_name": "Thermodynamics I",
+      "course_code": "CAM2103",
+      "course_name": "Data Structures and Algorithms",
       "professor": "Dr. Bhargav Kumar",
-      "room": "ME_Lab1",
-      "session_type": "lab",
+      "room": "LH12",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ME1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "CAM1-Yr2",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "CAM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 143,
-      "course_code": "ME2103",
-      "course_name": "Manufacturing Processes and Workshop",
+      "course_code": "CAM2103",
+      "course_name": "Data Structures and Algorithms",
       "professor": "Prof. Ananya Ghosh",
-      "room": "LH15",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR18",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ME1-Yr2",
+      "lecture_consecutive": false,
+      "student_group": "CAM1-Yr2",
+      "department_name": "CAM",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "CAM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 144,
-      "course_code": "ME2103",
-      "course_name": "Manufacturing Processes and Workshop",
+      "course_code": "ECE2101",
+      "course_name": "Electronic Devices and Circuits",
       "professor": "Dr. Vinay Sharma",
-      "room": "CR5",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH13",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ME1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "ECE1-Yr2",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "ECE-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 145,
-      "course_code": "ME2103",
-      "course_name": "Manufacturing Processes and Workshop",
+      "course_code": "ECE2101",
+      "course_name": "Electronic Devices and Circuits",
       "professor": "Prof. Kavya Singh",
-      "room": "ME_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR1",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "ME1-Yr2",
+      "student_group": "ECE1-Yr2",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
-          "ME-Yr2",
+          "ECE-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 146,
-      "course_code": "CEC2101",
-      "course_name": "Structural Analysis I",
+      "course_code": "ECE2102",
+      "course_name": "Signals and Systems",
       "professor": "Dr. Suresh Reddy",
-      "room": "LH10",
+      "room": "LH9",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "CEC1-Yr2",
+      "student_group": "ECE1-Yr2",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECE-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 147,
-      "course_code": "CEC2101",
-      "course_name": "Structural Analysis I",
+      "course_code": "ECE2102",
+      "course_name": "Signals and Systems",
       "professor": "Prof. Pooja Iyer",
-      "room": "CR4",
+      "room": "CR6",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CEC1-Yr2",
+      "student_group": "ECE1-Yr2",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECE-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 148,
-      "course_code": "CEC2102",
-      "course_name": "Surveying I - Instruments and Methods",
+      "course_code": "ECE2103",
+      "course_name": "Digital Electronics",
       "professor": "Dr. Nikhil Gupta",
-      "room": "LH3",
+      "room": "LH10",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "CEC1-Yr2",
+      "student_group": "ECE1-Yr2",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECE-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 149,
-      "course_code": "CEC2102",
-      "course_name": "Surveying I - Instruments and Methods",
+      "course_code": "ECE2103",
+      "course_name": "Digital Electronics",
       "professor": "Prof. Ritika Sharma",
-      "room": "CR12",
+      "room": "CR5",
       "session_type": "tutorial",
       "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CEC1-Yr2",
+      "student_group": "ECE1-Yr2",
+      "department_name": "ECE",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECE-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 150,
-      "course_code": "CEC2102",
-      "course_name": "Surveying I - Instruments and Methods",
+      "course_code": "ECM2101",
+      "course_name": "Microprocessors and Embedded Systems",
       "professor": "Dr. Rajesh Singh",
-      "room": "CEC_Lab1",
-      "session_type": "lab",
+      "room": "LH9",
+      "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CEC1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "ECM1-Yr2",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 151,
-      "course_code": "CEC2103",
-      "course_name": "Soil Mechanics I",
+      "course_code": "ECM2101",
+      "course_name": "Microprocessors and Embedded Systems",
       "professor": "Prof. Anjali Desai",
-      "room": "LH11",
-      "session_type": "lecture",
-      "slots_required": 2,
+      "room": "CR10",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "CEC1-Yr2",
+      "lecture_consecutive": false,
+      "student_group": "ECM1-Yr2",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 152,
-      "course_code": "CEC2103",
-      "course_name": "Soil Mechanics I",
+      "course_code": "ECM2102",
+      "course_name": "Digital VLSI Design",
       "professor": "Dr. Vikram Patel",
-      "room": "CR2",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "room": "LH5",
+      "session_type": "lecture",
+      "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CEC1-Yr2",
+      "lecture_consecutive": true,
+      "student_group": "ECM1-Yr2",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 153,
-      "course_code": "CEC2103",
-      "course_name": "Soil Mechanics I",
+      "course_code": "ECM2102",
+      "course_name": "Digital VLSI Design",
       "professor": "Prof. Neha Verma",
-      "room": "CEC_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
+      "room": "CR14",
+      "session_type": "tutorial",
+      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
-      "student_group": "CEC1-Yr2",
+      "student_group": "ECM1-Yr2",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
-          "CEC-Yr2",
+          "ECM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 154,
-      "course_code": "CAM2101",
-      "course_name": "Numerical Analysis and Methods",
+      "course_code": "ECM2103",
+      "course_name": "Signals and Systems",
       "professor": "Dr. Sanjay Kumar",
-      "room": "LH1",
+      "room": "LH13",
       "session_type": "lecture",
       "slots_required": 2,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": true,
-      "student_group": "CAM1-Yr2",
+      "student_group": "ECM1-Yr2",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
-          "CAM-Yr2",
+          "ECM-Yr2",
           "Year 2"
         ]
       }
     },
     {
       "id": 155,
-      "course_code": "CAM2101",
-      "course_name": "Numerical Analysis and Methods",
+      "course_code": "ECM2103",
+      "course_name": "Signals and Systems",
       "professor": "Prof. Priya Gupta",
-      "room": "CR3",
-      "session_type": "tutorial",
-      "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CAM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "CAM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 156,
-      "course_code": "CAM2102",
-      "course_name": "Optimization Techniques",
-      "professor": "Dr. Arjun Rao",
-      "room": "LH11",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "CAM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "CAM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 157,
-      "course_code": "CAM2102",
-      "course_name": "Optimization Techniques",
-      "professor": "Prof. Divya Singh",
-      "room": "CR2",
-      "session_type": "tutorial",
-      "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CAM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "CAM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 158,
-      "course_code": "CAM2103",
-      "course_name": "Data Structures and Algorithms",
-      "professor": "Dr. Harsh Nair",
-      "room": "LH4",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "CAM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "CAM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 159,
-      "course_code": "CAM2103",
-      "course_name": "Data Structures and Algorithms",
-      "professor": "Prof. Isha Patel",
-      "room": "CR11",
-      "session_type": "tutorial",
-      "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CAM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "CAM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 160,
-      "course_code": "CAM2103",
-      "course_name": "Data Structures and Algorithms",
-      "professor": "Dr. Harish Varma",
-      "room": "CAM_Lab2",
-      "session_type": "lab",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "CAM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "CAM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 161,
-      "course_code": "ECE2101",
-      "course_name": "Electronic Devices and Circuits",
-      "professor": "Prof. Jaya Nair",
-      "room": "LH8",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 162,
-      "course_code": "ECE2101",
-      "course_name": "Electronic Devices and Circuits",
-      "professor": "Dr. Srinivas Rao",
       "room": "CR1",
       "session_type": "tutorial",
       "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 163,
-      "course_code": "ECE2101",
-      "course_name": "Electronic Devices and Circuits",
-      "professor": "Prof. Sangeeta Kulkarni",
-      "room": "ECE_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 164,
-      "course_code": "ECE2102",
-      "course_name": "Signals and Systems",
-      "professor": "Dr. Aravind Kumar",
-      "room": "LH5",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 165,
-      "course_code": "ECE2102",
-      "course_name": "Signals and Systems",
-      "professor": "Prof. Priya Menon",
-      "room": "CR3",
-      "session_type": "tutorial",
-      "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 166,
-      "course_code": "ECE2103",
-      "course_name": "Digital Electronics",
-      "professor": "Dr. Gopal Singh",
-      "room": "LH11",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 167,
-      "course_code": "ECE2103",
-      "course_name": "Digital Electronics",
-      "professor": "Prof. Divya Patel",
-      "room": "CR17",
-      "session_type": "tutorial",
-      "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 168,
-      "course_code": "ECE2103",
-      "course_name": "Digital Electronics",
-      "professor": "Dr. Vikram Sinha",
-      "room": "ECE_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECE1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECE-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 169,
-      "course_code": "ECM2101",
-      "course_name": "Microprocessors and Embedded Systems",
-      "professor": "Prof. Anu Gupta",
-      "room": "LH3",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 170,
-      "course_code": "ECM2101",
-      "course_name": "Microprocessors and Embedded Systems",
-      "professor": "Dr. Rajkumar Verma",
-      "room": "CR10",
-      "session_type": "tutorial",
-      "slots_required": 1,
+      "slots_continuous": false,
       "preference_bin": 1,
       "total_credits": 3,
       "lecture_consecutive": false,
       "student_group": "ECM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 171,
-      "course_code": "ECM2101",
-      "course_name": "Microprocessors and Embedded Systems",
-      "professor": "Prof. Sandhya Rao",
-      "room": "ECM_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 172,
-      "course_code": "ECM2102",
-      "course_name": "Digital VLSI Design",
-      "professor": "Dr. Ashok Reddy",
-      "room": "LH9",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 173,
-      "course_code": "ECM2102",
-      "course_name": "Digital VLSI Design",
-      "professor": "Prof. Meena Singh",
-      "room": "CR11",
-      "session_type": "tutorial",
-      "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 174,
-      "course_code": "ECM2102",
-      "course_name": "Digital VLSI Design",
-      "professor": "Dr. Rohit Kumar",
-      "room": "ECM_Lab1",
-      "session_type": "lab",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 175,
-      "course_code": "ECM2103",
-      "course_name": "Signals and Systems",
-      "professor": "Prof. Neha Iyer",
-      "room": "LH12",
-      "session_type": "lecture",
-      "slots_required": 2,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": true,
-      "student_group": "ECM1-Yr2",
-      "hierarchy": {
-        "parents": [
-          "ECM-Yr2",
-          "Year 2"
-        ]
-      }
-    },
-    {
-      "id": 176,
-      "course_code": "ECM2103",
-      "course_name": "Signals and Systems",
-      "professor": "Dr. Suresh Patel",
-      "room": "CR16",
-      "session_type": "tutorial",
-      "slots_required": 1,
-      "preference_bin": 1,
-      "total_credits": 3,
-      "lecture_consecutive": false,
-      "student_group": "ECM1-Yr2",
+      "department_name": "ECM",
       "hierarchy": {
         "parents": [
           "ECM-Yr2",

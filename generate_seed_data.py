@@ -95,6 +95,7 @@ def generate_rooms() -> List[Dict[str, Any]]:
             "y": random.uniform(0, 100),
             "z": 0,
             "allowed_batches": None,  # Available to all
+            "allowed_departments": None,  # Available to all departments
         })
         room_id += 1
 
@@ -109,6 +110,7 @@ def generate_rooms() -> List[Dict[str, Any]]:
             "y": random.uniform(0, 100),
             "z": 1,
             "allowed_batches": None,
+            "allowed_departments": None,  # Available to all departments
         })
         room_id += 1
 
@@ -122,6 +124,7 @@ def generate_rooms() -> List[Dict[str, Any]]:
         "y": 50,
         "z": 2,
         "allowed_batches": None,
+        "allowed_departments": None,  # Available to all departments
     })
     room_id += 1
 
@@ -136,6 +139,7 @@ def generate_rooms() -> List[Dict[str, Any]]:
             "y": random.uniform(0, 100),
             "z": 0,
             "allowed_batches": None,
+            "allowed_departments": None,  # Available to all departments
         })
         room_id += 1
 
@@ -143,14 +147,15 @@ def generate_rooms() -> List[Dict[str, Any]]:
     # BRANCH-SPECIFIC LABS (14 labs, two per branch)
     # ========================================================================
 
+    # Lab mapping: actual batch names as generated (section format: {code}{section}-Yr{year})
     lab_mapping = {
-        "CSE": ["CS1", "CS2"],
-        "AI": ["AI1", "AI2"],
-        "ME": ["ME1", "ME2"],
-        "CEC": ["CEC1", "CEC2"],
-        "ECE": ["ECE1", "ECE2"],
-        "ECM": ["ECM1", "ECM2"],
-        "CAM": ["CAM1", "CAM2"],
+        "CSE": ["CS1-Yr1", "CS1-Yr2"],
+        "AI": ["AI1-Yr1", "AI1-Yr2"],
+        "ME": ["ME1-Yr1", "ME1-Yr2"],
+        "CEC": ["CEC1-Yr1", "CEC1-Yr2"],
+        "ECE": ["ECE1-Yr1", "ECE1-Yr2"],
+        "ECM": ["ECM1-Yr1", "ECM1-Yr2"],
+        "CAM": ["CAM1-Yr1", "CAM1-Yr2"],
     }
 
     # Create 2 labs per branch for better distribution
@@ -166,12 +171,17 @@ def generate_rooms() -> List[Dict[str, Any]]:
                 "y": random.uniform(0, 100),
                 "z": 1,
                 "allowed_batches": lab_mapping[branch_short],
+                "allowed_departments": [branch_short],  # Restricted to this department
             })
             room_id += 1
 
     # ========================================================================
     # SHARED LABS (5 labs with cross-branch access)
     # ========================================================================
+    # All shared labs use the same coordinates for consistency
+    shared_lab_x = 75.0
+    shared_lab_y = 75.0
+    shared_lab_z = 1
 
     # Shared Lab 1: All branches - General purpose
     rooms.append({
@@ -179,52 +189,53 @@ def generate_rooms() -> List[Dict[str, Any]]:
         "name": "SharedLab1",
         "capacity": 100,
         "is_lab": True,
-        "x": random.uniform(0, 100),
-        "y": random.uniform(0, 100),
-        "z": 1,
+        "x": shared_lab_x,
+        "y": shared_lab_y,
+        "z": shared_lab_z,
         "allowed_batches": None,  # Available to all
+        "allowed_departments": None,  # Available to all departments
     })
     room_id += 1
 
-    # Shared Lab 2: Computation-related branches (CS, AI, ECM, CAM)
-    computation_batches = ["CS1", "CS2", "AI1", "AI2", "ECM1", "ECM2", "CAM1", "CAM2"]
+    # Shared Lab 2: All branches - Additional general purpose lab
     rooms.append({
         "id": room_id,
         "name": "SharedLab2",
         "capacity": 100,
         "is_lab": True,
-        "x": random.uniform(0, 100),
-        "y": random.uniform(0, 100),
-        "z": 1,
-        "allowed_batches": computation_batches,
+        "x": shared_lab_x,
+        "y": shared_lab_y,
+        "z": shared_lab_z,
+        "allowed_batches": None,  # Available to all
+        "allowed_departments": None,  # Available to all departments
     })
     room_id += 1
 
-    # Shared Lab 3: Engineering-related branches (ME, CEC)
-    engineering_batches = ["ME1", "ME2", "CEC1", "CEC2"]
+    # Shared Lab 3: All branches - Additional general purpose lab
     rooms.append({
         "id": room_id,
         "name": "SharedLab3",
         "capacity": 100,
         "is_lab": True,
-        "x": random.uniform(0, 100),
-        "y": random.uniform(0, 100),
-        "z": 1,
-        "allowed_batches": engineering_batches,
+        "x": shared_lab_x,
+        "y": shared_lab_y,
+        "z": shared_lab_z,
+        "allowed_batches": None,  # Available to all
+        "allowed_departments": None,  # Available to all departments
     })
     room_id += 1
 
-    # Shared Lab 4: Electronics-related branches (ECE, ECM)
-    electronics_batches = ["ECE1", "ECE2", "ECM1", "ECM2"]
+    # Shared Lab 4: All branches - Additional general purpose lab
     rooms.append({
         "id": room_id,
         "name": "SharedLab4",
         "capacity": 100,
         "is_lab": True,
-        "x": random.uniform(0, 100),
-        "y": random.uniform(0, 100),
-        "z": 1,
-        "allowed_batches": electronics_batches,
+        "x": shared_lab_x,
+        "y": shared_lab_y,
+        "z": shared_lab_z,
+        "allowed_batches": None,  # Available to all
+        "allowed_departments": None,  # Available to all departments
     })
     room_id += 1
 
@@ -234,10 +245,11 @@ def generate_rooms() -> List[Dict[str, Any]]:
         "name": "SharedLab5",
         "capacity": 100,
         "is_lab": True,
-        "x": random.uniform(0, 100),
-        "y": random.uniform(0, 100),
-        "z": 1,
+        "x": shared_lab_x,
+        "y": shared_lab_y,
+        "z": shared_lab_z,
         "allowed_batches": None,  # Available to all
+        "allowed_departments": None,  # Available to all departments
     })
     room_id += 1
 
@@ -350,7 +362,7 @@ CORE_COURSES = {
         "general": [
             {"code": "MA1101", "name": "Mathematics I - Calculus and Linear Algebra", "credits": 3, "has_lab": False},
             {"code": "PHY1101", "name": "Physics I - Mechanics and Thermodynamics", "credits": 3, "has_lab": True},
-            {"code": "CHM1101", "name": "Chemistry I - Physical and Inorganic Chemistry", "credits": 3, "has_lab": True},
+            {"code": "CHM1101", "name": "Chemistry I - Physical and Inorganic Chemistry", "credits": 3, "has_lab": False},
             {"code": "ES1101", "name": "Engineering Drawing and CAD", "credits": 2, "has_lab": False},
             {"code": "CS1101", "name": "Introduction to Programming", "credits": 3, "has_lab": True},
             {"code": "ENG1101", "name": "English and Technical Communication", "credits": 2, "has_lab": False},
@@ -360,47 +372,47 @@ CORE_COURSES = {
             "AI": [{"code": "AI1102", "name": "Foundations of Artificial Intelligence", "credits": 3, "has_lab": False}],
             "ME": [{"code": "ME1102", "name": "Engineering Mechanics", "credits": 3, "has_lab": False}],
             "CEC": [{"code": "CEC1102", "name": "Surveying and Mapping Basics", "credits": 3, "has_lab": False}],
-            "ECE": [{"code": "ECE1102", "name": "Circuit Analysis and Networks", "credits": 3, "has_lab": True}],
-            "ECM": [{"code": "ECM1102", "name": "Digital Logic and Design", "credits": 3, "has_lab": True}],
+            "ECE": [{"code": "ECE1102", "name": "Circuit Analysis and Networks", "credits": 3, "has_lab": False}],
+            "ECM": [{"code": "ECM1102", "name": "Digital Logic and Design", "credits": 3, "has_lab": False}],
             "CAM": [{"code": "CAM1102", "name": "Computational Mathematics", "credits": 3, "has_lab": False}],
         },
     },
     2: {  # Year 2 - Advanced (Semester 1)
         "branch_specific": {
             "CSE": [
-                {"code": "CS2101", "name": "Data Structures and Algorithms", "credits": 3, "has_lab": True},
-                {"code": "CS2102", "name": "Digital Architecture and Design", "credits": 3, "has_lab": True},
+                {"code": "CS2101", "name": "Data Structures and Algorithms", "credits": 3, "has_lab": False},
+                {"code": "CS2102", "name": "Digital Architecture and Design", "credits": 3, "has_lab": False},
                 {"code": "CS2103", "name": "Discrete Mathematics and Computation", "credits": 3, "has_lab": False},
             ],
             "AI": [
-                {"code": "AI2101", "name": "Machine Learning Fundamentals", "credits": 3, "has_lab": True},
+                {"code": "AI2101", "name": "Machine Learning Fundamentals", "credits": 3, "has_lab": False},
                 {"code": "AI2102", "name": "Probability and Statistics for AI", "credits": 3, "has_lab": False},
-                {"code": "AI2103", "name": "Data Structures and Algorithms", "credits": 3, "has_lab": True},
+                {"code": "AI2103", "name": "Data Structures and Algorithms", "credits": 3, "has_lab": False},
             ],
             "ME": [
                 {"code": "ME2101", "name": "Mechanics of Materials", "credits": 3, "has_lab": False},
-                {"code": "ME2102", "name": "Thermodynamics I", "credits": 3, "has_lab": True},
+                {"code": "ME2102", "name": "Thermodynamics I", "credits": 3, "has_lab": False},
                 {"code": "ME2103", "name": "Manufacturing Processes and Workshop", "credits": 3, "has_lab": True},
             ],
             "CEC": [
                 {"code": "CEC2101", "name": "Structural Analysis I", "credits": 3, "has_lab": False},
-                {"code": "CEC2102", "name": "Surveying I - Instruments and Methods", "credits": 3, "has_lab": True},
-                {"code": "CEC2103", "name": "Soil Mechanics I", "credits": 3, "has_lab": True},
+                {"code": "CEC2102", "name": "Surveying I - Instruments and Methods", "credits": 3, "has_lab": False},
+                {"code": "CEC2103", "name": "Soil Mechanics I", "credits": 3, "has_lab": False},
             ],
             "ECE": [
-                {"code": "ECE2101", "name": "Electronic Devices and Circuits", "credits": 3, "has_lab": True},
+                {"code": "ECE2101", "name": "Electronic Devices and Circuits", "credits": 3, "has_lab": False},
                 {"code": "ECE2102", "name": "Signals and Systems", "credits": 3, "has_lab": False},
-                {"code": "ECE2103", "name": "Digital Electronics", "credits": 3, "has_lab": True},
+                {"code": "ECE2103", "name": "Digital Electronics", "credits": 3, "has_lab": False},
             ],
             "ECM": [
-                {"code": "ECM2101", "name": "Microprocessors and Embedded Systems", "credits": 3, "has_lab": True},
-                {"code": "ECM2102", "name": "Digital VLSI Design", "credits": 3, "has_lab": True},
+                {"code": "ECM2101", "name": "Microprocessors and Embedded Systems", "credits": 3, "has_lab": False},
+                {"code": "ECM2102", "name": "Digital VLSI Design", "credits": 3, "has_lab": False},
                 {"code": "ECM2103", "name": "Signals and Systems", "credits": 3, "has_lab": False},
             ],
             "CAM": [
                 {"code": "CAM2101", "name": "Numerical Analysis and Methods", "credits": 3, "has_lab": False},
                 {"code": "CAM2102", "name": "Optimization Techniques", "credits": 3, "has_lab": False},
-                {"code": "CAM2103", "name": "Data Structures and Algorithms", "credits": 3, "has_lab": True},
+                {"code": "CAM2103", "name": "Data Structures and Algorithms", "credits": 3, "has_lab": False},
             ],
         },
     },
@@ -484,10 +496,12 @@ def generate_courses(group_id_map: Dict[str, int], all_rooms: List[Dict]) -> Lis
                             "room": room_name,
                             "session_type": session_type,
                             "slots_required": slots,
+                            "slots_continuous": True if session_type == "lab" else False,
                             "preference_bin": 1 if year <= 2 else (1 + (section_name[0:1] == "E")),  # Spread Y3-Y4
                             "total_credits": course["credits"],
                             "lecture_consecutive": True if session_type == "lecture" else False,
                             "student_group": section_name,
+                            "department_name": "General",  # General courses taught by all departments
                             "hierarchy": {
                                 "parents": [f"{branch_short}-Yr{year}", f"Year {year}"]
                             },
@@ -528,10 +542,12 @@ def generate_courses(group_id_map: Dict[str, int], all_rooms: List[Dict]) -> Lis
                             "room": room_name,
                             "session_type": session_type,
                             "slots_required": slots,
+                            "slots_continuous": True if session_type == "lab" else False,
                             "preference_bin": 1 if year <= 2 else (1 + (section_name[0:1] == "E")),
                             "total_credits": course["credits"],
                             "lecture_consecutive": True if session_type == "lecture" else False,
                             "student_group": section_name,
+                            "department_name": branch_short,  # Branch-specific courses belong to this department
                             "hierarchy": {
                                 "parents": [f"{branch_short}-Yr{year}", f"Year {year}"]
                             },

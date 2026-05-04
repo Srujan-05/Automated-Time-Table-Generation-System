@@ -103,8 +103,8 @@ export const useTimetable = () => {
           if (e.slot && e.slot > maxSlot) maxSlot = e.slot;
       });
 
-      // Dynamic slot count based on data (min 10)
-      const slotCount = Math.max(10, maxSlot);
+      // Dynamic slot count based on actual data (no minimum)
+      const slotCount = maxSlot > 0 ? maxSlot : 1;  // At least 1 slot if data exists
 
       setData({
         timetable,

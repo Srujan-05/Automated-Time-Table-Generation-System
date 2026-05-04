@@ -106,8 +106,12 @@ class PopulationMixin:
             shuffled_days = list(days)
             random.shuffle(shuffled_days)
             
-            if course.slots_continuous:
-                # Need consecutive slots on the same day
+            # CRITICAL: Labs MUST always be assigned continuously in the same room
+            if course.session_type == 'lab':
+                # Force continuous assignment for labs
+                assigned_count = self._assign_continuous_slots(course, time_table, shuffled_days, available_rooms)
+            elif course.slots_continuous:
+                # Other continuous courses
                 assigned_count = self._assign_continuous_slots(course, time_table, shuffled_days, available_rooms)
             else:
                 # Non-continuous: find individual slots across different days
@@ -126,7 +130,45 @@ class PopulationMixin:
             self.logger.info(f"    [INIT] ⚠ {len(failed_courses)} courses had scheduling issues")
             return None  # Return None if couldn't schedule all courses
         
+        # Validate all labs in the generated timetable follow continuity rules
+        lab_validation = self._validate_lab_continuity(time_table)
+        if not lab_validation:
+            self.logger.info(f"    [INIT] ✗ Lab continuity validation FAILED")
+            return None  # Reject timetable if labs don't follow rules
+        
+        self.logger.info(f"    [INIT] ✓ Lab continuity validation PASSED")
         return time_table
+    
+    def _get_lab_slots_on_day(self, time_table, day):
+        """
+        Get all lab courses and their slots on a specific day.
+        
+        Returns: dict mapping (course_id, grp_name) to list of slot numbers
+        Example: {('PHY1101', 'CS1-Yr1'): [1, 2], ('PHY1101', 'AI1-Yr1'): [3, 4]}
+        """
+        lab_slots = {}
+        for slot in time_table[day]:
+            for course in time_table[day][slot]:
+                if course.session_type == 'lab':
+                    grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                    key = (course.course_id, grp_name)
+                    if key not in lab_slots:
+                        lab_slots[key] = []
+                    if slot not in lab_slots[key]:
+                        lab_slots[key].append(slot)
+        
+        return lab_slots
+    
+    def _get_lab_course_object(self, time_table, day, course_id, grp_name):
+        """Get the first lab course object for given course_id and batch on day"""
+        for slot in time_table[day]:
+            for course in time_table[day][slot]:
+                if (course.session_type == 'lab' and 
+                    course.course_id == course_id):
+                    course_grp = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                    if course_grp == grp_name:
+                        return course
+        return None
     
     def _assign_continuous_slots(self, course, time_table, days, available_rooms):
         """Assign slots for continuous course (must be consecutive)"""
@@ -197,10 +239,30 @@ class PopulationMixin:
                     course_with_room = copy.copy(course)  # Shallow copy to preserve object references
                     course_with_room.room = assigned_room
                     
+                    # Add the same course instance to all slots (ensures same room for all)
                     for slot in slots_to_use:
                         time_table[day][slot].append(course_with_room)
+                    
+                    # VALIDATION for labs: verify all slots use the same room
+                    if course.session_type == 'lab':
+                        rooms_in_slots = set()
+                        for slot in slots_to_use:
+                            for c in time_table[day][slot]:
+                                if c.course_id == course.course_id and c.session_type == 'lab':
+                                    rooms_in_slots.add(c.room.name if hasattr(c.room, 'name') else str(c.room))
+                        
+                        if len(rooms_in_slots) > 1:
+                            self.logger.warning(f"        [WARNING] Lab {course.course_id} has multiple rooms in slots {slots_to_use}: {rooms_in_slots}")
+                            # Remove the assignment and try next slot
+                            for slot in slots_to_use:
+                                time_table[day][slot] = [c for c in time_table[day][slot] if not (c.course_id == course.course_id and c.session_type == 'lab')]
+                            continue
+                        elif len(rooms_in_slots) == 1:
+                            self.logger.info(f"        [ASSIGN] Assigned {day} slots {start_slot}-{start_slot + course.slots_req - 1} (room: {assigned_room.name}) [LAB VERIFIED]")
+                    else:
+                        self.logger.info(f"        [ASSIGN] Assigned {day} slots {start_slot}-{start_slot + course.slots_req - 1} (room: {assigned_room.name})")
+                    
                     assigned_count = course.slots_req
-                    self.logger.info(f"        [ASSIGN] Assigned {day} slots {start_slot}-{start_slot + course.slots_req - 1} (room: {assigned_room.name})")
                     break
         
         return assigned_count
@@ -278,6 +340,47 @@ class PopulationMixin:
                     self.logger.info(f"        [ASSIGN] Slot {assigned_count}/{course.slots_req}: {day} slot {slot} (room: {assigned_room.name})")
         
         return assigned_count
+    
+    def _validate_lab_continuity(self, time_table):
+        """
+        Validate that all labs follow continuity rules:
+        - Labs on the same day are in consecutive slots
+        - Labs on the same day use the same room
+        
+        Returns True if valid, False if any lab violates rules
+        """
+        for day in time_table:
+            lab_occurrences = {}  # {(course_id, student_grp): [(slot, room)]}
+            
+            for slot in time_table[day]:
+                for course in time_table[day][slot]:
+                    if course.session_type == 'lab':
+                        key = (course.course_id, course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp))
+                        if key not in lab_occurrences:
+                            lab_occurrences[key] = []
+                        room_name = course.room.name if hasattr(course.room, 'name') else str(course.room)
+                        lab_occurrences[key].append((slot, room_name))
+            
+            # Check each lab occurrence on this day
+            for (course_id, grp), occurrences in lab_occurrences.items():
+                if len(occurrences) > 1:
+                    slots = sorted([s for s, _ in occurrences])
+                    rooms = [r for _, r in occurrences]
+                    
+                    # Check if all rooms are the same
+                    if len(set(rooms)) > 1:
+                        self.logger.error(f"    [LAB VALIDATION] ✗ {course_id} for {grp} on {day}: "
+                                        f"Multiple rooms detected in slots {slots}: {set(rooms)}")
+                        return False
+                    
+                    # Check if slots are consecutive
+                    for i in range(len(slots) - 1):
+                        if slots[i+1] - slots[i] != 1:
+                            self.logger.error(f"    [LAB VALIDATION] ✗ {course_id} for {grp} on {day}: "
+                                            f"Non-consecutive slots {slots}")
+                            return False
+        
+        return True
     
     def _generate_random_timetable(self):
         # [DEPRECATED] Use _generate_smart_timetable instead

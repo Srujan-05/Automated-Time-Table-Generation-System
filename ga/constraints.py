@@ -84,15 +84,30 @@ class ConstraintsMixin:
                     room_allowed_batches = getattr(course.room, 'allowed_batches', None)
                     if room_allowed_batches is not None:
                         # If room has restrictions, check if student group is allowed
-                        grp_name = (course.student_grp.name
-                                    if hasattr(course.student_grp, 'name')
-                                    else str(course.student_grp))
-                        if grp_name not in room_allowed_batches:
+                        if course.student_grp not in room_allowed_batches:
+                            if verbose:
+                                grp_name = (course.student_grp.name
+                                            if hasattr(course.student_grp, 'name')
+                                            else str(course.student_grp))
+                                self.logger.info(
+                                    f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
+                                    f"{grp_name} not allowed in room {course.room.name}"
+                                )
+                            return False
+
+                # 9. department-room compatibility (new constraint)
+                for course in courses:
+                    room_allowed_depts = getattr(course.room, 'allowed_departments', None)
+                    course_dept = getattr(course, 'department_name', 'General')
+                    
+                    # If room has department restrictions, check if course's department is allowed
+                    if room_allowed_depts is not None and len(room_allowed_depts) > 0:
+                        if course_dept not in room_allowed_depts:
                             if verbose:
                                 self.logger.info(
                                     f"    [CONSTRAINT FAIL] {day} Slot {time_slot}: "
-                                    f"{grp_name} not allowed in room {course.room.name} "
-                                    f"(allowed: {room_allowed_batches})"
+                                    f"{course.course_id} (dept={course_dept}) cannot use room {course.room.name} "
+                                    f"(allowed_depts={room_allowed_depts})"
                                 )
                             return False
 
@@ -143,6 +158,29 @@ class ConstraintsMixin:
                                         )
                                     return False
 
+            # 7b. labs must be in same room for all slots on same day (per batch)
+            for time_slot in sorted(time_table[day].keys()):
+                for course in time_table[day][time_slot]:
+                    if course.session_type == 'lab' and course.slots_continuous:
+                        # Find all slots for this lab and BATCH on the same day
+                        grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
+                        lab_rooms = set()
+                        for slot in time_table[day]:
+                            for slot_course in time_table[day][slot]:
+                                slot_grp_name = slot_course.student_grp.name if hasattr(slot_course.student_grp, 'name') else str(slot_course.student_grp)
+                                if (slot_course.course_id == course.course_id and 
+                                    slot_grp_name == grp_name and
+                                    slot_course.session_type == 'lab'):
+                                    lab_rooms.add(slot_course.room.id if hasattr(slot_course.room, 'id') else id(slot_course.room))
+                        
+                        # All lab slots for this batch must use same room
+                        if len(lab_rooms) > 1:
+                            if verbose:
+                                self.logger.info(
+                                    f"    [CONSTRAINT FAIL] {day}: Lab {course.course_id} ({grp_name}) uses multiple rooms ({len(lab_rooms)} different rooms)"
+                                )
+                            return False
+
         # 8. each course scheduled exactly slots_req times
         course_slot_count = {}
         for day in time_table:
@@ -192,8 +230,7 @@ class ConstraintsMixin:
         # Room allowed_batches constraint: check if student group is allowed in this room
         room_allowed_batches = getattr(assigned_room, 'allowed_batches', None)
         if room_allowed_batches is not None:
-            grp_name = new_course.student_grp.name if hasattr(new_course.student_grp, 'name') else str(new_course.student_grp)
-            if grp_name not in room_allowed_batches:
+            if new_course.student_grp not in room_allowed_batches:
                 return False
         
         # Professor conflict
@@ -263,9 +300,33 @@ class ConstraintsMixin:
             # Check allowed_batches constraint
             room_allowed_batches = getattr(room, 'allowed_batches', None)
             if room_allowed_batches is not None:
-                grp_name = course.student_grp.name if hasattr(course.student_grp, 'name') else str(course.student_grp)
-                if grp_name not in room_allowed_batches:
+                # allowed_batches is a list of StudentGroup objects, compare directly
+                if course.student_grp not in room_allowed_batches:
+                    continue
+            
+            # Check allowed_departments constraint (NEW - Constraint 9)
+            room_allowed_depts = getattr(room, 'allowed_departments', None)
+            course_dept = getattr(course, 'department_name', 'General')
+            if room_allowed_depts is not None and len(room_allowed_depts) > 0:
+                # If room has department restrictions, course's department must be in the list
+                if course_dept not in room_allowed_depts:
                     continue
             
             available_rooms.append(room)
         return available_rooms
+    
+    def _check_department_compatibility(self, course, room):
+        """
+        Check if course's department is compatible with room's allowed_departments.
+        
+        Returns True if compatible (room allows the department), False otherwise.
+        - If room has no department restrictions (None or empty list), returns True
+        - If room has restrictions, course's department must be in the allowed list
+        """
+        room_allowed_depts = getattr(room, 'allowed_departments', None)
+        course_dept = getattr(course, 'department_name', 'General')
+        
+        if room_allowed_depts is None or len(room_allowed_depts) == 0:
+            return True  # No restrictions, all departments allowed
+        
+        return course_dept in room_allowed_depts
