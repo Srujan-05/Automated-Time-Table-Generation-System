@@ -73,7 +73,10 @@ class IngestionService:
                 student_group_id=group.id,
                 slots_required=item.get('slots_required', 1),
                 slots_continuous=item.get('slots_continuous', False),
-                preference_bin=item.get('preference_bin', 1)
+                preference_bin=item.get('preference_bin', 1),
+                lecture_consecutive=item.get('lecture_consecutive', False),
+                parallelizable_id=item.get('parallelizable_id', None),
+                course_credits=item.get('total_credits', 3)
             ))
             added_count += 1
         
